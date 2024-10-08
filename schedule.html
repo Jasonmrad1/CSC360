@@ -8,9 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
 </head>
 <body>
+    <header style=" color: blueviolet; padding: 10px 0; text-align: right; width: 100%;">
+        <span style="padding-right: 50px;"><a style="font-size: 14px;"> Back to main</a>&nbsp;&nbsp;<i class="fa-solid fa-reply" style="font-size: 14px;"></i></span>
+    </header>
     <div class="container">
+        
         <div class="Schedule-header">MY SCHEDULE</div>
 
         <div class="table-div">
@@ -26,7 +34,7 @@
 
             </tr>
             <tr>
-        <th class="thead" style="text-align: left;">8:00 - 9:30</th>
+        <th class="thead" style="text-align: left;padding: 10px;">8:00 - 9:30</th>
 <td></td>
 <td></td>
 <td></td>
@@ -35,7 +43,7 @@
 
       </tr>
       <tr>
-        <th class="thead" style="text-align: left;">9:30 - 11:00</th>
+        <th class="thead" style="text-align: left;padding: 10px;">9:30 - 11:00</th>
 <td></td>
 <td>CSC360</td>
 <td></td>
@@ -43,7 +51,7 @@
 <td></td>
 
       </tr>
-      <th class="thead" style="text-align: left;">11:00 - 12:30</th>
+      <th class="thead" style="text-align: left;padding: 10px;">11:00 - 12:30</th>
       <td></td>
       <td>CSC320</td>
       <td></td>
@@ -51,7 +59,7 @@
       <td></td>
       
             </tr>
-            <th class="thead" style="text-align: left;">12:30 - 2:00</th>
+            <th class="thead" style="text-align: left;padding: 10px;">12:30 - 2:00</th>
             <td></td>
             <td></td>
             <td></td>
@@ -59,7 +67,7 @@
             <td></td>
             
                   </tr>
-                  <th class="thead" style="text-align: left;">2:00 - 3:30</th>
+                  <th class="thead" style="text-align: left;padding: 10px;">2:00 - 3:30</th>
                   <td></td>
                   <td>CSC352</td>
                   <td></td>
@@ -67,7 +75,7 @@
                   <td></td>
                   
                         </tr>
-                        <th class="thead" style="text-align: left;">3:30 - 5:00</th>
+                        <th class="thead" style="text-align: left;padding: 10px;">3:30 - 5:00</th>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -75,7 +83,7 @@
                         <td></td>
                         
                               </tr>
-                              <th class="thead" style="text-align: left;">5:00 - 6:30</th>
+                              <th class="thead" style="text-align: left;padding: 10px;">5:00 - 6:30</th>
                               <td></td>
                               <td>GEHU225</td>
                               <td></td>
@@ -83,7 +91,7 @@
                               <td></td>
                               
                                     </tr>
-                                    <th class="thead" style="text-align: left;">6:30 - 8:00</th>
+                                    <th class="thead" style="text-align: left;padding: 10px;">6:30 - 8:00</th>
                                     <td></td>
                                     <td>CSC352</td>
                                     <td></td>
@@ -94,18 +102,29 @@
         </table>
         </div>
     </div>
+    <footer style="background-color: blueviolet;width: 100%;height: 40px;display: flex;justify-content: space-between;align-items: center;">
+
+        <div style="height: 100%;width: 25%;"><p style="color: white;text-align: left;padding-left: 30px;font-size: 14px;">Jason Mrad</p></div>
+        <div style="height: 100%;width: 25%;"><p style="color: white;text-align: center;font-size: 14px;">&copy; 2024 All Rights Reserved.</p></div>
+        <div style="height: 100%;width: 25%;display: flex;justify-content: flex-end;align-items: center;color: white;padding-right: 30px;"><i class="fa-brands fa-instagram" style="padding-right: 10px;"></i><i class="fa-brands fa-x-twitter" style="padding-right: 10px;"></i><i class="fa-brands fa-facebook"></i></div>
+
+        
+    </footer>
+    
 </body>
 
 
 <style>
    /* Global Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Outfit",sans-serif;
     background-color: black;
     margin: 0;
     padding: 0;
 }
-
+a:hover{
+    text-decoration: underline;
+}
 .container {
     width: 90%;
     max-width: 1200px;
@@ -115,7 +134,7 @@ body {
     height: 400px;
     height: auto;
     border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+ 
 }
 .Schedule-header{
     border-radius: 5px;
@@ -130,16 +149,36 @@ body {
     font-size: 36px;
     color: white;
     font-weight: bold;
+    letter-spacing: 1px;
 }
 th{
     color: white;
    width: 16.66%;
    height: 40px;
    font-weight: bold;
+   
 }
 .thead{
     color: white;
 
+}
+tbody tr:nth-child(odd) {
+    background-color: #1A1A1A /* Darker shade for odd rows */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #131313; /* Slightly lighter shade for even rows */
+}
+
+/* Row hover effect */
+tbody td:hover {
+    background-color:blueviolet; /* Change the background on hover to a lighter grey */
+    transition: background-color 0.2s ease; /* Smooth transition */
+
+}
+tbody th:hover{
+    background-color:black; /* Change the background on hover to a lighter grey */
+    transition: background-color 0.2s ease; /* Smooth transition */
 }
 h1 {
     text-align: center;
@@ -152,6 +191,7 @@ td{
    width: 12.5%;
    height: 40px;
    padding: 10px;
+  
 }
 /* Table Styles */
 table {
@@ -161,7 +201,9 @@ table {
     margin-top: 20px;
     font-size: 18px;
 }
-
+footer{
+    margin-top: 100px;
+}
 
 
 </style>
