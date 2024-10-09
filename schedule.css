@@ -1,0 +1,307 @@
+
+body {
+    font-family: "Outfit",sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #1A1A1A;
+    height: 400px;
+    height: auto;
+    border-radius: 5px;
+ 
+}
+.Schedule-header{
+    border-radius: 5px;
+    width: 100%;
+    height: 60px;
+    border: 1px solid black;
+    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Outfit",sans-serif;
+    font-size: 36px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+th{
+    color: white;
+   width: 16.66%;
+   height: 40px;
+   font-weight: bold;
+   
+}
+.thead{
+    color: white;
+
+}
+tbody tr:nth-child(odd) {
+    background-color: #1A1A1A /* Darker shade for odd rows */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #131313; /* Slightly lighter shade for even rows */
+}
+
+
+h1 {
+    text-align: center;
+    color: #343a40;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+td{
+    color: white;
+   width: 12.5%;
+   height: 40px;
+   padding: 10px;
+ 
+   transition: all 0.2s ease;
+  
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-top: 20px;
+    font-size: 18px;
+}
+footer{
+    margin-top: 100px;
+}
+/* Anchor tag styles */
+/* Anchor tag styles */
+a {
+    text-decoration: none; /* Remove default underline */
+    color: blueviolet; /* Set your desired text color */
+    position: relative; /* Needed for pseudo-element positioning */
+    display: inline-block; /* Make it inline-block for better alignment */
+    cursor: pointer;
+    padding-bottom: 5px; /* Adjust padding to move the text up slightly */
+}
+
+/* Add a pseudo-element for the underline */
+a::after {
+    content: '';
+    position: absolute;
+    left: 0; /* Start from the left edge */
+    bottom: -2px; /* Position it slightly below the text */
+    height: 2px; /* Thickness of the underline */
+    width: 100%; /* Full width */
+    background-color: white; /* Underline color */
+    transform: scaleX(0); /* Start with no visible underline */
+    transition: transform 0.3s ease; /* Transition for scaling */
+}
+
+/* Hover effect for the anchor tags */
+a:hover::after {
+    transform: scaleX(0.9); /* Expand to full width */
+}
+
+
+td {
+ 
+ 
+  box-sizing: border-box;
+  
+ padding: 10px;
+ 
+  color: white;
+
+  position: relative;
+  vertical-align: middle;
+  overflow: hidden; /* Ensure borders do not overflow */
+}
+
+td::before, td::after {
+  box-sizing: inherit;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.draw {
+    position: relative;
+  transition: color 0.25s;
+}
+.draw:hover{
+    color: blueviolet;
+    
+}
+.draw::before, .draw::after {
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+
+.draw::before {
+  top: 0;
+  left: 0;
+}
+
+.draw::after {
+  bottom: 0;
+  right: 0;
+}
+
+
+
+.draw:hover::before, .draw:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.draw:hover::before {
+  border-top-color: blueviolet;
+  border-right-color: blueviolet;
+  
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+
+.draw:hover::after {
+  border-bottom-color: blueviolet;
+  border-left-color: blueviolet;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+}
+
+.arrow:hover{
+    transform: rotate(180deg);
+}
+.more-info-parent{
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.508); /* Adjust opacity (0.5 is 50%) */
+    z-index: 3; /* Ensures it’s on top of other elements */
+position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.more-info-div{
+        width: 710px;
+        height: 500px;
+        background-color: #1A1A1A;
+        border-radius: 5px;
+        z-index: 4;
+      
+        opacity: 0; /* Hidden initially */
+        transform: translateY(100%); /* Positioned off-screen (bottom) */
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        
+
+      }
+      .more-info-header{
+        width: 100%;
+        height: 60px;
+       background-color: blueviolet;
+       border-radius:5px 5px 0px 0px ;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       color: white;
+   
+      }
+      .more-info-body{
+        height: 440px;
+        width: 100%;
+        background-color:transparent;
+       box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+      }
+      .more-info-main-body{
+        height: 400px;
+        width: 95%;
+        background-color: black;
+        border-radius: 5px;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+      }
+      .main-attributes-div{
+height: 100%;
+width: 35%;
+background-color: black;
+
+border-radius:5px 0px 0px 5px ;
+border-right:none;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+flex-direction: column;
+      }
+      .attributes{
+        height:9.09%;
+        width: 100%;
+        color: white;
+        font-size: 15px;
+      
+       border-bottom:1px solid white ;
+       
+       display: flex;
+       justify-content: flex-start;
+       align-items: center;
+        transition: all 0.2s ease-in;
+
+      }
+      .info-div{
+        border-left: 1px solid #333;
+        height: 100%;
+        width: 65%;
+       
+        
+        border-radius: 0px 5px 5px 0px;
+background-color: black;
+
+
+      }
+.class-day{
+    width: 98px;
+    height: 14px;
+   margin-top: 6px;
+    background-color: #2b2b2b;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.day{
+    height: 100%;
+    width: 14px;
+   display: flex;
+   justify-content: center;
+   border-right:1.5px solid black ;
+   align-items: center;
+   font-size: 10px;
+   
+}
+.hidden{
+    display: none;
+}
+body.no-scroll{
+    overflow: hidden;
+   }
+   .more-info-parent.show {
+    display: flex; /* Show the parent */
+  }
+  
+  .more-info-div.show {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Slide to its final position */
+  }
