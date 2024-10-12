@@ -323,7 +323,12 @@ body.no-scroll{
     opacity: 0;
     visibility: hidden; /* Hide it when opacity is 0 */
 }
-
+.mobile-nav{
+    display: none;
+}
+.mobile-footer{
+display: none;
+}
 
 @media (max-width: 950px)  {
     .container{
@@ -339,6 +344,7 @@ body.no-scroll{
         padding: 9px;
     }
    
+
 
 }
 @media (max-width: 950px) and (min-width:700px) {
@@ -356,6 +362,25 @@ body.no-scroll{
     }
    
 
+}
+@media (max-width: 700px) {
+    .mobile-nav{
+        display: flex;
+    }
+    .mobile-footer{
+    display: flex;
+    }
+    .desktop-nav{
+        display: none;
+    }
+    .desktop-footer{
+    display: none;
+    }
+
+    button{
+        background-color: transparent;
+        border: none;
+    }
 }
 @media (max-width: 700px) and (min-width:610px) {
     .container{
