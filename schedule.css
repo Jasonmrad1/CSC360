@@ -84,7 +84,7 @@ footer{
 }
 /* Anchor tag styles */
 /* Anchor tag styles */
-a {
+.a-links {
     text-decoration: none; /* Remove default underline */
     color: blueviolet; /* Set your desired text color */
     position: relative; /* Needed for pseudo-element positioning */
@@ -94,7 +94,7 @@ a {
 }
 
 /* Add a pseudo-element for the underline */
-a::after {
+.a-links::after {
     content: '';
     position: absolute;
     left: 0; /* Start from the left edge */
@@ -107,7 +107,7 @@ a::after {
 }
 
 /* Hover effect for the anchor tags */
-a:hover::after {
+.a-links:hover::after {
     transform: scaleX(0.9); /* Expand to full width */
 }
 
