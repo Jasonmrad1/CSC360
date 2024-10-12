@@ -132,47 +132,47 @@ td::before, td::after {
 }
 
 .draw {
-    position: relative;
-  transition: color 0.25s;
-}
-.draw:hover{
-    color: blueviolet;
-    
-}
-.draw::before, .draw::after {
-  border: 2px solid transparent;
-  width: 0;
-  height: 0;
+  position: relative;
 }
 
+/* Default state of borders (no hover) */
+.draw::before, .draw::after {
+border: 2px solid transparent;
+width: 0;
+height: 0;
+position: absolute;
+content: "";
+}
+
+/* Position the borders at corners */
 .draw::before {
-  top: 0;
-  left: 0;
+top: 0;
+left: 0;
 }
 
 .draw::after {
-  bottom: 0;
-  right: 0;
+bottom: 0;
+right: 0;
 }
 
-
-
+/* Hover state for border animation */
 .draw:hover::before, .draw:hover::after {
-  width: 100%;
-  height: 100%;
+width: 100%;
+height: 100%;
 }
 
+/* Faster animation on top-right corner */
 .draw:hover::before {
-  border-top-color: blueviolet;
-  border-right-color: blueviolet;
-  
-  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+border-top-color: blueviolet;
+border-right-color: blueviolet;
+transition: width 0.22s ease-out, height 0.22s ease-out 0.22s; /* Slightly faster */
 }
 
+/* Faster animation on bottom-left corner */
 .draw:hover::after {
-  border-bottom-color: blueviolet;
-  border-left-color: blueviolet;
-  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+border-bottom-color: blueviolet;
+border-left-color: blueviolet;
+transition: border-color 0s ease-out 0.42s, width 0.22s ease-out 0.42s, height 0.22s ease-out 0.62s; /* Slightly faster */
 }
 
 .arrow:hover{
@@ -305,3 +305,16 @@ body.no-scroll{
     opacity: 1; /* Fully visible */
     transform: translateY(0); /* Slide to its final position */
   }
+  .arrow-down{
+    display: none;
+  }
+  .fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: visible; /* Make it visible for transition */
+}
+
+.fade-out {
+    opacity: 0;
+    visibility: hidden; /* Hide it when opacity is 0 */
+}
