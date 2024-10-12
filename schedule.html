@@ -754,8 +754,34 @@ document.getElementById("cDescription").style.lineHeight="23px";
 
 }
 
+//for course details long words
 
+function changeAttributeBasedOnWidth() {
+            // Check if window width is less than 700px
+            if (window.innerWidth < 530) {
+                document.getElementById("I/M").innerHTML = "&nbsp;&nbsp;Inst./Meeting";
+                document.getElementById("E/W").innerHTML = "&nbsp;&nbsp;Enroll/Waitlist";
 
+            } else {
+                document.getElementById("I/M").innerHTML = "&nbsp;&nbsp;Instructor/Meeting Times";
+                document.getElementById("E/W").innerHTML = "&nbsp;&nbsp;Enrollement/Waitlist";
+                
+
+            }
+
+            if (window.innerWidth < 400) {
+                document.getElementById("CD").innerHTML = "&nbsp;&nbsp;Course Desc.";
+
+        }
+        else{
+            document.getElementById("CD").innerHTML = "&nbsp;&nbsp;Course Description";
+        }
+    }
+        // Call the function on page load
+        changeAttributeBasedOnWidth();
+
+        // Call the function whenever the window is resized
+        window.addEventListener("resize", changeAttributeBasedOnWidth);
   </script>
 </body>
 
