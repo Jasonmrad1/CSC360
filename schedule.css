@@ -381,6 +381,9 @@ display: none;
         background-color: transparent;
         border: none;
     }
+    .Schedule-header{
+        font-size: 30px;
+    }
 }
 @media (max-width: 700px) and (min-width:610px) {
     .container{
