@@ -36,6 +36,11 @@ body {
     color: white;
     font-weight: bold;
     letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+.Schedule-header:hover{
+  
+    background-color:rgb(150, 43, 226);
 }
 th{
     color: white;
@@ -48,7 +53,11 @@ th{
     color: white;
     text-align: left;
     padding: 10px;
+    transition: all 0.2s ease;
 
+}
+.thead:hover{
+    color: blueviolet;
 }
 tbody tr:nth-child(odd) {
     background-color: #1A1A1A /* Darker shade for odd rows */
@@ -328,9 +337,23 @@ body.no-scroll{
     opacity: 0;
     visibility: hidden; /* Hide it when opacity is 0 */
 }
+
+footer span{
+    transition: all 0.2s ease;
+}
+      footer span:hover{
+        color: rgb(225, 225, 225);;
+      }
+
+      .social-icons i{
+        transition: all 0.2s ease;
+      }
+      .social-icons i:hover{
+        color:rgb(225, 225, 225); ;
+    }
 .email{
     text-decoration: none;
-    color: whitesmoke;
+    color: white;
     transition: all 0.2s ease;
 }
 .email:hover{
@@ -338,10 +361,13 @@ body.no-scroll{
     color: blueviolet;
 }
 .time{
-     transition: all 0.2s ease;}
+    transition: all 0.2s ease;
+}
 .time:hover{
-     color:blueviolet;}
-    
+    color: blueviolet;
+
+}
+
 .mobile-nav{
     display: none;
 }
@@ -416,7 +442,6 @@ display: none;
         display: none;
       }
 
-      
 .page-wrapper {
    
     transition: 450ms;
