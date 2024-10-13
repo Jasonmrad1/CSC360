@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jason Mrad">
     <title>Course Schedule</title>
     <link rel="stylesheet" href="schedule.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,14 +17,14 @@
 <body>
     <div class="desktop-nav" >
     <nav style="background-color:  blueviolet; padding: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+        <div style=" margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
             <div style="font-size: 24px; color: white; font-weight: bold;">My Courses</div>
             <div>
-                <a class="a-links" href="#" style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Home</a>
-                <a class="a-links" href="#schedule" style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Course Schedule</a>
-                <a class="a-links" href="#catalog" style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Course Catalog</a>
-                <a class="a-links" href="#contact" style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Contact</a>
-                <a class="a-links" href="#resources" style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Resources</a>
+                <a class="a-links" href="index.html" style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Home</a>
+                <a class="a-links" onclick="scrollToTarget('schedule')" style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Course Schedule</a>
+                <a class="a-links" href="https://www.usek.edu.lb/"  style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Course Catalog</a>
+                <a class="a-links"onclick="scrollToTarget('social-icons')" style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Contact</a>
+                <a class="a-links" href="https://www.usek.edu.lb/" style="color: white; padding: 10px 15px; text-decoration: none; transition: background-color 0.3s; border-radius: 5px;">Resources</a>
             </div>
         </div>
     </nav>
@@ -35,9 +36,52 @@
                 <div style="font-size: 24px; color: white; font-weight: bold;">My Courses</div>
                 <div>
                     <button>
-                        <i class="fa-solid fa-bars fa-2x" style="color: white;"></i>
+                        <i class="fa-solid fa-bars fa-2x" style="color: white;" onclick="checked('menu2Toggle')"></i>
 
                     </button>
+
+                    <input id="menu2Toggle" type="checkbox">
+                              <div class="page-wrapper">
+                                <div class="page-content">
+                              
+                                  
+                                </div>
+                    <div class="sidebar menu-2">
+                                  
+                        <div class="sidebar-dropdown" style="display: flex;justify-content: space-between;align-items: center;background-color: blueviolet;">
+  <span style="font-size: 24px;font-weight: bold;">My Courses</span>
+  <label class="menu-toggle menu-2-toggle" for="menu2Toggle" style="  
+                " onclick="uncheck()"><span class="close-label" style="padding: 0;"><i class="fa-solid fa-xmark" onclick="" style="font-size: 20px;margin-top: 4px;color: white;"></i></label>
+  
+                        </div>
+                        <div class="sidebar-categories-container">
+                 
+                            <a class="sidebar-categories">
+                                <b>Home</b> 
+                             </a> 
+                              
+                              <a class="sidebar-categories">
+                                <b>Course Schedule</b> 
+                        </a> 
+                              <a class="sidebar-categories">
+                                <b>Course Catalog</b> 
+                              </a> 
+                              
+                              <a class="sidebar-categories">
+                                <b>Contact</b> 
+                                </a> 
+                              
+                              <a class="sidebar-categories" style="border-bottom:none;">
+                                <b>Resources</b> 
+                                </a> 
+                              
+                        </div>
+                    
+                      
+                        
+                        </div>
+                    
+                   </div>
                 </div>
             </div>
         </nav>
@@ -49,7 +93,7 @@
         
         <div class="Schedule-header">MY SCHEDULE</div>
 
-        <div class="table-div">
+        <div class="table-div" id="schedule">
             <table border="1" cellspacing="1" frame="void">
             <tr>
 <th class="thead" style="text-align: center;">Time</th>
@@ -176,8 +220,10 @@
     </div>
 </div>
     </div>
+    
     <div class="desktop-footer">
-    <div >
+   
+        <!--
     <footer style="background-color: blueviolet;width: 100%;height: 40px;display: flex;justify-content: space-between;align-items: center;">
 
         <div style="height: 100%;width: 25%;"><p style="color: white;text-align: left;padding-left: 30px;font-size: 14px;">Jason Mrad</p></div>
@@ -185,7 +231,20 @@
         <div style="height: 100%;width: 25%;display: flex;justify-content: flex-end;align-items: center;color: white;padding-right: 30px;"><i class="fa-brands fa-instagram" style="padding-right: 10px;"></i><i class="fa-brands fa-x-twitter" style="padding-right: 10px;"></i><i class="fa-brands fa-facebook"></i></div>
 
         
-    </footer></div></div>
+    </footer>-->
+
+
+    <footer style="background-color: blueviolet;width: 100%;height: 55px;display: flex;justify-content: space-between;align-items: center;color: white;font-size: 16px;">
+
+<span style="padding-left: 20px;">Jason Mrad</span>
+<span>&copy; 2024 All Rights Reserved.</span>
+<span style="display: flex;justify-content: center;align-items: center;padding-right:20px ;font-size: 19px;" id="social-icons"><i class="fa-brands fa-instagram" style="padding-right: 10px;"></i><i class="fa-brands fa-x-twitter" style="padding-right: 10px;"></i><i class="fa-brands fa-facebook"></i></span>
+
+
+    </footer>
+
+
+</div>
     
     <div class="mobile-footer">
     <footer style="background-color: blueviolet; width: 100%;box-sizing:border-box; padding: 15px 30px; display: flex; flex-direction: column; align-items: center; color: white;font-size: 13px;">
@@ -214,7 +273,9 @@
    
 
     <script>
+       
         window.onload=clickCategories("CL");
+
        
         function clickCategories(attributeID){
 
@@ -391,6 +452,7 @@ levels:"Undergraduate C1"
             enrolled7:"",
             
             instructor: "Mr. Maroun Elias Abi Assaf",
+            instructorEmail:"",
             location: "Kaslik Campus | Bloc H | Room 306",
             time: "11:00 AM - 12:40 PM",
 
@@ -434,6 +496,7 @@ levels:"Undergraduate C1"
             enrolled7:"",
             
             instructor: "Ing. Antoine Mouawad Aoun",
+            instructorEmail:"antoineaoun@usek.edu.lb",
             location: "Kaslik Campus | Bloc B | Room 006",
             time: "06:30 PM - 07:45 PM",
 
@@ -475,6 +538,7 @@ levels:"Undergraduate C1"
             enrolled7:"Web and Mobile Programming (WMP)",
             
             instructor: "Dr. Ziad Charbel Eid",
+            instructorEmail:"ziadcheid@usek.edu.lb",
             location: "Kaslik Campus | Bloc B | Room 104",
             time: "09:30 AM - 10:45 AM",
 
@@ -516,6 +580,7 @@ levels:"Undergraduate C1"
             enrolled7:"",
             
             instructor: "Dr.  Rabih Nemer Assaf",
+            instructorEmail:"rabih.n.assaf@net.usek.edu.lb",
             location: "Kaslik Campus | Bloc C | Room 006",
             time: "02:00 PM - 03:40 PM",
 
@@ -557,6 +622,7 @@ levels:"Undergraduate C1"
             enrolled7:"",
             
             instructor: "Ms. Samar Naim El Hajj",
+            instructorEmail:"samar.n.elhajj@net.usek.edu.lb",
             location: "Kaslik Campus | Bloc H | Room 315",
             time: "02:00 PM - 03:40 PM",
 
@@ -644,7 +710,7 @@ ${course.attribute4}
 
 </div>
 <div id="sixth" class="hidden">
-<font style="font-weight: 600;color:white;">Instructor: </font>${course.instructor}<br>
+<font style="font-weight: 600;color:white;">Instructor: </font><a style="margin:0;padding:0;" class="email" href="mailto:${course.instructorEmail}">${course.instructor}</a><br>
 <font style="font-weight: 600;color:white;">Location: </font>${course.location}<br>
 <font style="font-weight: 600;color:white;">Type: </font>${commonCourse.type}<br>
 <font style="font-weight: 600;color:white;">'Start - End' Date: </font>&nbsp;<span style="font-size: 12.7px;">${commonCourse.startEndDate}</span><br>
@@ -757,7 +823,15 @@ document.getElementById("cDescription").style.lineHeight="23px";
 //for course details long words
 
 function changeAttributeBasedOnWidth() {
-            // Check if window width is less than 700px
+          if(window.innerWidth<700){
+           // Select all 'td' elements
+const allTdElements = document.querySelectorAll('td');
+
+// Loop through each 'td' and remove the 'draw' class
+allTdElements.forEach(td => {
+  td.classList.remove('draw');
+});
+          }
             if (window.innerWidth < 530) {
                 document.getElementById("I/M").innerHTML = "&nbsp;&nbsp;Inst./Meeting";
                 document.getElementById("E/W").innerHTML = "&nbsp;&nbsp;Enroll/Waitlist";
@@ -783,6 +857,39 @@ function changeAttributeBasedOnWidth() {
         // Call the function whenever the window is resized
         window.addEventListener("resize", changeAttributeBasedOnWidth);
   </script>
+
+
+<script>
+
+
+function checked(checker){
+    
+ 
+      let checkbox=document.getElementById(checker);
+      let body=document.body;
+      checkbox.checked=true;
+
+  
+    }
+    function uncheck(){
+  
+    let body=document.body;
+
+    body.style.overflowY="scroll";
+   
+   
+  
+    }
+    function scrollToTarget(targetID) {
+    let target = document.getElementById(targetID);
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  
+  }
+  
+  
+</script>
 </body>
 
 
