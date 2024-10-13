@@ -337,6 +337,11 @@ body.no-scroll{
     text-decoration: underline;
     color: blueviolet;
 }
+.time{
+     transition: all 0.2s ease;}
+.time:hover{
+     color:blueviolet;}
+    
 .mobile-nav{
     display: none;
 }
