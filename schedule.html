@@ -32,7 +32,7 @@
     
     <div class="mobile-nav">
         <nav style="background-color:  blueviolet; padding: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);width: 100%;">
-            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <div style=" margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
                 <div style="font-size: 24px; color: white; font-weight: bold;">My Courses</div>
                 <div>
                     <button>
@@ -77,13 +77,23 @@
                               
                         </div>
 
-                     <div style="height: 100%;width: 100%;margin-top: 40px;">
+                     <div style="height: auto;width: 100%;margin-top: 40px;">
                          
-<div class="list" style="width: 90%;height: 50px;font-size: 18px;display: flex;justify-content: space-between;align-items: center;background-color: blueviolet;color: white;border: 1px solid white;border-radius: 5px;margin-left: 20px;visibility: hidden;opacity: 0;transition: opacity 0.35s ease-in-out;" id="select-box">
+<div class="list" style="width: 90%;height: 50px;font-size: 18px;display: flex;justify-content: space-between;align-items: center;background-color: blueviolet;color: white;border: 1px solid white;border-radius: 5px;margin-left: 20px;visibility: hidden;opacity: 0;transition: opacity 0.35s ease-in-out;" id="select-box" onclick="toggleList()">
     <span style="margin-left: 10px;">Select a course</span><i class="fa fa-chevron-down" style="margin-right: 20px;"></i>
 
 </div>
+<div style="height:0px;width: 90%;margin-left: 20px;border-left: 1px solid white;border-right: 1px solid white;border-radius: 0px 0px 5px 5px;display: flex;justify-content: flex-start;align-items: center;flex-direction: column;overflow-y: scroll;transition: all 0.3s ease-in-out;" id="select-div">
 
+<div class="course" style="width: 100%;min-height: 50px;padding: 10px;font-size: 18px;display: flex;justify-content: flex-start;align-items: center;box-sizing: border-box;border-bottom: 1px solid white;">CSC320</div>
+<div class="course" style="width: 100%;min-height: 50px;padding: 10px;font-size: 18px;display: flex;justify-content: flex-start;align-items: center;box-sizing: border-box;border-bottom: 1px solid white;">CSC360</div>
+<div class="course" style="width: 100%;min-height: 50px;padding: 10px;font-size: 18px;display: flex;justify-content: flex-start;align-items: center;box-sizing: border-box;border-bottom: 1px solid white;">CSC352</div>
+<div class="course" style="width: 100%;min-height: 50px;padding: 10px;font-size: 18px;display: flex;justify-content: flex-start;align-items: center;box-sizing: border-box;border-bottom: 1px solid white;">STA320</div>
+<div class="course" style="width: 100%;min-height: 50px;padding: 10px;font-size: 18px;display: flex;justify-content: flex-start;align-items: center;box-sizing: border-box;border-bottom: 1px solid white;">GEHU225</div>
+
+
+
+</div>
                          
    
     
@@ -920,6 +930,20 @@ function checked(checker){
             selectBox.style.visibility = "hidden";
         }, 350); // Match this to the CSS transition duration
     }
+    }
+
+    function toggleList(){
+        let selectDiv = document.getElementById('select-div');
+        let selectBox= document.getElementById('select-box');
+
+        if(selectDiv.style.height==='150px'){
+            selectDiv.style.height='0px';
+            selectBox.style.borderRadius="5px";
+        }
+        else{
+            selectDiv.style.height='150px';
+            selectBox.style.borderRadius="5px 5px 0px 0px";
+        }
     }
 </script>
 </body>
