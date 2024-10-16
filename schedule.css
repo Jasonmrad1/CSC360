@@ -470,7 +470,7 @@ display: none;
       position: fixed;
       top: 0;
       bottom: 0;
-      z-index: 5;
+      z-index: 3;
       background-color: #1A1A1A;
       color: white;
       transition: 450ms;
@@ -578,9 +578,58 @@ display: none;
     height: auto;
    
   }
-    
+   
+ 
+  .course-list-div{
+    height: auto;
+    width: 100%;
+    margin-top: 40px;
+  }
+  .list{
+    width: 90%;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: blueviolet;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-left: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+  }
+  .courses-div{
+    height:0px;
+    width: 90%;
+    margin-left: 20px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-radius: 0px 0px 5px 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+    transition: all 0.3s ease-in-out;
+  }
+  .course{
+    width: 100%;
+    min-height: 50px;
+    padding: 10px;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
 
-  
+  }
+  .course:active{
+    background-color: blueviolet;
+  }
   
   
     
