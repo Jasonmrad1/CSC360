@@ -562,6 +562,9 @@ display: none;
     overflow-y: scroll;
     transition: all 0.3s ease-in-out;
   }
+  .courses-div::-webkit-scrollbar {/*fik tetrekaaa*/
+    display: none; /* Hides the scrollbar in WebKit-based browsers (Chrome, Safari, etc.) */
+    }
   .course{
     width: 100%;
     min-height: 50px;
