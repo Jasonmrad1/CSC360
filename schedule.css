@@ -442,100 +442,47 @@ display: none;
         display: none;
       }
 
-.page-wrapper {
-   
-    transition: 450ms;
-    z-index: 100;
-    display: flex;
-    justify-content: flex-start; /* Aligns content to the left when sidebar slides in */
+      .page-wrapper {
+        transition: 450ms;
+        z-index: 100;
+        display: flex;
+        justify-content: flex-start; /* Aligns content to the left when sidebar slides in */
     }
     
     .page-content {
-    text-align: center;
-    transition: 450ms;
-  
+        text-align: center;
+        transition: 450ms;
     }
-   
-    .page-wrapper,.page-content{
-        display: block;
-      }
-     
-     .favorites-container{
-      width: 100vw;
-      height: 100vh;
-      box-sizing: border-box;
-     }
-     .sidebar {
-      width: 100vw;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      z-index: 3;
-      background-color: #1A1A1A;
-      color: white;
-      transition: 450ms;
-      }
-      
     
-        
+    .page-wrapper, .page-content {
+        display: block;
+    }
+    
+    .favorites-container {
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+    }
+    
+    .sidebar {
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: -100vw; /* Initially hidden */
+        height: 100%; /* Full height */
+        z-index: 3;
+        background-color: #1A1A1A;
+        color: white;
+        transition: left 450ms ease; /* Transition for sliding effect */
+    }
+    
+    /* Optional styles for when the sidebar is open */
+    .sidebar.open {
+        left: 0; /* Move sidebar into view */
+    }
+    
   
-  
-  #menu1Toggle{
-    padding-top:15px;padding-right: 20px; 
-    display: none;
-  }
-  
-  
-  
-  
-        .sidebar.menu-2 {
-          left: -100vw; /* Initially hidden on the right */
-          right:  auto; /* Ensure it's not affected by left positioning */
-          }
-          
-          .menu-toggle.menu-2-toggle {
-          right: 25px; /* Position the toggle on the right */
-          left: auto; /* Ensure it's not affected by left positioning */
-          border-color: black;
-          color: black;
-          }
-          
-          .menu-toggle .menu-label {
-          display: block;
-          
-          }
-          
-          .menu-toggle .close-label {
-          display: none;
-          color: black;
-          padding-right: 20px;
-          }
-          
-          #menu2Toggle {
-          display: none;
-          
-          }
-          
-          #menu2Toggle:checked ~ .page-wrapper .sidebar.menu-2 {
-          left: 0; /* Slide the sidebar in from the right */
-          box-shadow: 0 0 15px #000;
-          }
-          
-          #menu2Toggle:checked ~ .page-wrapper .menu-toggle.menu-2-toggle {
-          right: 215px; /* Move the toggle to the right when the sidebar is open */
-          left: auto; /* Ensure it's not affected by left positioning */
-          }
-          
-          #menu2Toggle:checked ~ .page-wrapper .menu-toggle.menu-2-toggle .menu-label {
-          display: none;
-          
-          }
-          
-          #menu2Toggle:checked ~ .page-wrapper .menu-toggle.menu-2-toggle .close-label {
-          display: block;
-          
-          }
-  
+    
          
   .sidebar-dropdown{
     box-sizing: border-box;
