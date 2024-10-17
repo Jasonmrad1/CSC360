@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Jason Mrad">
     <title>Course Schedule</title>
-    <link rel="stylesheet" href="schedule.css">
+    <link rel="stylesheet" href="sidebar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
@@ -36,11 +36,10 @@
                 <div style="font-size: 24px; color: white; font-weight: bold;">My Courses</div>
                 <div>
                     <button>
-                        <i class="fa-solid fa-bars fa-2x" style="color: white;" onclick="checked('menu2Toggle')"></i>
+                        <i class="fa-solid fa-bars fa-2x" style="color: white;" onclick="openSidebar()"></i>
 
                     </button>
 
-                    <input id="menu2Toggle" type="checkbox">
                               <div class="page-wrapper">
                                 <div class="page-content">
                               
@@ -50,9 +49,11 @@
                                   
                         <div class="sidebar-dropdown" style="display: flex;justify-content: space-between;align-items: center;background-color: blueviolet;">
   <span style="font-size: 24px;font-weight: bold;">My Courses</span>
-  <label class="menu-toggle menu-2-toggle" for="menu2Toggle" style="  
-                " onclick="uncheck()"><span class="close-label" style="padding: 0;"><i class="fa-solid fa-xmark" onclick="" style="font-size: 20px;margin-top: 4px;color: white;"></i></label>
-  
+  <label class="menu-toggle menu-2-toggle" for="menu2Toggle" onclick="closeSidebar()">
+    <span class="close-label" style="padding: 0;">
+        <i class="fa-solid fa-xmark" style="font-size: 20px; margin-top: 4px; color: white;"></i>
+    </span>
+</label>
                         </div>
                         <div class="sidebar-categories-container">
                  
@@ -60,14 +61,14 @@
                                 <b>Home</b> 
                              </a> 
                               
-                              <a class="sidebar-categories">
+                              <a class="sidebar-categories" onclick="scrollToTarget('schedule')" >
                                 <b>Course Schedule</b> 
                         </a> 
                               <a class="sidebar-categories" onclick="selectCourse()">
                                 <b>Course Catalog</b> 
                               </a> 
                               
-                              <a class="sidebar-categories">
+                              <a class="sidebar-categories" onclick="scrollToTarget('social-icons-mobile')">
                                 <b>Contact</b> 
                                 </a> 
                               
@@ -279,7 +280,7 @@
     <div style="margin-bottom: 10px;">
         <p style="margin: 0;">Contact: <a href="mailto:your-email@example.com" style="color: white; text-decoration: underline;">jason.mrad@net.usek.edu.lb</a></p>
     </div>
-    <div style="display: flex; justify-content: center; gap: 15px;">
+    <div style="display: flex; justify-content: center; gap: 15px;" id="social-icons-mobile">
         <a href="https://www.instagram.com/jasonmrad1" target="_blank" aria-label="Instagram" style="color: white;">
             <i class="fa-brands fa-instagram" style="font-size: 20px;"></i>
         </a>
@@ -886,61 +887,97 @@ allTdElements.forEach(td => {
 
 <script>
 
-
-function checked(checker){
+// Function to open the sidebar
+function openSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const menuToggle = document.querySelector('.menu-toggle');
     
- 
-      let checkbox=document.getElementById(checker);
-      let body=document.body;
-      checkbox.checked=true;
-
-  
-    }
-    function uncheck(){
-  
-    let body=document.body;
-    selectCourse();//to close the box when sidebar closed
-
-    body.style.overflowY="scroll";
+    sidebar.style.left = '0'; // Slide the sidebar in from the left
+    sidebar.classList.add('open'); // Add the open class to manage styles
+    document.body.style.overflow = 'hidden'; // Prevent scrolling on the body
+    
    
-   
-  
+    menuToggle.querySelector('.close-label').style.display = 'block';
+}
+
+// Function to close the sidebar
+function closeSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    sidebar.style.left = '-100vw'; // Slide the sidebar out of view
+    sidebar.classList.remove('open'); // Remove the open class
+    document.body.style.overflow = 'auto'; // Enable body scrolling
+
+    menuToggle.querySelector('.close-label').style.display = 'none';
+}
+
+// Function to toggle the sidebar
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    
+    if (sidebar.classList.contains('open')) {
+        closeSidebar(); // Close if it's open
+    } else {
+        openSidebar(); // Open if it's closed
     }
-    function scrollToTarget(targetID) {
+}
+
+function scrollToTarget(targetID) {
     let target = document.getElementById(targetID);
-    if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    if (window.innerWidth < 750) {
+        // Close the sidebar before scrolling
+        closeSidebar();
+        
+        // Wait for the sidebar animation to complete before scrolling
+        setTimeout(function() {
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 450); // Adjust the timeout based on your sidebar transition speed
+    } else {
+        // On larger screens, just scroll to the target
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     }
-  
-  }
-  
+}
   
 </script>
 <script>
-    //jareb eemela tsaker l height abel hplike
+   
 
     function selectCourse(){
-        let selectBox = document.getElementById('select-box');
-        let selectDiv = document.getElementById('select-div');
+    let selectBox = document.getElementById('select-box');
+    let selectDiv = document.getElementById('select-div');
     
     if (selectBox.style.visibility === "hidden" || selectBox.style.opacity === "0") {
         // Show the element
         selectBox.style.visibility = "visible";
         selectBox.style.opacity = "1";
-        
     } else {
-   selectDiv.style.height='0px';
-  selectBox.style.opacity = "0";
-
-        // Hide the element
+        // First, shrink the height of the selectDiv
+        let timeForHeight;//for if the height is not 0 to not wait 3 seconds to apply transition to start directly
+        if(selectDiv.style.height==="0px"){
+            timeForHeight=0;
+        }
+        else{
+            timeForHeight=300;
+        }
+        selectDiv.style.height = '0px';
+        selectBox.style.borderRadius="5px";
+     
+        // Wait for the height transition to complete (350ms) before changing opacity and visibility
         setTimeout(function() {
-        
-              selectBox.style.visibility = "hidden";
-        
-        }, 350);
-      
+            selectBox.style.opacity = "0";
+            setTimeout(function() {
+                selectBox.style.visibility = "hidden";
+            }, 350); // Time for opacity transition
+        }, timeForHeight); // Time for height transition
     }
-    }
+}
+
 
     function toggleList(){
         let selectDiv = document.getElementById('select-div');
