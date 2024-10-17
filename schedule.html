@@ -72,7 +72,7 @@
                                 <b>Contact</b> 
                                 </a> 
                               
-                              <a class="sidebar-categories" style="border-bottom:none;" href="https://www.usek.edu.lb/">
+                              <a class="sidebar-categories" style="border-bottom:none;text-decoration: none;" href="https://www.usek.edu.lb/">
                                 <b>Resources</b> 
                                 </a> 
                               
@@ -904,6 +904,12 @@ function openSidebar() {
 function closeSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const menuToggle = document.querySelector('.menu-toggle');
+    let selectBox = document.getElementById('select-box');
+    let selectDiv = document.getElementById('select-div');
+    selectBox.style.visibility = "hidden";
+    selectBox.style.opacity = "0";
+    selectBox.style.borderRadius="5px";
+    selectDiv.style.height='0px';
     
     sidebar.style.left = '-100vw'; // Slide the sidebar out of view
     sidebar.classList.remove('open'); // Remove the open class
