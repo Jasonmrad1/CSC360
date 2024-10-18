@@ -87,8 +87,8 @@
 <div class="courses-div" id="select-div">
 
 <div class="course" onclick="openCourseDetails(1)">CSC320</div>
-<div class="course" onclick="openCourseDetails(2)">CSC360</div>
-<div class="course" onclick="openCourseDetails(3)">CSC352</div>
+<div class="course" onclick="openCourseDetails(3)">CSC360</div>
+<div class="course" onclick="openCourseDetails(2)">CSC352</div>
 <div class="course" onclick="openCourseDetails(4)">STA320</div>
 <div class="course" onclick="openCourseDetails(5)">GEHU225</div>
 
@@ -211,6 +211,7 @@
 
 </div>
 <div class="more-info-body">
+
 
 <div class="more-info-main-body">
 
@@ -370,6 +371,7 @@ document.getElementById(arrayOfIDs[j]).style.display="none";
  
     
     <script>
+         let isPopupOpen = false;
 
 function openCourseDetails(id) {
    
@@ -382,7 +384,10 @@ document.body.classList.add('no-scroll');
   setTimeout(() => {
     moreInfoParent.classList.add('show'); // Add class to parent for any background effects
     moreInfoDiv.classList.add('show'); // Trigger the transition in the div
+    isPopupOpen = true; // Mark popup as open after it's shown this was added since the functionality of click outside the div closes it it was closing immediately but adding a delay ensures that it doesnt fire unitentionlly
+
   }, 10); // Small delay for smooth transition
+
 }
 
 function closeCourseDetails() {
@@ -398,8 +403,23 @@ function closeCourseDetails() {
 
   //for reset
 clickCategories("CL");
+isPopupOpen = false; // Mark popup as open after it's shown
 
 }
+  // Event listener for clicks on the entire document
+    document.addEventListener('click', function(event) {
+        const moreInfoDiv = document.getElementById('more-info-div');
+        
+        // Only run this logic if the popup is open
+        if (isPopupOpen && !moreInfoDiv.contains(event.target)) {
+            closeCourseDetails();
+        }
+    });
+
+    // Ensure clicks inside the more-info-div don't propagate to document
+    document.getElementById('more-info-div').addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent closing when clicking inside the popup
+    });
     </script>
 
 <script>
@@ -1000,6 +1020,7 @@ function scrollToTarget(targetID) {
         
         }
     }
+
 </script>
 </body>
 
