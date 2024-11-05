@@ -255,6 +255,7 @@ top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .background-video{
   
@@ -374,6 +375,11 @@ form{
 
     margin-bottom: 20px;
 }
+.form-p{
+    font-size: 1.2em;
+    color: #5a5a5a;
+    padding: 0 20px;
+}
 input,textarea{
     width: 80%;
     padding: 10px;
@@ -457,7 +463,8 @@ footer{
 }
 /* Adjust photo container on smaller screens */
 @media (max-width: 850px) {
-    
+   
+          
     /* Center the photo and reduce its size */
     .photo-container {
         margin-left: 0; /* Remove left margin */
@@ -508,7 +515,31 @@ footer{
     .text-content{
         width: 80%;
     }
+    .project-container{
+        height: auto;
+      flex-direction: column;
+      margin: auto;
+      align-items: center;
+      gap: 30px;
+       
+    }
+    .parent-video-container{
+        min-width: 95%;
     
+        height: 65%;
+       
+        
+    }
+   .video-container{
+    height: 350px;
+   }
+    .project-section h2{
+       margin-bottom: 50px;
+    }
+    .biography-container h2{
+       
+        margin-bottom: 50px;
+    }
 }
 @media (max-width:500px){
     .text-content{
@@ -533,6 +564,19 @@ footer{
         justify-content: space-around;
         font-size: 25px;
         align-items: center;
+    }
+    .video-container{
+        height: 235px;
+       }
+    .biography-container p{
+        font-size: 1.1em;
+        
+    }
+    .form-p{
+        font-size: 1.1em;
+    }
+    #submit-button{
+        width: 180px;
     }
  
   
