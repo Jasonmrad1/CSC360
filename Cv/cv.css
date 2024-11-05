@@ -540,6 +540,10 @@ footer{
        
         margin-bottom: 50px;
     }
+    .contact-container h2{
+       
+        margin-bottom: 30px;
+    }
 }
 @media (max-width:500px){
     .text-content{
@@ -575,6 +579,9 @@ footer{
     .form-p{
         font-size: 1.1em;
     }
+  form{
+    margin-top: 10px;
+  }
     #submit-button{
         width: 180px;
     }
