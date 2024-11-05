@@ -582,8 +582,13 @@ footer{
   form{
     margin-top: 10px;
   }
+
+  .button-div{
+    justify-content: center;
+    width: 85%;
+  }
     #submit-button{
-        width: 180px;
+        width: 100%;
     }
  
   
