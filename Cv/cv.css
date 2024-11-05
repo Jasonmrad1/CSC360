@@ -565,7 +565,9 @@ footer{
         justify-content: space-around;
         width: 100%;
     }
-   
+   .aboutMe-section{
+       display:none;
+   }
 }
 @media (max-width:500px){
     .text-content{
