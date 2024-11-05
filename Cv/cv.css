@@ -1,6 +1,13 @@
 ::-webkit-scrollbar {
     display: none; /* Hides the scrollbar */}
 
+    a{
+        cursor: pointer;
+    }
+    
+    .into-view{
+        cursor: pointer;
+    }
 body {
     margin: 0;
     padding: 0;
@@ -20,6 +27,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .overlay {
     position: absolute;
     top: 0;
@@ -170,7 +178,7 @@ top: 0;
 .skills-container{
     max-width: 990px;
     margin: auto;
-    text-align: left;
+    
 }
 .skills-container h2{
     font-size: 3em;
@@ -232,7 +240,7 @@ top: 0;
     font-size: 3em;
 }
 .project-container{
-     margin: auto;
+    margin: auto;
     max-width: 1400px;
     width: 100%;
     height: 800px;
@@ -372,6 +380,7 @@ input,textarea{
     margin-bottom: 20px;
     border: 1px solid #ccc; 
     border-radius: 5px;
+    cursor: pointer;
 }
 input::placeholder,textarea::placeholder{
     font-family: 'Outfit',sans-serif;
@@ -411,4 +420,129 @@ footer{
     font-size: 0.8em;
     color: #111;
     font-weight: 500;
+}
+
+@media (max-width: 1000px){
+    .skills{
+        justify-content: center;
+        align-items: center;
+    }
+    .individual-skill{
+        width: 100%;
+    }
+    .individual-skill .skill-header{
+     
+        width:100%;
+        
+        
+    }
+   
+    
+    .progress-bar-container{
+       
+       
+        width: 100%;
+       
+    }
+    .progress-bar{
+       width: 90%;
+   
+    }
+    
+    .first-group,.second-group{
+       
+        width: 92%;
+       
+    }
+}
+/* Adjust photo container on smaller screens */
+@media (max-width: 850px) {
+    
+    /* Center the photo and reduce its size */
+    .photo-container {
+        margin-left: 0; /* Remove left margin */
+        width: 100%; /* Set responsive width */
+    }
+
+    /* Set responsive photo properties */
+    .photo-container img {
+        width: 100%; /* Make image responsive */
+        max-width: 300px; /* Limit maximum width */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    /* Stack text and photo containers vertically */
+    .aboutMe-container {
+        flex-direction: column;
+        align-items: center; /* Center items */
+    }
+
+    /* Adjust text container width */
+    .text-container {
+        width: 90%; /* Make text container responsive */
+        text-align: center; /* Center text on smaller screens */
+    }
+    .photo-container img{
+      
+     
+       margin: auto;
+    }
+    .skills-container{
+        margin: auto;
+    }
+    nav{
+        display: block;
+    }
+    html,body{
+        width: 100%;
+        overflow: auto;
+        
+    }
+    .main-cv{
+        width: 100%; /* Allows the background to scale with the viewport */
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+      
+    }
+    .text-content{
+        width: 80%;
+    }
+    
+}
+@media (max-width:500px){
+    .text-content{
+        height: 285px;
+    }
+    .text-content h1 {
+        font-size: 2.2em;
+      
+   
+      
+    }
+    .text-content p {
+        font-size: 1em;
+      
+    }
+    .social-media-icons{
+        width: 50%;
+        
+        margin: auto;
+        height: 60px;
+        display: flex;
+        justify-content: space-around;
+        font-size: 25px;
+        align-items: center;
+    }
+ 
+  
+}
+@media(max-width:370px){
+    .text-content h1 {
+        font-size: 2em;
+      
+   
+      
+    }
+
 }
