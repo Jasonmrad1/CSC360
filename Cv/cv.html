@@ -417,6 +417,17 @@ function setupObserver() {
                     document.getElementById(titleMap[targetID]).classList.add('purple');
                     
                 }
+
+                if (targetID === 'skill-section') {
+                    const progressBars = entry.target.querySelectorAll(".progress-bar");
+                    progressBars.forEach(bar => {
+                        const targetWidth = bar.getAttribute("data-percentage");
+                        bar.style.width = targetWidth;
+                    });
+
+                    // Optional: Stop observing the skills section once animated
+                    observer.unobserve(entry.target);
+                }
             }
         });
     }, { threshold: 0.5 }); //60% visibility to trigger
