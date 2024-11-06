@@ -228,6 +228,7 @@ top: 0;
    height: 100%;
    background-color:black;
    border-radius: 10px;
+   transition: width 1s ease;
 }
 
 .first-group,.second-group{
