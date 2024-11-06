@@ -169,6 +169,12 @@ top: 0;
     object-fit: cover;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+.desktop-about{
+    display: flex;
+}
+.mobile-about{
+    display: none;
+}
 .skills-section{
     width: 100%;
     padding: 50px 0;
@@ -488,7 +494,12 @@ footer{
     }
 
 
-
+.mobile-about{
+    display: flex;
+}
+.desktop-about{
+    display: none;
+}
     .aboutMe-section{
         margin-top: 50px;
         display: flex;
@@ -605,9 +616,7 @@ footer{
         width: 100%;
     }
 
-#main-section{
-    height:75vh;
-}
+
 
    
 }
