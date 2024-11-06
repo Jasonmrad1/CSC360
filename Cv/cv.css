@@ -605,7 +605,9 @@ footer{
         width: 100%;
     }
 
-
+.main-section{
+    height:75vh;
+}
 
    
 }
