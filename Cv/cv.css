@@ -72,8 +72,7 @@ body {
     letter-spacing: 1px;
 }
 .social-media-icons{
-    width: 40%
-    ;
+    width: 40%;
     margin: auto;
     height: 60px;
     display: flex;
@@ -141,7 +140,7 @@ top: 0;
 .text-container{
     flex: 1;
     text-align: left;
-    /*min-width: 520px;*/
+   /* min-width: 520px;*/
 }
 .text-container h2{
     font-size: 2.5em;
@@ -155,6 +154,7 @@ top: 0;
     color: #5a5a5a;
 
 }
+
 .photo-container{
     flex: 1;
     text-align: center;
@@ -433,6 +433,22 @@ footer{
     .nav-container{
         width: 50%;
     }
+
+.photo-container{
+    margin-left: 10px;
+}
+.text-container{
+    max-width: 480px;
+    padding: 10px;
+}
+.text-container p{
+    font-size: 1.1em;
+    
+}
+.aboutMe-container{
+    padding: 20px;
+}
+    
     .skills{
         justify-content: center;
         align-items: center;
@@ -465,57 +481,63 @@ footer{
        
     }
 }
-/* Adjust photo container on smaller screens */
+
 @media (max-width: 850px) {
     .nav-container{
         width: 65%;
     }
-    .aboutMe-wrapper{
-        display: flex;flex-wrap: wrap-reverse;justify-content: center;
-    }
-          
-    /* Center the photo and reduce its size */
-    .photo-container {
-        margin-left: 0; /* Remove left margin */
-        width: 100%; /* Set responsive width */
-    }
 
-    /* Set responsive photo properties */
-    .photo-container img {
-        width: 100%; /* Make image responsive */
-        max-width: 300px; /* Limit maximum width */
-        height: auto; /* Maintain aspect ratio */
-    }
 
-    /* Stack text and photo containers vertically */
-    .aboutMe-container {
+
+    .aboutMe-section{
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+    }
+    .container{
+        width: 90%;
+        height:auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         flex-direction: column;
-        align-items: center; /* Center items */
-        width: 100vw;
-        
+        padding: 20px;
     }
-
-    /* Adjust text container width */
-    .text-container {
-        width: 80%; /* Make text container responsive */
-        text-align: center; /* Center text on smaller screens */
-       
-    }
-    .text-container p{
-
-        font-size: 1em;
-        line-height: 28px;
-        color: #5a5a5a;
+  .header-container{
+    width: 100%;
+    height: 100px;
+    color: #282828;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-container h2{
+    font-size: 3em;
+  }
     
-    }
-    .photo-container img{
-      
-     
-       margin: auto;
-    }
-
-
-    
+  .photo-container-mobile{
+    margin-top: 40px;
+    width: 100%;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .photo-container-mobile img{
+    width: 55%;
+    height: 100%;
+    max-width: 350px;
+    min-width: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .text-container-mobile{
+    font-size: 1.2em;
+    line-height: 28px;
+    color: #5a5a5a;
+    text-align: center;
+  }
     .skills-container{
         margin: auto;
     }
@@ -527,7 +549,7 @@ footer{
         
     }
     .main-cv{
-        width: 100%; /* Allows the background to scale with the viewport */
+        width: 100%;
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -582,12 +604,12 @@ footer{
         justify-content: space-around;
         width: 100%;
     }
+
+
+
    
 }
 @media (max-width:500px){
-    .main-cv{
-        height:70vh;
-    }
     .text-content{
         height: 285px;
     }
@@ -600,6 +622,17 @@ footer{
     .text-content p {
         font-size: 1em;
       
+    }
+
+    .text-container{
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+
+        font-size: 0.9em;
+    }
+    .aboutMe-wrapper{
+        width: 100%;
     }
     .social-media-icons{
         width: 50%;
@@ -632,7 +665,12 @@ footer{
     #submit-button{
         width: 100%;
     }
- 
+
+        
+ .text-container-mobile{
+    font-size: 1.1em;
+    
+  }
   
 }
 @media(max-width:370px){
