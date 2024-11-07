@@ -385,7 +385,7 @@ function playbackspeed(){
 
 
   
-  function setupObserver() {
+ function setupObserver() {
     let titles;
     let titleMap;
 
@@ -399,48 +399,50 @@ function playbackspeed(){
         'contact-section': 'contact',
     };
 
-    // Add the 'fade-slide-in' class to each section initially
-    const targets = document.querySelectorAll('section');
-    targets.forEach(target => target.classList.add('fade-slide-in'));
-
-    // Create an Intersection Observer
-    let observer = new IntersectionObserver(function(entries) {
+    // Observer for the fade-in effect (triggered when 20% of the section is visible)
+    let fadeInObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                let targetID = entry.target.id;
-                console.log(`Intersecting: ${entry.target.id}`);
-
-                // Add 'active' class for fade-slide effect
-                entry.target.classList.add('active');
-
-                // Remove 'purple' from all titles and add to the current one
-                titles.forEach(title => title.classList.remove('purple'));
-                if (titleMap[targetID]) {
-                    document.getElementById(titleMap[targetID]).classList.add('purple');
-                }
-
-                // Animate skills progress bars once in view
-                if (targetID === 'skill-section') {
-                    const progressBars = entry.target.querySelectorAll(".progress-bar");
-                    progressBars.forEach(bar => {
-                        const targetWidth = bar.getAttribute("data-percentage");
-                        bar.style.width = targetWidth;
-                    });
-
-                    // Stop observing the skills section after animation
-                    observer.unobserve(entry.target);
-                }
+                entry.target.classList.add('active'); // Add 'active' class for fade-in
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.2 }); // 20% visibility for fade-in
 
-    // Observe each section
-    targets.forEach(target => observer.observe(target));
+    // Observer for the purple class (triggered when 60% of the section is visible)
+    let purpleObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            let targetID = entry.target.id;
+
+            // Remove the 'purple' class from all titles
+            titles.forEach(title => title.classList.remove('purple'));
+
+            // Apply 'purple' to the appropriate title when 60% of the section is visible
+            if (entry.isIntersecting && titleMap[targetID]) {
+                document.getElementById(titleMap[targetID]).classList.add('purple');
+            }
+
+            // Animation for skill-section (e.g., progress bars)
+            if (targetID === 'skill-section' && entry.isIntersecting) {
+                const progressBars = entry.target.querySelectorAll(".progress-bar");
+                progressBars.forEach(bar => {
+                    const targetWidth = bar.getAttribute("data-percentage");
+                    bar.style.width = targetWidth;
+                });
+            }
+        });
+    }, { threshold: 0.6 }); // 60% visibility for purple class
+
+    // Apply both observers to all sections
+    let sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        section.classList.add('fade-slide-in'); // Add fade-slide-in to all sections initially
+        fadeInObserver.observe(section); // Observe for fade-in effect
+        purpleObserver.observe(section); // Observe for purple class effect
+    });
 }
 
-// Initialize the observer
+// Set up the observers initially
 setupObserver();
-
 
 
 
