@@ -384,40 +384,42 @@ function playbackspeed(){
   }
 
 
-  // Function to set up the Intersection Observer
-function setupObserver() {
-    
+  
+  function setupObserver() {
     let titles;
     let titleMap;
-    
-      
-        titles = document.querySelectorAll('.into-view');
-        //correspond li aam yaaml intersection btjib l id tb3 l titles l (l section l eemel intersection) w btaamelo if huwe main-section byaati main lal document.getElByID w bi zdlo class
-        titleMap = {
-            'main-section': 'main',
-            'about-section': 'about',
-            'skill-section': 'skills',
-            'project-section': 'projects',
-            'biography-section': 'biography',
-            'contact-section': 'contact',
-        }
-    //Create an Intersection Observer
+
+    titles = document.querySelectorAll('.into-view');
+    titleMap = {
+        'main-section': 'main',
+        'about-section': 'about',
+        'skill-section': 'skills',
+        'project-section': 'projects',
+        'biography-section': 'biography',
+        'contact-section': 'contact',
+    };
+
+    // Add the 'fade-slide-in' class to each section initially
+    const targets = document.querySelectorAll('section');
+    targets.forEach(target => target.classList.add('fade-slide-in'));
+
+    // Create an Intersection Observer
     let observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-             
                 let targetID = entry.target.id;
                 console.log(`Intersecting: ${entry.target.id}`);
 
-              
-                titles.forEach(title => title.classList.remove('purple'));
+                // Add 'active' class for fade-slide effect
+                entry.target.classList.add('active');
 
-           
+                // Remove 'purple' from all titles and add to the current one
+                titles.forEach(title => title.classList.remove('purple'));
                 if (titleMap[targetID]) {
                     document.getElementById(titleMap[targetID]).classList.add('purple');
-                    
                 }
 
+                // Animate skills progress bars once in view
                 if (targetID === 'skill-section') {
                     const progressBars = entry.target.querySelectorAll(".progress-bar");
                     progressBars.forEach(bar => {
@@ -425,20 +427,20 @@ function setupObserver() {
                         bar.style.width = targetWidth;
                     });
 
-                    // Optional: Stop observing the skills section once animated
+                    // Stop observing the skills section after animation
                     observer.unobserve(entry.target);
                 }
             }
         });
-    }, { threshold: 0.5 }); //60% visibility to trigger
+    }, { threshold: 0.5 });
 
-    // Observe the sections
-    let targets = document.querySelectorAll('section');
+    // Observe each section
     targets.forEach(target => observer.observe(target));
 }
 
-// Set up the observer initially
+// Initialize the observer
 setupObserver();
+
 
 
 
