@@ -13,7 +13,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <section class="main-cv" id="main-section" style="min-height:95vh;">
+    <section class="main-cv" id="main-section" style="min-height:900px;">
         <div class="overlay"></div>
         <div class="text-content">
             <div class="separator"></div>
@@ -396,14 +396,15 @@ function setupObserver() {
         'contact-section': 'contact',
     };
 
-    // Observer for fade-in effect (triggered when 10% of the section is visible)
-    let fadeInObserver = new IntersectionObserver(function(entries) {
+    // Observer for fade-in effect (triggered once when 10% of the section is visible)
+    let fadeInObserver = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.classList.contains('active')) {
+            if (entry.isIntersecting) {
                 entry.target.classList.add('active'); // Add 'active' class for fade-in once
+                observer.unobserve(entry.target); // Stop observing once fade-in is done
             }
         });
-    }, { threshold: 0.1 }); // Adjusted threshold to reduce sensitivity
+    }, { threshold: 0.1 }); 
 
     // Observer for purple class (triggered when 30% of the section is visible)
     let purpleObserver = new IntersectionObserver(function(entries) {
@@ -412,10 +413,9 @@ function setupObserver() {
             let titleID = titleMap[targetID]; // Map section ID to title ID
             
             if (entry.isIntersecting) {
-                // Remove 'purple' from all titles before adding it to the new one
+                // Remove 'purple' from all titles and add it only to the active one
                 titles.forEach(title => title.classList.remove('purple'));
 
-                // Add 'purple' to the title associated with the intersecting section
                 if (titleID) {
                     document.getElementById(titleID).classList.add('purple');
                 }
@@ -430,24 +430,21 @@ function setupObserver() {
                 }
             }
         });
-    }, { threshold: 0.3 }); // Adjusted threshold to reduce sensitivity
+    }, { threshold: 0.3 });
 
-    // Apply both observers to all sections if not already observed
-    let sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        if (!section.classList.contains('observed')) { // Prevent re-observing
-            section.classList.add('observed', 'fade-slide-in'); // Initial classes
-            fadeInObserver.observe(section); // Observe for fade-in effect
-            purpleObserver.observe(section); // Observe for purple class effect
+    // Apply both observers to sections only if not already observed
+    document.querySelectorAll('section').forEach(section => {
+        if (!section.classList.contains('observed')) {
+            section.classList.add('observed', 'fade-slide-in'); 
+            fadeInObserver.observe(section);
+            purpleObserver.observe(section);
         }
     });
 }
 
-// Set up the observers initially on page load
-window.addEventListener('DOMContentLoaded', setupObserver);
+// Set up observers on DOM load
+window.addEventListener('DOMContentLoaded', setupObserver, { passive: true });
 
-
-</script>
 
 
 </body>
