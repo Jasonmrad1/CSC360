@@ -578,6 +578,7 @@ footer{
         width: 100%;
      background-position: center center; /* Keeps the background in place */
         height:100dvh;
+        background-size:cover;
  
    
       
