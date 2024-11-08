@@ -408,6 +408,10 @@ input,textarea{
     border: 1px solid #ccc; 
     border-radius: 5px;
     cursor: pointer;
+    font-family: "Outfit",sans-serif;
+}
+textarea{
+    min-height: 100px;
 }
 input::placeholder,textarea::placeholder{
     font-family: 'Outfit',sans-serif;
@@ -422,6 +426,12 @@ input::placeholder,textarea::placeholder{
     font-size: 1em;
     width: 210px;
     font-family: 'Outfit',sans-serif;
+    transition: all 0.2s ease;
+}
+#submit-button:hover{
+   
+    background-color: black;
+    
 }
 .button-div{
     width: 82.2%;
@@ -445,9 +455,10 @@ footer{
     justify-content: center;
     align-items: center;
     font-size: 0.8em;
-    color: #111;
+    color: #282828;
     font-weight: 500;
 }
+
 
 @media (max-width: 1000px){
 
