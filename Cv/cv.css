@@ -576,9 +576,9 @@ footer{
     }
     .main-cv{
         width: 100%;
-   
+     background-position: center center; /* Keeps the background in place */
     background-size: cover;
-    background-position: center;
+   
       
     }
     .text-content{
