@@ -88,7 +88,7 @@
                 </div>
                 <div class='text-container-mobile'>
                 
-                <p style='margin-top: 20px;'>
+                <p style='margin-top: 40px;'>
                     Hello! I'm Jason, a Computer Science student with a passion for technology and innovation.
                     Currently studying in-depth topics within computer science, I’ve worked on projects involving web development,
                     software design, and a bit of machine learning. My journey has not only been about learning programming
@@ -360,28 +360,50 @@ function playbackspeed(){
     });
 </script>-->
 <script>
-    function scrollToTarget(targetID) {
+ function scrollToTarget(targetID) {
     let target = document.getElementById(targetID);
-    if (target.id=="project-section") {
-        let offset= 100;
-        // Get the target's position relative to the viewport
+
+    // Check if the device is mobile or desktop
+    let isMobile = window.innerWidth <= 768; // Adjust this breakpoint as needed
+    let isDesktop = window.innerWidth > 768; // Check for desktop (adjust breakpoint if needed)
+
+    // Handle project-section with specific offset
+    if (target.id == "project-section") {
+        let offset = 100;  // Offset for project-section
         const targetPosition = target.getBoundingClientRect().top + window.scrollY;
-
-        // Calculate the scroll position with the offset
         const scrollToPosition = targetPosition - offset;
-
-        // Use scrollTo to smoothly scroll to the calculated position
         window.scrollTo({
             top: scrollToPosition,
             behavior: 'smooth'
         });
     }
-    else{
-    if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Handle about-section and biography-section with offset on mobile
+    else if (target.id == "about-section" || target.id == "biography-section") {
+        let offset = isMobile ? 30 : 0; // Apply offset only for mobile
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+        const scrollToPosition = targetPosition - offset;
+        window.scrollTo({
+            top: scrollToPosition,
+            behavior: 'smooth'
+        });
+    }
+    // Handle contact-section with offset on desktop
+    else if (target.id == "contact-section" && isDesktop) {
+        let offset = 30;  // Offset for contact-section on desktop
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+        const scrollToPosition = targetPosition - offset;
+        window.scrollTo({
+            top: scrollToPosition,
+            behavior: 'smooth'
+        });
+    }
+    // Default behavior for other sections
+    else {
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     }
 }
-  }
 
 
   
