@@ -385,12 +385,9 @@ function playbackspeed(){
 
 
   
- function setupObserver() {
-    let titles;
-    let titleMap;
-
-    titles = document.querySelectorAll('.into-view');
-    titleMap = {
+function setupObserver() {
+    let titles = document.querySelectorAll('.into-view');
+    let titleMap = {
         'main-section': 'main',
         'about-section': 'about',
         'skill-section': 'skills',
@@ -399,51 +396,55 @@ function playbackspeed(){
         'contact-section': 'contact',
     };
 
-    // Observer for the fade-in effect (triggered when 20% of the section is visible)
+    // Observer for fade-in effect (triggered when 10% of the section is visible)
     let fadeInObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active'); // Add 'active' class for fade-in
+            if (entry.isIntersecting && !entry.target.classList.contains('active')) {
+                entry.target.classList.add('active'); // Add 'active' class for fade-in once
             }
         });
-    }, { threshold: 0.2 }); // 20% visibility for fade-in
+    }, { threshold: 0.1 }); // Adjusted threshold to reduce sensitivity
 
-    // Observer for the purple class (triggered when 60% of the section is visible)
+    // Observer for purple class (triggered when 30% of the section is visible)
     let purpleObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             let targetID = entry.target.id;
+            let titleID = titleMap[targetID]; // Map section ID to title ID
+            
+            if (entry.isIntersecting) {
+                // Remove 'purple' from all titles before adding it to the new one
+                titles.forEach(title => title.classList.remove('purple'));
 
-            // Remove the 'purple' class from all titles
-            titles.forEach(title => title.classList.remove('purple'));
+                // Add 'purple' to the title associated with the intersecting section
+                if (titleID) {
+                    document.getElementById(titleID).classList.add('purple');
+                }
 
-            // Apply 'purple' to the appropriate title when 60% of the section is visible
-            if (entry.isIntersecting && titleMap[targetID]) {
-                document.getElementById(titleMap[targetID]).classList.add('purple');
-            }
-
-            // Animation for skill-section (e.g., progress bars)
-            if (targetID === 'skill-section' && entry.isIntersecting) {
-                const progressBars = entry.target.querySelectorAll(".progress-bar");
-                progressBars.forEach(bar => {
-                    const targetWidth = bar.getAttribute("data-percentage");
-                    bar.style.width = targetWidth;
-                });
+                // Animation for progress bars in skill-section
+                if (targetID === 'skill-section') {
+                    const progressBars = entry.target.querySelectorAll(".progress-bar");
+                    progressBars.forEach(bar => {
+                        const targetWidth = bar.getAttribute("data-percentage");
+                        bar.style.width = targetWidth;
+                    });
+                }
             }
         });
-    }, { threshold: 0.6 }); // 60% visibility for purple class
+    }, { threshold: 0.3 }); // Adjusted threshold to reduce sensitivity
 
-    // Apply both observers to all sections
+    // Apply both observers to all sections if not already observed
     let sections = document.querySelectorAll('section');
     sections.forEach(section => {
-        section.classList.add('fade-slide-in'); // Add fade-slide-in to all sections initially
-        fadeInObserver.observe(section); // Observe for fade-in effect
-        purpleObserver.observe(section); // Observe for purple class effect
+        if (!section.classList.contains('observed')) { // Prevent re-observing
+            section.classList.add('observed', 'fade-slide-in'); // Initial classes
+            fadeInObserver.observe(section); // Observe for fade-in effect
+            purpleObserver.observe(section); // Observe for purple class effect
+        }
     });
 }
 
-// Set up the observers initially
-setupObserver();
-
+// Set up the observers initially on page load
+window.addEventListener('DOMContentLoaded', setupObserver);
 
 
 </script>
