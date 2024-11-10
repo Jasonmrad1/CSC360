@@ -279,21 +279,42 @@ height: 100%;
     transform: scale(0.98); /* Press effect */
 }
 
+
+.quiz-container {
+    max-width: 600px;
+    width: 90%;
+    min-height: 390px;
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
 .progress-bar-container {
     width: 100%;
     background-color: #333333;
     border-radius: 12px;
     overflow: hidden;
     margin-top: 20px;
+    height: 10px; 
+    box-sizing: border-box;
 }
 
 .progress-bar {
-    height: 10px;
-    background: rgb(255, 255, 255); /* Progress bar matching button gradient */
+    height: 100%; /* Fill the container's height */
+    background: rgb(255, 255, 255);
     width: 0%;
     transition: width 0.4s ease-in-out;
     border-radius: 12px 0 0 12px;
 }
+
+
 .start-btn {
             background-color: rgb(100, 109, 237);
             color: white;
@@ -361,35 +382,35 @@ height: 100%;
     color: rgb(100, 109, 237);
 }
 
-        .quiz-container {
-            max-width: 600px;
-            width: 90%;
-            height: 390px;
-            background-color: #1a1a1a;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+@media (max-width: 400px) {
+    .quiz-container {
+        height: auto;
+    }
+    .options button:hover {
+        transform: scale(1);
+    }
+    .options button:active {
+        transform: scale(1);
+    }
+}
 
 @media(max-width:400px){
-        .quiz{
+    .quiz{
         height: auto;
     }
     .quiz-container{
         height: auto;
-        box-sizing:border-box;
-        
+        box-sizing: border-box;
     }
     .options button:hover {
  
    
     transform: scale(1); /* Slight scaling effect */
 }
+.options button:active{
+    transform: scale(1);
+}
+
 }
 </style>
 
