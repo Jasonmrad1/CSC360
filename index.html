@@ -2,17 +2,186 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="keywords" content="Jason Mrad">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
-  
+    <title>Document</title>
+    <style>
+        ::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */}
+
+        body{
+            background-color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            font-family: 'outfit',sans-serif;
+        }
+        nav {
+    background:#2a2a2a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    color: white;
+    height: 90px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+nav h1{
+    font-size: 48px;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 50px;
+
+}
+.main-container{
+    width: 95%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+
+}
+.image-container{
+    width: 100%;
+    height: 45%;
+    display: flex;
+    justify-content: space-around;
+}
+.image-container1{
+    width: 100%;
+    height: 45%;
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+.image{
+    width: 500px;
+    height: 300px;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+.social-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right:20px;
+    font-size: 19px;
+}
+footer{
+    background-color: #2a2a2a;
+    width: 100%;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media(max-width:1200px){
+    .main-container{
+        justify-content: space-between;
+    }
+    main{
+            padding: 10px;
+        }
+        .image-container{
+   
+      
+        margin-top: 40px;
+    }
+    .image{
+        width: 450px;
+
+    }
+footer{
+    margin-top: 40px;
+}
+}
+    @media(max-width:1000px){
+        .image-container1{
+        align-items: flex-start;
+        margin-top: 40px;
+        width: 100%;
+    }
+    .image-container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+    }
+    #image2{
+        margin-top: 40px;
+    }
+    .image{
+        width: 570px;
+    }
+    }
+    @media(max-width:700px){
+        main{
+            padding: 10px;
+        }
+    
+    .image{
+        width: 100%;
+    }
+   
+    #image3{
+        
+    }
+    @media(max-width: 600px){
+        footer span{
+            display: none;
+        }
+        footer{
+            justify-content: flex-end;
+        }
+    }
+}
+
+    </style>
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+       integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+       crossorigin="anonymous" referrerpolicy="no-referrer" />
+      
 </head>
 <body>
-<a href="schedule.html">Schedule</a>
-<a href="Cv/cv.html">Cv</a>
-<a href="quiz.html">Quiz</a>
-    
+    <nav>
+<h1>Dashboard</h1>
+    </nav>
+    <main>
+        <div class="main-container">
+        <div class="image-container">
+            <a style="background-image: url('Screenshot\ 2024-11-11\ 212328.png');" class="image" href="schedule.html"></a>
+            <a style="background-image: url('Screenshot\ 2024-11-11\ 212405.png');" class="image" id="image2" href="Cv/cv.html"></a>
+        </div>    
+        <div class="image-container1">
+            <a style="background-image: url('Screenshot\ 2024-11-11\ 212427.png');" class="image" id="image3" href="quiz.html"></a>
+        </div>
+        </div>
+    </main>
+    <footer>
+
+        <span style="padding-left: 20px;">Jason Mrad</span>
+        <span>&copy; 2024 All Rights Reserved.</span>
+        <div class="social-icons" id="social-icons"><i class="fa-brands fa-instagram" style="padding-right: 10px;"></i><i class="fa-brands fa-x-twitter" style="padding-right: 10px;"></i><i class="fa-brands fa-facebook"></i></div>
+        
+        
+            </footer>
 </body>
-
-
 </html>
