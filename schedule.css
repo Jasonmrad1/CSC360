@@ -10,7 +10,8 @@ body {
     -ms-user-select: none;     /* For IE/Edge */
 }
 
-
+ ::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */}
 .container {
     width: 90%;
     max-width: 1200px;
