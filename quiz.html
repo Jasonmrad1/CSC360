@@ -195,7 +195,24 @@ function restartQuiz(){
 
 
 }
+        //for button to reset after click for mobiles
+if(window.innerWidth<900){
+document.querySelectorAll('.options button').forEach(button => {
+    button.addEventListener('touchstart', () => {
+        button.style.background = "#6f2e95"; // Active color
+        button.style.transform = "scale(0.98)"; // Clicked size
+    });
 
+    button.addEventListener('touchend', () => {
+        setTimeout(() => {
+            // Resetting styles to allow default hover behavior
+            button.style.background = "rgb(100, 109, 237)";
+            button.style.transform = "scale(1)";
+            button.blur(); // Removes focus
+        }, 100); // Slight delay to allow active effect to show
+    });
+});
+}
     </script>
 </body>
 <style>
@@ -403,17 +420,7 @@ height: 100%;
 }
 
 
-@media (max-width: 400px) {
-    .quiz-container {
-        height: auto;
-    }
-    .options button:hover {
-        transform: scale(1);
-    }
-    .options button:active {
-        transform: scale(1);
-    }
-}
+
 
 @media(max-width:400px){
     .quiz{
@@ -423,14 +430,7 @@ height: 100%;
         height: auto;
         box-sizing: border-box;
     }
-    .options button:hover {
  
-   
-    transform: none; /* Slight scaling effect */
-}
-.options button:active{
-    transform: scale(1);
-}
 
 }
 </style>
