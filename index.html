@@ -12,7 +12,12 @@
             background-color: #1a1a1a;
             margin: 0;
             padding: 0;
+            height: 100%;
             font-family: 'outfit',sans-serif;
+             -webkit-tap-highlight-color: transparent;
+        }
+        body,html{
+            height: 100%;
         }
         nav {
     background:#2a2a2a;
@@ -30,6 +35,8 @@ nav h1{
     font-size: 48px;
 }
 main{
+
+    margin-top: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,6 +44,8 @@ main{
     background-position: center center;
     background-size: cover;
     padding: 50px;
+   
+   height: auto;
 
 }
 .main-container{
@@ -78,6 +87,7 @@ main{
     font-size: 19px;
 }
 footer{
+
     background-color: #2a2a2a;
     width: 100%;
     height: 55px;
@@ -88,6 +98,20 @@ footer{
     font-size: 16px;
     box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.4);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+@media(min-height:900px){
+    footer{
+        margin-top: 100px;
+    }
+    .main{
+        margin-top: 30px;
+    }
+}
+@media(min-width:1700px){
+    .image{
+        width: 700px;
+        height: 500px;
+    }
 }
 
 @media(max-width:1200px){
@@ -150,6 +174,46 @@ footer{
         }
     }
 }
+a{
+    text-decoration: none;
+}
+.transparent-container{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+    border-radius: 15px;
+  
+}
+
+.transparent-container span{
+    letter-spacing: 1px;
+    font-size: 50px;
+    font-weight: bold;
+    color: whitesmoke;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+   
+}
+
+.transparent-container:hover{
+    background-color: rgba(0, 0, 0, 0.7); /* Black with 50% opacity */
+
+    span{
+        opacity: 1;
+    }
+}
+.image{
+    border: 2px solid #1a1a1a;
+    transition: all 0.3s ease;
+    
+}
+.image:hover{
+   border-color: blueviolet;
+}
 
     </style>
        <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -167,11 +231,23 @@ footer{
     <main>
         <div class="main-container">
         <div class="image-container">
-            <a style="background-image: url('schedulephoto.png');" class="image" href="schedule.html"></a>
-            <a style="background-image: url('cvphoto.png');" class="image" id="image2" href="Cv/cv.html"></a>
+            <a style="background-image: url('schedulephoto.png');" class="image" href="schedule.html">
+                <div class="transparent-container">
+                    <span>My Courses</span>
+                </div>
+            </a>
+            <a style="background-image: url('cvphoto.png');" class="image" id="image2" href="Cv/cv.html">
+                <div class="transparent-container">
+                    <span>CV</span>
+                </div>
+            </a>
         </div>    
         <div class="image-container1">
-            <a style="background-image: url('quizphoto.png');" class="image" id="image3" href="quiz.html"></a>
+            <a style="background-image: url('quizphoto.png');" class="image" id="image3" href="quiz.html">
+                <div class="transparent-container">
+                    <span>Quiz</span>
+                </div>
+            </a>
         </div>
         </div>
     </main>
