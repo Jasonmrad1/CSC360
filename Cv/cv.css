@@ -29,6 +29,9 @@ body {
     font-family: "Outfit", sans-serif;
     color: white;
     overflow: -moz-hidden;/* Firefox */
+    
+        -webkit-tap-highlight-color: transparent;
+
 }
 .main-cv {
     position: relative;
