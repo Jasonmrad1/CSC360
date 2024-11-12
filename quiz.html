@@ -15,7 +15,7 @@
 
 <body>
    
-
+<a href="index.html" class="main-page-link"><i class="fas fa-home"></i></a>
     <div class="quiz-container">
 
         <div class="end" id="end">
@@ -419,9 +419,29 @@ height: 100%;
     color: rgb(100, 109, 237);
 }
 
+.main-page-link {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    opacity: 0.5;
+}
 
+.main-page-link:hover {
+    opacity: 1;
+    color: #ffffff;
+}
 
+@media(max-width:600px){
+.main-page-link {
+    
+    font-size: 14px;
+ 
+}
 
+}
 @media(max-width:400px){
     .quiz{
         height: auto;
