@@ -18,7 +18,14 @@
     <a href="index.html" class="main-page-link"><i class="fas fa-home"></i></a>
    
     <div class="quiz-container">
+
       <i class="fa-solid fa-gear" id="settings-icon" onclick="openSettings()"></i>
+
+      <div id="loading-overlay">
+        <div class="spinner"></div>
+        <p>Loading questions...</p>
+    </div>
+    
       <div id="settings">
         <h2 style="margin-top: 18px;">Select Quiz Settings</h2>
 
@@ -157,6 +164,7 @@
   }
 //window.onload=fetchQuestions();
   function fetchQuestions(API){
+    document.getElementById('loading-overlay').classList.add('show');
   // Fetch the quiz questions from the API
   fetch(API)
     .then(res => res.json())
@@ -178,7 +186,7 @@
         return formattedQuestion;
       });
 
-      console.log(quizQuestions); // Check the formatted quiz questions
+      document.getElementById('loading-overlay').classList.remove('show');
       loadNextQuestion(); // Start displaying the first question
 
     })
@@ -253,7 +261,7 @@
       updateProgressBar();
       loadNextQuestion();
     } else {
-        fetchQuestions();//put here so the api can fetch before user open question instead of on restart
+   
       document.getElementById("end").style.display = "flex";
       document.getElementById("settings-icon").style.display = "flex";
       document.getElementById("quiz").style.display = "none";
@@ -301,7 +309,10 @@
     document.getElementById("quiz").style.display = "block";
     document.getElementById("end").style.display = "none";
     updateProgressBar();
+    fetchQuestions(api);
     loadNextQuestion();
+
+    
   }
  
 
@@ -662,7 +673,45 @@ label {
 #settings-icon:hover{
 color: white;
 }
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    font-size: 18px;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
+#loading-overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgb(100, 109, 237);
+    border-top-color: #1a1a1a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 @media (max-width:800px){
     
 }
