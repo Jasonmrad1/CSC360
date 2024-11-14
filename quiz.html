@@ -57,7 +57,7 @@
 window.onload=fetchQuestions();
   function fetchQuestions(){
   // Fetch the quiz questions from the API
-  fetch("https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=multiple")
+  fetch("https://opentdb.com/api.php?amount=10&category=17&difficulty=easy&type=multiple")
     .then(res => res.json())
     .then(data => {
       // Map and format the quiz questions from API response
