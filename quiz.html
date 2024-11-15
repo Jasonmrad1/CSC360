@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Quiz</title>
+    <title>Quiz Webpage</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -360,7 +360,8 @@ function handleClickOutside(event) {
   let d1=document.getElementById('difficulty-dropdown');
   let d2=document.getElementById('Topic');
   if (!container.contains(event.target)&& document.getElementById("settings").style.display!="none") {
-    
+    difficulty="easy";
+    category=9;
     d1.style.backgroundColor="#333";
     d1.style.borderColor="#666";
     d1.innerHTML="<span style=\"padding-left: 5px;\" id=\"difficultyPlaceholder\">Select Difficulty</span><i class=\"fa-solid fa-chevron-down\" style=\"font-size: 11px;\"></i>"
