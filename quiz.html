@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Webpage</title>
+    <title>My Quiz</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
     
     <a href="index.html" class="main-page-link"><i class="fas fa-home"></i></a>
    
-    <div class="quiz-container">
+    <div class="quiz-container" id="quiz-container">
 
       <i class="fa-solid fa-gear" id="settings-icon" onclick="openSettings()"></i>
 
@@ -31,7 +31,7 @@
 
     <label for="difficulty-dropdown">Choose Difficulty</label>
     <div class="dropdown-wrapper">
-    <div class="option-dropdown" id="difficulty-dropdown" onclick="openDropdown('diff-dp')" style="margin-bottom:0 ; border: 1.2px solid #666;">
+    <div class="option-dropdown" id="difficulty-dropdown" onclick="openDropdown(this,'diff-dp')">
        <span style="padding-left: 5px;" id="difficultyPlaceholder">Select Difficulty</span>
        <i class="fa-solid fa-chevron-down" style="font-size: 11px;"></i>
       
@@ -45,7 +45,7 @@
     </div>
     <label for="topic-dropdown" style="margin-top: 20px;">Choose Topic</label>
     <div class="dropdown-wrapper">
-      <div class="option-dropdown" id="Topic" onclick="openDropdown('top-dp')" style="margin-bottom:0 ; border: 1.2px solid #666;">
+      <div class="option-dropdown" id="Topic" onclick="openDropdown(this,'top-dp')">
          <span style="padding-left: 5px;" id="topicPlaceholder">Select Topic</span>
          <i class="fa-solid fa-chevron-down" style="font-size: 11px;"></i>
         
@@ -109,23 +109,42 @@
   let difficulty='easy';
   let category='9';//defaults
 
-  function openDropdown(id) {
+  function openDropdown(dropdown1,id) {
   const dropdowns = document.querySelectorAll('.dropdown'); // Select all dropdown elements
   const currentDropdown = document.getElementById(id);
+  let otherDP="";
+  if(dropdown1.id=="Topic"){
+otherDP=document.getElementById("difficulty-dropdown");
+  }
+  else{
+    otherDP=document.getElementById("Topic");
+  }
+
 
   // Close all dropdowns except the one being opened
   dropdowns.forEach(dropdown => {
     if (dropdown !== currentDropdown) {
       dropdown.classList.remove('open');
+  
     }
+   
+
+    
   });
 
   // Toggle the specified dropdown
   if (currentDropdown.classList.contains('open')) {
     currentDropdown.classList.remove('open');
+    dropdown1.style.backgroundColor="#333";
+    dropdown1.style.borderColor="#666";
+
   } else {
     currentDropdown.classList.add('open');
+    dropdown1.style.backgroundColor="rgb(100, 109, 237)";
+    dropdown1.style.borderColor="white";
   }
+ 
+
 }
   function modifyAPI(catName,catNum){
     category=catNum;
@@ -217,7 +236,6 @@
   
 
   function startQuiz() {
-    // Show the quiz screen and hide the intro screen
     document.getElementById("quiz").style.display = "none";
     document.getElementById("settings").style.display="flex";
     document.getElementsByClassName("intro")[0].style.display = "none";
@@ -249,7 +267,7 @@
   }
 
   function selectAnswer(answer) {
-    if (document.getElementById(answer).textContent === quizQuestions[currentQuestion].answer) {
+    if (document.getElementById(answer).textContent==quizQuestions[currentQuestion].answer) {
       nbOfCorrectAnswers++;
       streak++;
     } else {
@@ -334,6 +352,30 @@
       });
     });
   }
+  
+   const container = document.getElementById('quiz-container');
+
+// Function to call when clicking outside
+function handleClickOutside(event) {
+  let d1=document.getElementById('difficulty-dropdown');
+  let d2=document.getElementById('Topic');
+  if (!container.contains(event.target)&& document.getElementById("settings").style.display!="none") {
+    
+    d1.style.backgroundColor="#333";
+    d1.style.borderColor="#666";
+    d1.innerHTML="<span style=\"padding-left: 5px;\" id=\"difficultyPlaceholder\">Select Difficulty</span><i class=\"fa-solid fa-chevron-down\" style=\"font-size: 11px;\"></i>"
+    d2.style.backgroundColor="#333";
+    d2.style.borderColor="#666";
+    d2.innerHTML="<span style=\"padding-left: 5px;\" id=\"topicPlaceholder\">Select Topic</span><i class=\"fa-solid fa-chevron-down\" style=\"font-size: 11px;\"></i>"
+for(let i=0;i<2;i++){
+  document.getElementsByClassName("dropdown")[i].classList.remove('open');
+}
+  
+  }
+}
+
+// Add event listener to the document
+document.addEventListener('click', handleClickOutside);
 </script>
 
    
@@ -575,8 +617,8 @@ label {
     border-radius: 8px;
     width: 100%;
     max-width: 400px;
-    
-    margin-bottom: 20px;
+    border: 1.2px solid #666;
+    margin-bottom: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -584,8 +626,8 @@ label {
 }
 
 .option-dropdown:hover {
-    background-color: #444;
-    border-color: #0056b3;
+    background-color: rgb(100, 109, 237);
+    border-color: white;
 }
 
 /* Start Quiz Button */
@@ -626,9 +668,13 @@ label {
   margin-top: 4px;
     overflow-y: scroll; /* Hide content when height is 0 */
     overflow-x: hidden;
-    background-color: #444;
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    color: #ddd;
     border-radius:8px;
     box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Soft shadow */
+
     transition: all 0.35s ease; /* Smooth transition for dropdown */
     z-index: 100;
    
@@ -648,9 +694,11 @@ label {
   padding-left: 10px;
   display: flex;
   align-items: center;
+  border-bottom:1px solid #282828 ;
+  transition: all 0.3s ease;
 }
 .dropdown-options:hover{
-  background-color: #333
+  background-color: rgb(100, 109, 237);
 }
 #settings{
   display: none;
