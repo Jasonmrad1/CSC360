@@ -110,7 +110,7 @@
   let category='9';//defaults
 
   function openDropdown(dropdown1,id) {
-  const dropdowns = document.querySelectorAll('.dropdown'); // Select all dropdown elements
+  const dropdowns = document.querySelectorAll('.dropdown');
   const currentDropdown = document.getElementById(id);
   let otherDP="";
   if(dropdown1.id=="Topic"){
@@ -132,7 +132,6 @@ otherDP=document.getElementById("difficulty-dropdown");
     
   });
 
-  // Toggle the specified dropdown
   if (currentDropdown.classList.contains('open')) {
     currentDropdown.classList.remove('open');
     dropdown1.style.backgroundColor="#333";
@@ -609,7 +608,6 @@ label {
     color: #B0B0B0;
 }
 
-/* Dropdown Style */
 .option-dropdown {
     background-color: #333;
     color: white;
@@ -620,6 +618,7 @@ label {
     max-width: 400px;
     border: 1.2px solid #666;
     margin-bottom: 0px;
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -695,6 +694,7 @@ label {
   padding-left: 10px;
   display: flex;
   align-items: center;
+  cursor: pointer;
   border-bottom:1px solid #282828 ;
   transition: all 0.3s ease;
 }
