@@ -25,7 +25,28 @@
         <div class="spinner"></div>
         <p>Loading questions...</p>
     </div>
+    <div id="Name" >
+      <h2 style="margin-top: 18px;">Enter Your Name</h2>
+
+  <label for="Fname">First Name</label>
+ 
+  <input type="text" class="Names" id="Fname" maxlength="15" placeholder="First Name" onblur="Name()" onfocus="Name()" onkeydown="disableSpace(event)" autocomplete="off">
+
+  
     
+  
+
+  
+  <label for="Lname" style="margin-top: 20px;">Last Name</label>
+ 
+    <input type="text" class="Names" id="Lname" maxlength="15" placeholder="Last Name" onblur="Name()" onfocus="Name()" onkeydown="disableSpace(event)" autocomplete="off">
+
+   
+   
+   
+
+  <button class="confirm-quiz-btn" id="confirmButton" onclick="confirmName()" style="margin-top: 25px;">Confirm</button>
+</div>
       <div id="settings">
         <h2 style="margin-top: 18px;">Select Quiz Settings</h2>
 
@@ -71,7 +92,7 @@
   </div>
         <div class="end" id="end">
             <h1>Quiz Completed!</h1>
-            <p>Your Score: <span id="score"></span>/10</p>
+            <p><span id="username"></span>'s Score: <span id="score"></span>/10</p>
             <button id="restart-btn" class="start-btn" onclick="restartQuiz()">Try Again</button>
         </div>
 
@@ -108,6 +129,9 @@
   let api="";
   let difficulty='easy';
   let category='9';//defaults
+  let Fname=document.getElementById("Fname");
+  let Lname=document.getElementById("Lname")
+  let FullName="";
 
   function openDropdown(dropdown1,id) {
   const dropdowns = document.querySelectorAll('.dropdown');
@@ -236,7 +260,7 @@ otherDP=document.getElementById("difficulty-dropdown");
 
   function startQuiz() {
     document.getElementById("quiz").style.display = "none";
-    document.getElementById("settings").style.display="flex";
+    document.getElementById("Name").style.display="flex";
     document.getElementsByClassName("intro")[0].style.display = "none";
     containerChecker();
     
@@ -283,6 +307,7 @@ otherDP=document.getElementById("difficulty-dropdown");
       document.getElementById("settings-icon").style.display = "flex";
       document.getElementById("quiz").style.display = "none";
       document.getElementById("score").innerHTML = nbOfCorrectAnswers;
+      document.getElementById("username").innerHTML=FullName;
 
       // Change the score color based on performance
       if (nbOfCorrectAnswers < 5) {
@@ -376,6 +401,49 @@ for(let i=0;i<2;i++){
 
 // Add event listener to the document
 document.addEventListener('click', handleClickOutside);
+
+
+function Name() {
+    
+    if (Fname.value !== "" || document.activeElement === Fname) {
+      // If the input is not empty or it's focused
+      Fname.style.backgroundColor = "rgb(100, 109, 237)";
+      Fname.style.borderColor = "white";
+    } else {
+      // If the input is empty and not focused
+      Fname.style.backgroundColor = "#333";
+      Fname.style.borderColor = "#666";
+    }
+
+    // Last Name Validation
+    if (Lname.value !== "" || document.activeElement === Lname) {
+      // If the input is not empty or it's focused
+      Lname.style.backgroundColor = "rgb(100, 109, 237)";
+      Lname.style.borderColor = "white";
+    } else {
+      // If the input is empty and not focused
+      Lname.style.backgroundColor = "#333";
+      Lname.style.borderColor = "#666";
+    }
+  }
+
+  function confirmName(){
+    if(Fname.value==""||Lname.value==""){
+      alert("Please enter a valid name both fields required");
+      return;
+    }
+    FullName=Fname.value+" "+Lname.value;
+    document.getElementById("Name").style.display="none";
+    document.getElementById("settings").style.display="flex";
+    console.log(FullName);
+
+  }
+  function disableSpace(event) {
+    if (event.key === " ") {
+        event.preventDefault(); // Prevent the default action of the space key
+    }
+}
+
 </script>
 
    
@@ -533,7 +601,7 @@ height: 100%;
         .intro {
             height: 100%;
             width: 100%;
-            display: none;
+            display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -701,6 +769,7 @@ label {
 .dropdown-options:hover{
   background-color: rgb(100, 109, 237);
 }
+
 #settings{
   display: none;
   width: 100%;
@@ -709,6 +778,7 @@ label {
   flex-direction: column;
   margin-bottom: 10px;
 }
+
 #settings-icon{
   display: none;
   position: absolute; 
@@ -755,7 +825,49 @@ color: white;
     animation: spin 1s linear infinite;
     margin-bottom: 10px;
 }
+#Name{
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
 
+}
+input[type="text"]{
+  background-color: #333;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    border: 1.2px solid #666;
+    margin-bottom: 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+}
+input[type="text"]::placeholder {
+  color: #aaa;
+  padding-left: 5px;
+
+}
+input[type="text"]:focus{
+  background-color: rgb(100, 109, 237);
+  border-color: white;
+outline: none;
+}
+input[type="text"]:focus::placeholder{
+  color: #d7d7d7;
+}
+input:focus:-webkit-autofill {
+  background-color: rgb(100, 109, 237) !important;
+  border-color: white !important;
+}
 @keyframes spin {
     to {
         transform: rotate(360deg);
@@ -775,10 +887,5 @@ color: white;
    
 }
 </style>
-<script>
 
-
-
-
-</script>
 </html>
