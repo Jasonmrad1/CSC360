@@ -266,7 +266,7 @@
 
 <span style="padding-left: 20px;">Jason Mrad</span>
 <span>&copy; 2024 All Rights Reserved.</span>
-<div class="social-icons" style="display: flex;justify-content: center;align-items: center;padding-right:20px ;font-size: 19px;" id="social-icons"><i class="fa-brands fa-instagram" style="padding-right: 10px;"></i><i class="fa-brands fa-x-twitter" style="padding-right: 10px;"></i><i class="fa-brands fa-facebook"></i></div>
+<div class="social-icons" style="display: flex;justify-content: center;align-items: center;padding-right:20px ;font-size: 19px;" id="social-icons"><a><i class="fa-brands fa-instagram" style="padding-right: 10px;" href="https://www.instagram.com/jasonmrad1" target="_blank" aria-label="Instagram" style="color: white;"></i></a><a href="https://www.x.com" target="_blank" aria-label="X" style="color: white;"><i class="fa-brands fa-x-twitter" style="padding-right: 10px;"></i></a><a href="https://www.facebook.com" target="_blank" aria-label="Facebook" style="color: white;"><i class="fa-brands fa-facebook" ></i></a></div>
 
 
     </footer>
@@ -280,16 +280,16 @@
         <p style="margin: 0;">&copy; 2024 Jason Mrad. All Rights Reserved.</p>
     </div>
     <div style="margin-bottom: 10px;">
-        <p style="margin: 0;">Contact: <a href="mailto:your-email@example.com" style="color: white; text-decoration: underline;">jason.mrad@net.usek.edu.lb</a></p>
+        <p style="margin: 0;">Contact: <a href="mailto:jason.mrad@net.usek.edu.lb" style="color: white; text-decoration: underline;">jason.mrad@net.usek.edu.lb</a></p>
     </div>
     <div style="display: flex; justify-content: center; gap: 15px;" id="social-icons-mobile">
         <a href="https://www.instagram.com/jasonmrad1" target="_blank" aria-label="Instagram" style="color: white;">
             <i class="fa-brands fa-instagram" style="font-size: 20px;"></i>
         </a>
-        <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter" style="color: white;">
+        <a href="https://twitter.com/" target="_blank" aria-label="Twitter" style="color: white;">
             <i class="fa-brands fa-twitter" style="font-size: 20px;"></i>
         </a>
-        <a href="https://www.facebook.com/yourprofile" target="_blank" aria-label="Facebook" style="color: white;">
+        <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook" style="color: white;">
             <i class="fa-brands fa-facebook" style="font-size: 20px;"></i>
         </a>
     </div>
@@ -381,13 +381,13 @@ function openCourseDetails(id) {
   let moreInfoParent = document.getElementById("more-info-parent");
   let moreInfoDiv = document.getElementById("more-info-div");
 document.body.classList.add('no-scroll');
-  moreInfoParent.style.display = 'flex'; // Make the parent visible immediately
+  moreInfoParent.style.display = 'flex';
   setTimeout(() => {
-    moreInfoParent.classList.add('show'); // Add class to parent for any background effects
-    moreInfoDiv.classList.add('show'); // Trigger the transition in the div
-    isPopupOpen = true; // Mark popup as open after it's shown this was added since the functionality of click outside the div closes it it was closing immediately but adding a delay ensures that it doesnt fire unitentionlly
+    moreInfoParent.classList.add('show');
+    moreInfoDiv.classList.add('show');
+    isPopupOpen = true; //mark popup as open after it's shown this was added since the functionality of click outside the div closes it it was closing immediately but adding a delay ensures that it doesnt fire unitentionlly
 
-  }, 10); // Small delay for smooth transition
+  }, 10); //delay 
 
 }
 
@@ -395,23 +395,22 @@ function closeCourseDetails() {
     let moreInfoParent = document.getElementById("more-info-parent");
     let moreInfoDiv = document.getElementById("more-info-div");
   document.body.classList.remove('no-scroll');
-  moreInfoDiv.classList.remove('show'); // Trigger the slide-out transition
+  moreInfoDiv.classList.remove('show');
   moreInfoParent.classList.remove('show');
 
   setTimeout(() => {
-    moreInfoParent.style.display = 'none'; // Hide the parent after the transition completes
-  }, 350); // Match this with the duration of the CSS transition
+    moreInfoParent.style.display = 'none';
+  }, 350);
 
   //for reset
 clickCategories("CL");
-isPopupOpen = false; // Mark popup as open after it's shown
+isPopupOpen = false;
 
 }
-  // Event listener for clicks on the entire document
     document.addEventListener('click', function(event) {
         const moreInfoDiv = document.getElementById('more-info-div');
         
-        // Only run this logic if the popup is open
+        //only run this logic if the popup is open
         if (isPopupOpen && !moreInfoDiv.contains(event.target)) {
             closeCourseDetails();
         }
@@ -424,33 +423,33 @@ isPopupOpen = false; // Mark popup as open after it's shown
     </script>
 
 <script>
-    const drawElements = document.querySelectorAll('.draw'); // Select all elements with the 'draw' class
+    const drawElements = document.querySelectorAll('.draw');
     let hoverTimeout;
 
     drawElements.forEach(myDiv => {
-        const icon = myDiv.querySelector('i'); // Select the <i> icon directly inside the <td>
+        const icon = myDiv.querySelector('i');
         
-        // Initially hide the icon with fade-out classes
+        
         icon.classList.add('fade-out');
 
         myDiv.addEventListener('mouseenter', () => {
             hoverTimeout = setTimeout(() => {
-                myDiv.style.color = 'blueviolet'; // Change the text color after 0.81 seconds
+                myDiv.style.color = 'blueviolet';
 
                 if (icon) {
-                    icon.classList.remove('fade-out'); // Remove fade-out to show the icon
-                    icon.classList.add('fade-in'); // Add fade-in class to make it visible
+                    icon.classList.remove('fade-out');
+                    icon.classList.add('fade-in');
                 }
-            }, 810); // 0.81 second delay
+            }, 810);
         });
 
         myDiv.addEventListener('mouseleave', () => {
-            clearTimeout(hoverTimeout); // Cancel if mouse leaves before 0.81 seconds
-            myDiv.style.color = 'white'; // Reset the text color to white
+            clearTimeout(hoverTimeout);
+            myDiv.style.color = 'white';
 
             if (icon) {
-                icon.classList.remove('fade-in'); // Remove fade-in class
-                icon.classList.add('fade-out'); // Add fade-out class to hide the icon
+                icon.classList.remove('fade-in');
+                icon.classList.add('fade-out');
             }
         });
     });
@@ -557,7 +556,6 @@ levels:"Undergraduate C1"
             lab:'',
             
             scheduleType1: "Course C",
-            // Add other properties as needed
         },
           {//CSC360
             id:3,
@@ -599,7 +597,6 @@ levels:"Undergraduate C1"
             lab:'',
             
             scheduleType1: "Course C",
-            // Add other properties as needed
         },
         {//STA
             id:4,
@@ -641,7 +638,6 @@ levels:"Undergraduate C1"
             lab:"Lab: 2",
             scheduleType1: "Course / Workshop CTP",
             
-            // Add other properties as needed
         },
            {//GEHU
             id:5,
@@ -683,18 +679,16 @@ levels:"Undergraduate C1"
             lab:'',
             scheduleType1: "Course C",
             
-            // Add other properties as needed
         },
-        // Add more course objects here...
     ];
 
     function getCourseByIdLoop(courseId) {
     for (let i = 0; i < courses.length; i++) {
         if (courses[i].id === courseId) {
-            return courses[i]; // Return the matching course
+            return courses[i];
         }
     }
-    return null; // If no course is found
+    return null; //if no course is found
 }
 
 
@@ -871,10 +865,9 @@ document.getElementById("cDescription").style.lineHeight="23px";
 
 function changeAttributeBasedOnWidth() {
           if(window.innerWidth<700){
-           // Select all 'td' elements
+         
 const allTdElements = document.querySelectorAll('td');
 
-// Loop through each 'td' and remove the 'draw' class
 allTdElements.forEach(td => {
   td.classList.remove('draw');
 });
@@ -898,30 +891,26 @@ allTdElements.forEach(td => {
             document.getElementById("CD").innerHTML = "&nbsp;&nbsp;Course Description";
         }
     }
-        // Call the function on page load
         changeAttributeBasedOnWidth();
 
-        // Call the function whenever the window is resized
         window.addEventListener("resize", changeAttributeBasedOnWidth);
   </script>
 
 
 <script>
 
-// Function to open the sidebar
 function openSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const menuToggle = document.querySelector('.menu-toggle');
     
-    sidebar.style.left = '0'; // Slide the sidebar in from the left
-    sidebar.classList.add('open'); // Add the open class to manage styles
-    document.body.style.overflow = 'hidden'; // Prevent scrolling on the body
+    sidebar.style.left = '0';
+    sidebar.classList.add('open');
+    document.body.style.overflow = 'hidden';
     
    
     menuToggle.querySelector('.close-label').style.display = 'block';
 }
 
-// Function to close the sidebar
 function closeSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const menuToggle = document.querySelector('.menu-toggle');
@@ -932,21 +921,20 @@ function closeSidebar() {
     selectBox.style.borderRadius="5px";
     selectDiv.style.height='0px';
     
-    sidebar.style.left = '-100vw'; // Slide the sidebar out of view
-    sidebar.classList.remove('open'); // Remove the open class
-    document.body.style.overflow = 'auto'; // Enable body scrolling
+    sidebar.style.left = '-100vw';
+    sidebar.classList.remove('open');
+    document.body.style.overflow = 'auto';
 
     menuToggle.querySelector('.close-label').style.display = 'none';
 }
 
-// Function to toggle the sidebar
 function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     
     if (sidebar.classList.contains('open')) {
-        closeSidebar(); // Close if it's open
+        closeSidebar();
     } else {
-        openSidebar(); // Open if it's closed
+        openSidebar();
     }
 }
 
@@ -954,17 +942,17 @@ function scrollToTarget(targetID) {
     let target = document.getElementById(targetID);
     
     if (window.innerWidth < 750) {
-        // Close the sidebar before scrolling
+        //close the sidebar before scrolling
         closeSidebar();
         
-        // Wait for the sidebar animation to complete before scrolling
+        //wait for the sidebar animation to complete before scrolling
         setTimeout(function() {
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
-        }, 450); // Adjust the timeout based on your sidebar transition speed
+        }, 450);
     } else {
-        // On larger screens, just scroll to the target
+        //larger screens, just scroll to the target
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
@@ -980,11 +968,9 @@ function scrollToTarget(targetID) {
     let selectDiv = document.getElementById('select-div');
     
     if (selectBox.style.visibility === "hidden" || selectBox.style.opacity === "0") {
-        // Show the element
         selectBox.style.visibility = "visible";
         selectBox.style.opacity = "1";
     } else {
-        // First, shrink the height of the selectDiv
         let timeForHeight;//for if the height is not 0 to not wait 3 seconds to apply transition to start directly
         if(selectDiv.style.height==="0px"){
             timeForHeight=0;
@@ -995,13 +981,13 @@ function scrollToTarget(targetID) {
         selectDiv.style.height = '0px';
         selectBox.style.borderRadius="5px";
      
-        // Wait for the height transition to complete (350ms) before changing opacity and visibility
+        //wait for the height transition to completebefore changing opacity and visibility
         setTimeout(function() {
             selectBox.style.opacity = "0";
             setTimeout(function() {
                 selectBox.style.visibility = "hidden";
-            }, 350); // Time for opacity transition
-        }, timeForHeight); // Time for height transition
+            }, 350); //for opacity transition
+        }, timeForHeight); //for height transition
     }
 }
 
