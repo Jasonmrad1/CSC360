@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Webpage</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+   
+<a href="index.html" class="main-page-link"><i class="fas fa-home"></i></a>
+    <div class="quiz-container">
+
+        <div class="end" id="end">
+            <h1>Quiz Completed!</h1>
+            <p>Your Score: <span id="score"></span>/10</p>
+            <button id="restart-btn" class="start-btn" onclick="restartQuiz()">Try Again</button>
+        </div>
+
+       <div class="intro" id="intro">
+            <h1>Quiz Yourself</h1>
+            <p>Are You Ready?</p>
+            <button id="start-btn" class="start-btn" onclick="startQuiz()">Start Quiz</button>
+        </div>
+     <div id="quiz">
+        <div class="question" id="question">
+            What is the capital of France?
+        </div>
+
+        <div class="options">
+            <button onclick="selectAnswer('A')" id="A">Berlin</button>
+            <button onclick="selectAnswer('B')" id="B">Madrid</button>
+            <button onclick="selectAnswer('C')" id="C">Paris</button>
+            <button onclick="selectAnswer('D')" id="D">Rome</button>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        const quizQuestions=[{
+            question:"What is the capital of France?",
+            options:["Berlin","Paris","Madrid","Rome"],
+            answer:"Paris"
+        },
+            {
+                question:"How many continents are there in the World?",
+                options:["5","7","8","6"],
+                answer:"7"
+
+
+            },
+            {
+                question:"What is the largest planet in our solar system?",
+            options:["Earth","Saturn","Jupiter","Mars"],
+            answer:"Jupiter"
+            },
+            {
+            question:"What is the largest animal in history?",
+            options:["T-Rex","Broncholasis","White Whale","Blue Whale"],
+            answer:"Blue Whale"
+            },
+            {
+            question:"Which ocean is the largest?",
+            options: ["Atlantic", "Indian", "Arctic", "Pacific"],
+            answer: "Pacific"
+            },
+            {
+            question:"What is the primary programming language used for web development?",
+            options: ["CSS", "HTML", "Java", "Python"],
+            answer: "HTML"
+                
+            },
+            { 
+            question:"Who developed the theory of relativity?",
+            options: ["Isaac Newton", "Nikola Tesla", "Albert Einstein", "Daniel Bernouilli"],
+            answer: "Albert Einstein"
+
+            },
+            {
+                question:"Which of these metals is liquid at room temperature?",
+            options: ["Mercury", "Gallium", "Tin", "Lead"],
+            answer: "Mercury"
+                
+                
+            },
+        {
+            question:"In mathematics, what is the value of Euler’s number (e) to two decimal places",
+            options: ["2.71", "3", "2.14", "-2"],
+            answer: "2.71"
+            
+
+        },
+        {
+        question:"Which of the following data structures is most efficient for implementing a priority queue?",
+            options: ["Array", "Binary Search Tree", "Heap", "Linked List"],
+            answer: "Heap"
+        }
+
+
+
+
+        ]
+        window.onload=document.getElementById("intro").style.display="flex";
+        const progressBar = document.getElementById('progress-bar');
+const totalQuestions = 10;  // Set the total number of questions here
+let currentQuestion = 0;
+let nbOfCorrectAnswers=0;
+let streak = 0;
+
+function startQuiz(){
+document.getElementById("quiz").style.display="block";
+document.getElementsByClassName("intro")[0].style.display="none";
+}
+function selectAnswer(answer) {
+    if(document.getElementById(answer).textContent==quizQuestions[currentQuestion].answer){
+       nbOfCorrectAnswers++;
+       streak++;
+    }
+    else{
+        streak=0;
+    }
+    currentQuestion++;
+    if (currentQuestion < totalQuestions) {
+        
+   
+        updateProgressBar();
+        loadNextQuestion();
+    } else {
+       document.getElementById("end").style.display="flex";
+       document.getElementById("quiz").style.display="none";
+       document.getElementById("score").innerHTML=nbOfCorrectAnswers;
+       if(nbOfCorrectAnswers<5){
+
+        document.getElementById("score").style.color="red";
+       }
+     
+       else if(nbOfCorrectAnswers<=9){
+        document.getElementById("score").style.color="rgb(100, 109, 237)";
+
+       }
+       else{
+        document.getElementById("score").style.color="lightgreen";
+
+       }
+      
+    }
+}
+
+function updateProgressBar() {
+    const progressPercentage = (currentQuestion / totalQuestions) * 100;
+    progressBar.style.width = progressPercentage + '%';
+   
+    if (nbOfCorrectAnswers < 4 && currentQuestion >= 6) {
+        progressBar.style.backgroundColor = "red"; //Impossible to get above 4 correct answers
+    }
+    else if (streak >= 3) {
+        progressBar.style.backgroundColor = "lightgreen";
+    }
+
+    else if (nbOfCorrectAnswers >= 4 && nbOfCorrectAnswers <= 6) {
+        progressBar.style.backgroundColor = "rgb(100, 109, 237)";
+    }
+    else {
+        progressBar.style.backgroundColor = "white"; 
+    }
+}
+
+function loadNextQuestion() {
+    
+    // Example placeholder:
+    document.getElementById('question').textContent = quizQuestions[currentQuestion].question;
+    document.getElementById("A").textContent=quizQuestions[currentQuestion].options[0];
+    document.getElementById("B").textContent=quizQuestions[currentQuestion].options[1];
+    document.getElementById("C").textContent=quizQuestions[currentQuestion].options[2];
+    document.getElementById("D").textContent=quizQuestions[currentQuestion].options[3];
+}
+function restartQuiz(){
+    currentQuestion=0;
+    nbOfCorrectAnswers=0;
+    document.getElementById("quiz").style.display="block";
+    document.getElementById("end").style.display="none";
+    updateProgressBar();
+    loadNextQuestion();
+
+
+}
+        //for button to reset after click for mobiles
+if(window.innerWidth<900){
+document.querySelectorAll('.options button').forEach(button => {
+    button.addEventListener('touchstart', () => {
+        button.style.background = "#6f2e95"; // Active color
+        button.style.transform = "scale(0.98)"; // Clicked size
+    });
+
+    button.addEventListener('touchend', () => {
+        setTimeout(() => {
+            // Resetting styles to allow default hover behavior
+            button.style.background = "rgb(100, 109, 237)";
+            button.style.transform = "scale(1)";
+            button.blur(); // Removes focus
+        }, 100); // Slight delay to allow active effect to show
+    });
+});
+}
+    </script>
+</body>
+<style>
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit',sans-serif;
+user-select: none;
+        -webkit-tap-highlight-color: transparent;
+
+}
+
+      .start-btn {
+            background-color: rgb(100, 109, 237);
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.1s ease;
+            margin-bottom: 30px;
+        }
+
+        .start-btn:hover {
+            background: rgb(72, 82, 229);
+            transform: scale(1.05);
+        }
+
+        .start-btn:active {
+            background: #6f2e95;
+            transform: scale(0.98);
+        }
+body {
+    font-family: 'Outfit',sans-serif;
+    background-color:#121212;
+  
+    color: #E0E0E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.header {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #E0E0E0;
+}
+
+.quiz-container {
+    max-width: 600px;
+    width: 90%;
+    background-color:  #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Deeper shadow for card depth */
+    text-align: center;
+   
+}
+#quiz{
+display: none;
+width: 100%;
+height: 100%;
+}
+
+.question {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.options button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    font-size: 16px;
+    color:white;
+    /*background:rgb(43, 128, 226); /* Gradient for buttons */
+    background-color: rgb(100, 109, 237);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Soft shadow for hover effect */
+}
+
+.options button:hover {
+    background:rgb(72, 82, 229); /* Darker gradient on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Larger shadow on hover */
+    transform: scale(1.02); /* Slight scaling effect */
+}
+
+.options button:active {
+    background: #6f2e95; /* Solid dark purple on click */
+    transform: scale(0.98); /* Press effect */
+}
+
+
+.quiz-container {
+    max-width: 600px;
+    width: 90%;
+    min-height: 390px;
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #333333;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 20px;
+    height: 10px; 
+    box-sizing: border-box;
+}
+
+.progress-bar {
+    height: 100%; /* Fill the container's height */
+    background: rgb(255, 255, 255);
+    width: 0%;
+    transition: width 0.4s ease-in-out, background 0.3s ease;
+    border-radius: 12px 0 0 12px;
+}
+
+
+.start-btn {
+            background-color: rgb(100, 109, 237);
+            color: white;
+            font-size: 20px;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.1s ease;
+        }
+
+        .start-btn:hover {
+            background-color: rgb(100, 109, 237);
+            transform: scale(1.05);
+        }
+
+        .start-btn:active {
+            background-color: #5C1A67;
+            transform: scale(0.98);
+        }
+        .intro {
+            height: 100%;
+            width: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .intro h1 {
+            font-size: 2.5em;
+            color: #E0E0E0;
+            margin-bottom: 15px;
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            color: #C0C0C0;
+            margin-bottom: 30px;
+        }
+        .end {
+            height: 100%;
+            width: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            }
+            .end h1 {
+    font-size: 2.5em;
+    color: #E0E0E0;
+    margin-bottom: 15px;
+}
+
+.end p {
+    font-size: 1.2em;
+    color: #C0C0C0;
+    margin-bottom: 30px;
+}
+
+#score {
+    font-weight: bold;
+    color: rgb(100, 109, 237);
+}
+
+.main-page-link {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    opacity: 0.5;
+}
+
+.main-page-link:hover {
+    opacity: 1;
+    color: #ffffff;
+}
+
+@media(max-width:600px){
+.main-page-link {
+    
+    font-size: 14px;
+ 
+}
+
+}
+@media(max-width:400px){
+    .quiz{
+        height: auto;
+    }
+    .quiz-container{
+        height: auto;
+        box-sizing: border-box;
+    }
+ 
+
+}
+</style>
+
+</html>
