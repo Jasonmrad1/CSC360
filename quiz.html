@@ -207,29 +207,28 @@ otherDP=document.getElementById("difficulty-dropdown");
 //window.onload=fetchQuestions();
   function fetchQuestions(API){
     document.getElementById('loading-overlay').classList.add('show');
-  // Fetch the quiz questions from the API
+  //Fetch the quiz questions from the API
   fetch(API)
     .then(res => res.json())
     .then(data => {
-      // Map and format the quiz questions from API response
       quizQuestions = data.results.map((loadedQuestion) => {
         const formattedQuestion = {
-          question: decodeHtml(loadedQuestion.question), // Decode HTML entities
+          question: decodeHtml(loadedQuestion.question),
           options: [
-            ...loadedQuestion.incorrect_answers.map(answer => decodeHtml(answer)), // Decode incorrect answers
-            decodeHtml(loadedQuestion.correct_answer) // Decode correct answer
+            ...loadedQuestion.incorrect_answers.map(answer => decodeHtml(answer)),
+            decodeHtml(loadedQuestion.correct_answer)
           ],
-          answer: decodeHtml(loadedQuestion.correct_answer) // Decode correct answer
+          answer: decodeHtml(loadedQuestion.correct_answer)
         };
 
-        // Shuffle the options randomly
+        //shuffle the options randomly
         formattedQuestion.options = shuffleArray(formattedQuestion.options);
 
         return formattedQuestion;
       });
 
       document.getElementById('loading-overlay').classList.remove('show');
-      loadNextQuestion(); // Start displaying the first question
+      loadNextQuestion(); //start displaying the first question
 
     })
     .catch(err => {
@@ -237,7 +236,7 @@ otherDP=document.getElementById("difficulty-dropdown");
     });
 }
 
-  // Utility function to shuffle the options array
+
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -246,7 +245,7 @@ otherDP=document.getElementById("difficulty-dropdown");
     return array;
   }
 
-  // Function to decode HTML entities
+  //decode HTML entities because from api it is incomprehensible special characters 
   function decodeHtml(html) {
     var txt = document.createElement("textarea");
     txt.innerHTML = html;
@@ -262,7 +261,7 @@ otherDP=document.getElementById("difficulty-dropdown");
     document.getElementById("quiz").style.display = "none";
     document.getElementById("Name").style.display="flex";
     document.getElementsByClassName("intro")[0].style.display = "none";
-    containerChecker();
+    containerChecker();//just for design between states
     
   }
   function openSettings(){
@@ -309,7 +308,7 @@ otherDP=document.getElementById("difficulty-dropdown");
       document.getElementById("score").innerHTML = nbOfCorrectAnswers;
       document.getElementById("username").innerHTML=FullName;
 
-      // Change the score color based on performance
+      //change the score color based on performance
       if (nbOfCorrectAnswers < 5) {
         document.getElementById("score").style.color = "red";
       } else if (nbOfCorrectAnswers <= 9) {
@@ -324,19 +323,19 @@ otherDP=document.getElementById("difficulty-dropdown");
     const progressPercentage = (currentQuestion / totalQuestions) * 100;
     progressBar.style.width = progressPercentage + '%';
 
-    if (nbOfCorrectAnswers < 4 && currentQuestion >= 6) {
-      progressBar.style.backgroundColor = "red"; // Impossible to get above 4 correct answers
-    } else if (streak >= 3) {
-      progressBar.style.backgroundColor = "lightgreen"; // Streak bonus
-    } else if (nbOfCorrectAnswers >= 4 && nbOfCorrectAnswers <= 6) {
-      progressBar.style.backgroundColor = "rgb(100, 109, 237)"; // Mid-level score
+    if (nbOfCorrectAnswers <4 && currentQuestion >=6) {
+      progressBar.style.backgroundColor = "red"; //impossible to get above 4 correct answers
+    } else if (streak >=3) {
+      progressBar.style.backgroundColor ="lightgreen"; //streak
+    } else if (nbOfCorrectAnswers >=4 && nbOfCorrectAnswers <=6) {
+      progressBar.style.backgroundColor ="rgb(100, 109, 237)";//mid score
     } else {
-      progressBar.style.backgroundColor = "white"; // Default color
+      progressBar.style.backgroundColor ="white";
     }
   }
 
   function loadNextQuestion() {
-    // Populate the next question and options
+    //populate the next question and options
     document.getElementById('question').textContent = quizQuestions[currentQuestion].question;
     document.getElementById("A").textContent = quizQuestions[currentQuestion].options[0];
     document.getElementById("B").textContent = quizQuestions[currentQuestion].options[1];
@@ -358,28 +357,27 @@ otherDP=document.getElementById("difficulty-dropdown");
   }
  
 
-  // Handle touch events for mobile devices
+  //for UX user wihtout it user click a button it stays scaled
   if (window.innerWidth < 900) {
     document.querySelectorAll('.options button').forEach(button => {
       button.addEventListener('touchstart', () => {
-        button.style.background = "#6f2e95"; // Active color
-        button.style.transform = "scale(0.98)"; // Clicked size
+        button.style.background = "#6f2e95";
+        button.style.transform = "scale(0.98)";
       });
 
       button.addEventListener('touchend', () => {
         setTimeout(() => {
-          // Reset styles to allow default hover behavior
           button.style.background = "rgb(100, 109, 237)";
           button.style.transform = "scale(1)";
-          button.blur(); // Removes focus
-        }, 100); // Slight delay to show active effect
+          button.blur();
+        }, 100);
       });
     });
   }
   
    const container = document.getElementById('quiz-container');
 
-// Function to call when clicking outside
+
 function handleClickOutside(event) {
   let d1=document.getElementById('difficulty-dropdown');
   let d2=document.getElementById('Topic');
@@ -399,29 +397,25 @@ for(let i=0;i<2;i++){
   }
 }
 
-// Add event listener to the document
+
 document.addEventListener('click', handleClickOutside);
 
 
 function Name() {
     
     if (Fname.value !== "" || document.activeElement === Fname) {
-      // If the input is not empty or it's focused
       Fname.style.backgroundColor = "rgb(100, 109, 237)";
       Fname.style.borderColor = "white";
     } else {
-      // If the input is empty and not focused
       Fname.style.backgroundColor = "#333";
       Fname.style.borderColor = "#666";
     }
 
-    // Last Name Validation
+    
     if (Lname.value !== "" || document.activeElement === Lname) {
-      // If the input is not empty or it's focused
       Lname.style.backgroundColor = "rgb(100, 109, 237)";
       Lname.style.borderColor = "white";
     } else {
-      // If the input is empty and not focused
       Lname.style.backgroundColor = "#333";
       Lname.style.borderColor = "#666";
     }
@@ -497,7 +491,7 @@ body {
     background-color:  #1a1a1a;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Deeper shadow for card depth */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
     text-align: center;
    
 }
@@ -521,24 +515,23 @@ height: 100%;
     padding: 15px;
     font-size: 16px;
     color:white;
-    /*background:rgb(43, 128, 226); /* Gradient for buttons */
     background-color: rgb(100, 109, 237);
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Soft shadow for hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .options button:hover {
-    background:rgb(72, 82, 229); /* Darker gradient on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Larger shadow on hover */
-    transform: scale(1.02); /* Slight scaling effect */
+    background:rgb(72, 82, 229);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+    transform: scale(1.02);
 }
 
 .options button:active {
-    background: #6f2e95; /* Solid dark purple on click */
-    transform: scale(0.98); /* Press effect */
+    background: #6f2e95; 
+    transform: scale(0.98); 
 }
 
 
@@ -570,7 +563,7 @@ height: 100%;
 }
 
 .progress-bar {
-    height: 100%; /* Fill the container's height */
+    height: 100%;
     background: rgb(255, 255, 255);
     width: 0%;
     transition: width 0.4s ease-in-out, background 0.3s ease;
@@ -662,13 +655,11 @@ height: 100%;
 }
 
 
-/* Header Style */
 .quiz-container h2 {
     font-size: 2em;
     margin-bottom: 20px;
 }
 
-/* Label Style */
 label {
     display: block;
     font-size: 1.1em;
@@ -698,7 +689,6 @@ label {
     border-color: white;
 }
 
-/* Start Quiz Button */
 .confirm-quiz-btn {
     background-color: rgb(100, 109, 237);
     color: white;
@@ -730,20 +720,20 @@ label {
   display: flex; 
   position: absolute;
   flex-direction: column;
-    top: 100%; /* Position directly below .option-dropdown */
+    top: 100%;
     left: 0;
-    width: 100%; /* Match the width of .option-dropdown */
+    width: 100%;
   margin-top: 4px;
-    overflow-y: scroll; /* Hide content when height is 0 */
+    overflow-y: scroll;
     overflow-x: hidden;
     background-color: #1a1a1a;
     border: 1px solid #444;
     color: #ddd;
     border-radius:8px;
     box-sizing: border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Soft shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 
-    transition: all 0.35s ease; /* Smooth transition for dropdown */
+    transition: all 0.35s ease;
     z-index: 100;
    
 }
@@ -752,7 +742,7 @@ label {
   opacity: 1;
 }
 .dropdown::-webkit-scrollbar {
-        display: none; /* Hides the scrollbar in WebKit-based browsers (Chrome, Safari, etc.) */
+        display: none;
         }
 .dropdown-options{
   min-height: 33px;
@@ -763,7 +753,7 @@ label {
   display: flex;
   align-items: center;
   cursor: pointer;
-  border-bottom:1px solid #282828 ;
+  border-bottom:1px solid #282828;
   transition: all 0.3s ease;
 }
 .dropdown-options:hover{
@@ -864,6 +854,7 @@ outline: none;
 input[type="text"]:focus::placeholder{
   color: #d7d7d7;
 }
+    /*when it auto fills it changing styles*/
 input:focus:-webkit-autofill {
   background-color: rgb(100, 109, 237) !important;
   border-color: white !important;
