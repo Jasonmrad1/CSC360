@@ -29,7 +29,7 @@
                 <a href="" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
             <div class="usek-container">
-                <img src="output-onlinepngtools.png">
+                <img src="output-onlinepngtools.png" alt="usek logo">
 
             </div>
         </div>
@@ -115,8 +115,8 @@
 
         <div class="first-group">
             
-                <!-- HTML Skill -->
-                <div class="individual-skill">
+
+            <div class="individual-skill">
                     <div class="skill-header">
                     <p>HTML</p>
                     <p>80%</p>
@@ -127,7 +127,7 @@
                 </div>
     
               
-                <!-- JavaScript Skill -->
+
                 <div class="individual-skill">
                     <div class="skill-header">
                         <p>JavaScript</p>
@@ -168,8 +168,8 @@
                 </div>
             </div>
             <div class="second-group">
-                  <!-- CSS Skill -->
-                  <div class="individual-skill">
+
+                <div class="individual-skill">
                     <div class="skill-header">
                         <p>CSS</p>
                         <p>70%</p>
@@ -178,7 +178,7 @@
                         <div class="progress-bar"   data-percentage="70%"></div>
                     </div>
                 </div>
-                 <!-- Java Skill -->
+
                  <div class="individual-skill">
                     <div class="skill-header">
                         <p>Java</p>
@@ -279,7 +279,6 @@
     </div>
     </section>
 
-<!-- Add this section after the Skills section -->
 <section class="biography-section" id="biography-section">
     <div class="biography-container">
         <h2>Biography</h2>
@@ -298,7 +297,6 @@
     </div>
 </section>
 
-<!-- Add this section at the end of your HTML document -->
 <section class="contact-section"  id="contact-section">
     <div class="contact-container">
         <h2 >Contact Me</h2>
@@ -306,10 +304,10 @@
             I'd love to hear from you! Whether you have a question or just want to say hi, feel free to reach out.
         </p>
         <div class="form-container" >
-            <form action="your_backend_endpoint" method="POST">
-                <input type="text" name="name" placeholder="Name" required >
-                <input type="email" name="email" placeholder="Email" required id="contact-section">
-                <textarea name="message" placeholder="Message" required style="height: 150px;resize: vertical;"></textarea>
+            <form action="contactUsAction.php" method="POST" onsubmit="return validateForm();">
+                <input type="text" name="name" placeholder="Name" id="name" >
+                <input type="email" name="email" placeholder="Email" id="email">
+                <textarea name="message" placeholder="Message" style="height: 150px;resize: vertical;" id="message"></textarea>
                 <div class="button-div">
                 <button type="submit" id="submit-button">
                     Send Message
@@ -336,40 +334,35 @@
     
 </main>
 
-<!--
-<script>
-window.onload=playbackspeed();
-function playbackspeed(){
-    for(let i=0;i<4;i++){
-    document.getElementsByName("myVideo")[i].playbackRate=0.76;
-    }
-}-->
 </script>
-<!--
-<script>
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
 
-    fullscreenBtn.addEventListener('click', () => {
-        if (document.fullscreenElement) {
-            document.exitFullscreen();
-        } else {
-            document.documentElement.requestFullscreen().catch(err => {
-                console.error(`Error attempting to enable full-screen mode: ${err.message}`);
-            });
-        }
-    });
-</script>-->
 <script>
+    function validateForm(){
+        if(document.getElementById("name").value==null||document.getElementById("name").value==""){
+        alert("Name is required");
+    return false;
+    }
+        if(document.getElementById("email").value==null||document.getElementById("email").value==""){
+            alert("email is required");
+        return false;
+        }
+        if(document.getElementById("message").value==null||document.getElementById("message").value==""){
+            alert("Message is required");
+        return false;
+        }
+        console.log("tire");
+        return true;
+        
+    }
+
  function scrollToTarget(targetID) {
     let target = document.getElementById(targetID);
 
-    // Check if the device is mobile or desktop
-    let isMobile = window.innerWidth <= 768; // Adjust this breakpoint as needed
-    let isDesktop = window.innerWidth > 768; // Check for desktop (adjust breakpoint if needed)
+    let isMobile = window.innerWidth <= 768; //flag to know what to apply
+    let isDesktop = window.innerWidth > 768;
 
-    // Handle project-section with specific offset
     if (target.id == "project-section") {
-        let offset = 100;  // Offset for project-section
+        let offset = 100;
         const targetPosition = target.getBoundingClientRect().top + window.scrollY;
         const scrollToPosition = targetPosition - offset;
         window.scrollTo({
@@ -377,9 +370,9 @@ function playbackspeed(){
             behavior: 'smooth'
         });
     }
-    // Handle about-section and biography-section with offset on mobile
+    // about-section and biography-section with offset on mobile
     else if (target.id == "about-section" || target.id == "biography-section") {
-        let offset = isMobile ? 30 : 0; // Apply offset only for mobile
+        let offset=isMobile ? 30 : 0; //Apply offset only for mobile
         const targetPosition = target.getBoundingClientRect().top + window.scrollY;
         const scrollToPosition = targetPosition - offset;
         window.scrollTo({
@@ -387,9 +380,9 @@ function playbackspeed(){
             behavior: 'smooth'
         });
     }
-    // Handle contact-section with offset on desktop
+    //contact-section with offset on desktop for better placement
     else if (target.id == "contact-section" && isDesktop) {
-        let offset = 30;  // Offset for contact-section on desktop
+        let offset = 30; 
         const targetPosition = target.getBoundingClientRect().top + window.scrollY;
         const scrollToPosition = targetPosition - offset;
         window.scrollTo({
@@ -397,7 +390,6 @@ function playbackspeed(){
             behavior: 'smooth'
         });
     }
-    // Default behavior for other sections
     else {
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -418,31 +410,29 @@ function setupObserver() {
         'contact-section': 'contact',
     };
 
-    // Observer for fade-in effect (triggered once when 10% of the section is visible)
     let fadeInObserver = new IntersectionObserver(function(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active'); // Add 'active' class for fade-in once
-                observer.unobserve(entry.target); // Stop observing once fade-in is done
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);//so it doesnt execute more than once for every section
             }
         });
     }, { threshold: 0.2 }); 
 
-    // Observer for purple class (triggered when 30% of the section is visible)
     let purpleObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             let targetID = entry.target.id;
-            let titleID = titleMap[targetID]; // Map section ID to title ID
+            let titleID = titleMap[targetID]; //mapping section ID to title ID
             
             if (entry.isIntersecting) {
-                // Remove 'purple' from all titles and add it only to the active one
+                //purple nav links
                 titles.forEach(title => title.classList.remove('purple'));
 
                 if (titleID) {
                     document.getElementById(titleID).classList.add('purple');
                 }
 
-                // Animation for progress bars in skill-section
+                //animation for progress bars in skill-section
                 if (targetID === 'skill-section') {
                     const progressBars = entry.target.querySelectorAll(".progress-bar");
                     progressBars.forEach(bar => {
@@ -452,9 +442,9 @@ function setupObserver() {
                 }
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.5 });//50% visible to trigger
 
-    // Apply both observers to sections only if not already observed
+    //apply both observers to sections only if not already observed
     document.querySelectorAll('section').forEach(section => {
         if (!section.classList.contains('observed')) {
             section.classList.add('observed', 'fade-slide-in'); 
@@ -464,7 +454,6 @@ function setupObserver() {
     });
 }
 
-// Set up observers on DOM load
 window.addEventListener('DOMContentLoaded', setupObserver, { passive: true });
 
 </script>
