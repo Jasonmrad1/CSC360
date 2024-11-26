@@ -304,6 +304,8 @@
             I'd love to hear from you! Whether you have a question or just want to say hi, feel free to reach out.
         </p>
         <div class="form-container" >
+                  <!--  DR This is for the Coursee the other form is for internship application. Thank you for your understanding
+            
             <form action="contactUsAction.php" method="POST" onsubmit="return validateForm();">
                 <input type="text" name="name" placeholder="Name" id="name" >
                 <input type="email" name="email" placeholder="Email" id="email">
@@ -312,7 +314,20 @@
                 <button type="submit" id="submit-button">
                     Send Message
                 </button></div>
-            </form>
+            </form>-->
+            <form onsubmit="sendMail(); reset();return false;">
+                <input type="text" name="name" placeholder="Name" id="name" >
+                <input type="email" name="email" placeholder="Email" id="email">
+                <textarea name="message" placeholder="Message" style="height: 150px;resize: vertical;" id="message"></textarea>
+                <div class="button-div">
+                <button type="submit" id="submit-button">
+                    Send Message
+                </button></div>
+                
+               
+             
+            </form>  
+
         </div>
         <div style="margin-top: 30px;">
             <h3 style="font-size: 2em;">Connect with <a style="color: blueviolet;display: inline;margin: 0%;padding: 0%;text-decoration: none;" href="mailto:jason.mrad@net.usek.edu.lb">Me</a></h3>
@@ -334,7 +349,32 @@
     
 </main>
 
-</script>
+
+<script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+
+ <script>
+                    const name=document.getElementById("name").value;
+                    const email=document.getElementById("email").value;
+                    const message=document.getElementById("message").value;
+                    
+                    const body=`The email is: ${email} <br>Name: ${name}<br>The message consists of: ${message}`;
+                  function sendMail() {
+                    console.log("Preparing to send email...");
+                    Email.send({
+                      SecureToken: "719be7a4-352d-4332-872d-7f2ae8093986",
+                      To: "jaymrad222@gmail.com",
+                      From: "jaymrad222@gmail.com",
+                      Subject: "Contact from CV",
+                      Body: "The email is: "+document.getElementById("email").value+" <br>Name: "+document.getElementById("name").value+"<br>The message consists of: "+document.getElementById("message").value
+                    })
+                      .then(
+                        message => alert(`Response: ${message}`),
+                        error => console.error(`Error: ${error}`)
+                      );
+                  }
+                  </script>
+
 
 <script>
     function validateForm(){
