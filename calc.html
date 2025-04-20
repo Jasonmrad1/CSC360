@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 20px;
+            margin: 0;
+            justify-content: center;
+            display: flex;
+            background: linear-gradient(to right,#111,blueviolet);
+
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .calculator-body{
+            border-radius: 2px;
+                        width: 230px;
+            height: 320px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows:  repeat(6,1fr);
+            gap: 1px;
+            background-color: black;
+            padding: 3px;
+            box-shadow: 10px 13px 15px black;
+            
+        }
+        .screen{
+            overflow-x: scroll;
+            height: 60px;
+            background-color: #272727;
+           border-radius: 1px;
+            grid-column: 1 / 5;
+            width: calc(300-10);
+            padding: 4px;
+            margin-bottom: 1px;
+            scroll-behavior: smooth; 
+
+
+        }
+        ::-webkit-scrollbar {
+  display: none; 
+}
+        .buttons:active {
+  transform: scale(0.95);
+}
+
+
+        .buttons{
+            color: whitesmoke;
+            border-radius: 5px;
+            border:1px solid #222;
+            background-color: rgb(135, 109, 239);
+            display: flex;
+            justify-content: center;
+            align-items: center;            
+            transition: all 0.1s ease-in;
+        }
+        .buttons:hover {
+    filter: brightness(0.9);
+    cursor: pointer;
+}
+
+        .upper{
+            width: 100%;
+            height: 70%;
+        }
+        .lower{
+            width: 100%;
+            height: 30%;
+            text-align: right;
+           
+        }
+        #indice{
+            color: gray;
+            font-size: 14px;
+            margin-right: 10px;
+            
+        }
+        #calc{
+            margin-left: 10px;
+            font-size: 36px;
+            color:white;
+            font-weight:500px;
+        }
+        .operations{
+            background-color: blueviolet;
+        }
+        ::selection {
+  background-color: transparent;
+}
+
+       .animation{
+        color: #aaa;
+  animation-name:fade;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+    </style>
+</head>
+<body onload="cursor()">
+   
+        <div class="calculator-body">
+            <div class="screen">
+                <div class="upper">
+                    <span id="calc"></span>
+                </div>
+                <div class="lower">
+                    <span id="indice"></span>
+                </div>
+            </div>
+            <div class="buttons operations" onclick="display('%')">%</div>
+            <div class="buttons operations" onclick="back()">&lt;</div>
+            <div class="buttons operations" onclick="display('/')">/</div>
+            <div class="buttons" style="background-color: red;" onclick="clear1();cursor()">C</div>
+            <div class="buttons" onclick="display('7')">7</div>
+            <div class="buttons" onclick="display('8')">8</div>
+            <div class="buttons" onclick="display('9')">9</div>
+            <div class="buttons operations" onclick="display('*')">*</div>
+            <div class="buttons" onclick="display('4')">4</div>
+            <div class="buttons" onclick="display('5')">5</div>
+            <div class="buttons" onclick="display('6')">6</div>
+            <div class="buttons operations" onclick="display('-')">-</div>
+            <div class="buttons" onclick="display('1')">1</div>
+            <div class="buttons" onclick="display('2')">2</div>
+            <div class="buttons" onclick="display('3')">3</div>
+            <div class="buttons operations" onclick="display('+')">+</div>
+            <div class="buttons" onclick="equal('-1')">+/-</div>
+            <div class="buttons"  onclick="display('0')">0</div>
+            <div class="buttons " onclick="display('.')">.</div>
+            <div class="buttons" style="background-color: rgba(9, 235, 13, 0.87);" onclick="equal('')">=</div>
+</div>
+
+    
+</body>
+<script>
+    let result;
+    let calc= document.getElementById('calc');
+    let indice=document.getElementById('indice');
+    let disp='';
+
+    function cursor(){
+        if(calc.innerText==""){
+            calc.innerText="|";
+            calc.classList.add("animation");
+        }
+        else{
+            calc.classList.remove("animation");
+
+
+        }
+    }
+
+    function back(){
+        let len=calc.innerText.length;
+        disp=calc.innerText.substring(0,len-1);
+        display('');
+    }
+    function display(x){
+        if(calc.innerText.match(/[+\-*/%]/) && x.match(/[+\-*/%]/)){
+            if(!isNaN(calc.innerText.charAt(calc.innerText.length-1))){
+             equal();
+             disp=x;
+             calc.innerText=disp;
+            }
+          
+            return;
+        }
+        if (calc.classList.contains("animation")) {
+    calc.classList.remove("animation");
+}
+
+        disp+=x;
+        calc.innerText=disp;
+         // Check if overflow happens and call autoScroll only when necessary
+    if (calc.scrollWidth > calc.clientWidth) {
+        autoScroll();  // Only scroll when overflow occurs
+    }
+    }
+    function equal(y){
+        let text=calc.innerText;
+        
+        let indexOf;
+        let op = calc.innerText.match(/[+\-*/%]/)?.[0];
+        
+        if (isNaN(text.charAt(text.length-1))) return;
+        switch(op){
+            case '+':
+                indexOf=text.indexOf('+');
+                
+                if(isNaN(text.charAt(0))){
+                    result=add(parseFloat(text.substring(indexOf+1)),parseFloat(indice.innerHTML));
+                }
+               
+                result=add(parseFloat(text.substring(0,indexOf)),parseFloat(text.substring(indexOf+1)));
+               
+                break;
+                case '-':
+                indexOf=text.indexOf('-');
+                if(isNaN(text.charAt(0))){
+                    result=substract(parseFloat(indice.innerHTML),parseFloat(text.substring(indexOf+1)));
+                }
+                else
+                result=substract(parseFloat(text.substring(0,indexOf)),parseFloat(text.substring(indexOf+1)));
+                break;
+                case '*':
+                indexOf=text.indexOf('*');
+                if(isNaN(text.charAt(0))){
+                    result=multiply(parseFloat(text.substring(indexOf+1)),parseFloat(indice.innerHTML));
+                }
+                else
+                result=multiply(parseFloat(text.substring(0,indexOf)),parseFloat(text.substring(indexOf+1)));
+                break;
+                case '/':
+                indexOf=text.indexOf('/');
+                if(isNaN(text.charAt(0))){
+                    result=divide(parseFloat(indice.innerHTML),parseFloat(text.substring(indexOf+1)));
+                }
+                else
+                result=divide(parseFloat(text.substring(0,indexOf)),parseFloat(text.substring(indexOf+1)));
+            console.log(result);
+                break;
+                case '%':
+                indexOf=text.indexOf('%');
+                if(isNaN(text.charAt(0))){
+                    result=modulo(parseFloat(indice.innerHTML),parseFloat(text.substring(indexOf+1)));
+                }
+                else
+                result=modulo(parseFloat(text.substring(0,indexOf)),parseFloat(text.substring(indexOf+1)));
+                break;
+                
+
+        }
+        if(y=='-1') result=-result;
+        if(result!=undefined){
+        indice.innerText=result;
+        }
+        else{
+            indice.innerText="";
+        }
+        disp="";
+        calc.innerText="";
+    }
+
+    function add(a,b){
+        return a+b;
+    }
+    function substract(a,b){
+        return a-b;
+    }
+    function divide(a,b){
+        if(b==0){
+            alert("Can't divide by Zero");
+            return;
+           
+        }
+        else{
+            return a/b;
+        }
+    }
+        function modulo(a,b){
+            if(b==0){
+            alert("Can't divide by Zero");
+        }
+        else{
+            return a%b;
+        }
+        }
+        function multiply(a,b){
+            return a*b;
+        }
+        function clear1(){
+            result=0;
+            disp="";
+            calc.innerText="";
+            indice.innerText="";
+        }
+        
+        
+    
+
+
+    </script>
+</html>
