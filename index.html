@@ -63,14 +63,12 @@ main{
     height: 45%;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    row-gap: 40px; /* only vertical space between rows */
+
+    
 }
-.image-container1{
-    width: 100%;
-    height: 45%;
-    display: flex;
-    justify-content: center;
-    margin-top: 70px;
-}
+
 .image{
     width: 500px;
     height: 300px;
@@ -135,20 +133,16 @@ footer{
 }
 }
     @media(max-width:1000px){
-        .image-container1{
-        align-items: flex-start;
-        margin-top: 40px;
-        width: 100%;
-    }
+     
     .image-container{
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin-top: 40px;
+        row-gap: 20px; /* only vertical space between rows */
+
     }
-    #image2{
-        margin-top: 40px;
-    }
+   
     .image{
         width: 570px;
     }
@@ -162,9 +156,7 @@ footer{
         width: 100%;
     }
    
-    #image3{
-        
-    }
+   
     @media(max-width: 600px){
         footer span{
             display: none;
@@ -241,17 +233,7 @@ a{
                     <span>CV</span>
                 </div>
             </a>
-        </div>    
-            <!--
-        <div class="image-container1">
             <a style="background-image: url('quizphoto.png');" class="image" id="image3" href="quiz.html">
-                <div class="transparent-container">
-                    <span>Quiz</span>
-                </div>
-            </a>
-        </div>-->
-             <div class="image-container">
-           <a style="background-image: url('quizphoto.png');" class="image" id="image3" href="quiz.html">
                 <div class="transparent-container">
                     <span>Quiz</span>
                 </div>
@@ -261,7 +243,7 @@ a{
                     <span>Calculator</span>
                 </div>
             </a>
-        </div>    
+        </div>                
         </div>
     </main>
     <footer>

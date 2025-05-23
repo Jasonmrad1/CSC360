@@ -11,6 +11,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+
 </head>
 <body>
     <section class="main-cv" id="main-section">
@@ -106,6 +110,8 @@
         </div>
     </div>
     </section>
+    
+    
        <section class="skills-section" id="skill-section">
         <div class="skills-container">
           
@@ -222,62 +228,338 @@
             </div>
         </div>
     </section>
-    <section class="project-section" id="project-section">
-        <h2 align="center">My Projects</h2>
-    <div  class="project-container">
+<section class="project-section" id="project-section">
+  <h2 style="color:#282828; font-size:3em; text-align:center;">My Projects</h2>
 
-        <div  class="parent-video-container"><div class="video-container"><video name="myVideo" class="background-video"  autoplay muted loop>
-            <source src="bb.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+  <div class="project-container">
+    <!-- 1st video project -->
+    <div class="parent-video-container">
+      <div class="video-container" data-type="video" data-title="BB Game" data-description="Experience the thrilling challenge of BB — my first-ever game project developed in JavaFX during my first year of university. Designed with an infinite level generator powered by custom math logic, BB features dynamically changing speeds, rotating obstacles, and unlimited levels. Built from the ground up, it was a deep dive into applied mathematics and programming fundamentals. Compete for high scores on the global leaderboard and push your reflexes to the limit!">
+        <video name="myVideo" class="background-video" autoplay muted loop>
+          <source src="Projects/bb.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
-        <div class="overlay-hover">
-            <div class="div1"></div>
-            <div class="project-title">AA Copy</div>
-            <div class="made-in"><span>Made in JavaFx</span></div>
-            
-            
-           </div></div></div>   
-        <div class="parent-video-container"><div class="video-container"><video name="myVideo" class="background-video" autoplay muted loop>
-            <source src="cl1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="overlay-hover">
-            <div class="div1"></div>
-            <div class="project-title"> Timezone Clock</div>
-            <div class="made-in"><span>Made in JavaFx</span></div>
-            
-            
-           </div></div></div>   
-        
-           <div class="parent-video-container"><a class="video-container" href="https://jasonmrad.github.io/website/" target="_blank"><video name="myVideo" class="background-video" autoplay muted loop style="object-fit: fill;"> 
-            <source src="s1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="overlay-hover">
-            <div class="div1"></div>
-            <div class="project-title">Sports Clothing Website</div>
-            <div class="made-in"><span>Made in Html, CSS, Js</span></div>
-            
-            
-           </div></a></div>     
-           <div class="parent-video-container"><a class="video-container" href="https://jasonmrad1.github.io/CSC360/schedule.html" target="_blank"><video name="myVideo" class="background-video" autoplay muted loop style="object-fit: fill;">
-            <source src="c1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="overlay-hover">
-            <div class="div1"></div>
-            <div class="project-title">Course Schedule Website</div>
-            <div class="made-in"><span>Made in Html, CSS, Js</span></div>
-            
-            
-           </div></a></div>         
-
-
-
-
-
+      </div>
     </div>
-    </section>
+
+    <!-- 2nd video project -->
+    <div class="parent-video-container">
+      <div class="video-container" data-type="video" data-title="Clock App" data-description="Watch our custom-built timekeeping app in action — featuring both analog and digital clocks with full timezone support. Designed in JavaFX as a one-week mini project for an Object-Oriented Programming course, this tool also includes a handmade calendar, stopwatch, and timer, all wrapped in dynamically changing designs. A clean blend of functionality, design, and code — built under tight deadlines with precision and creativity.">
+        <video name="myVideo" class="background-video" autoplay muted loop>
+          <source src="Projects/cl1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- 3rd iframe project with thumbnail -->
+    <div class="parent-video-container">
+      <div class="video-container" data-type="iframe" data-title="Sports E-Com Website" data-description="Explore my first-ever website, built during my first year through project-based learning in web development. This dynamic e-commerce platform showcases sports clothing, accessories, and shoes — complete with shopping carts, favorites, and individual product pages. Fueled by my passion for sports, especially basketball, this project marked the beginning of my journey into full-stack web development." data-iframe-src="https://jasonmrad.github.io/website/">
+        <img src="Projects/sportsWebThumbnail.png" alt="Portfolio Website Thumbnail" class="thumbnail" style="cursor:pointer; width:100%; border-radius: 10px; object-fit: cover;">
+      </div>
+    </div>
+
+    <!-- 4th iframe project with thumbnail -->
+    <div class="parent-video-container">
+      <div class="video-container" data-type="iframe" data-title="Schedule Website" data-description="A simple yet polished calendar app created in one day for a web development class assignment. Built with HTML, CSS, and JavaScript, it displays a fixed weekly schedule from a past semester, featuring an elegant pop-up for viewing preset class details. All schedule data is structured using JavaScript objects, showcasing clean organization and basic dynamic rendering." data-iframe-src="https://jasonmrad1.github.io/CSC360/schedule.html">
+        <img src="Projects/calendarThumbnail.png" alt="Schedule App Thumbnail" class="thumbnail" style="cursor:pointer; width:100%; border-radius: 10px; object-fit: cover;">
+      </div>
+    </div>
+        <!-- 5th iframe project with thumbnail -->
+      <div class="parent-video-container">
+      <div class="video-container" data-type="iframe" data-title="Quiz Website" data-description="Built with HTML, CSS, and JavaScript, this interactive quiz platform is my first project to integrate external APIs. It fetches real-time questions across a wide range of genres and difficulties, offering users a dynamic and engaging quiz experience. Featuring responsive progress bars and a rating system for each quiz, the site adapts to the user’s performance and preferences, providing both fun and challenge. A sleek and modern UI ties everything together for a smooth, intuitive experience." data-iframe-src="https://jasonmrad1.github.io/CSC360/quiz.html">
+        <img src="Projects/quizThumbnail.png" alt="Quiz App Thumbnail" class="thumbnail" style="cursor:pointer; width:100%; border-radius: 10px; object-fit: cover;width: 100%;height: 100%;">
+      </div>
+    </div>
+ <!-- 6th gallery project -->
+<div class="parent-video-container">
+  <div class="video-container" data-type="gallery" data-title="Motion App" data-description="This Flutter and Dart-powered mobile app is an all-in-one fitness solution designed to bring the power of personal training directly to your phone. The app features a personalized homepage where users can view coach-assigned workouts, making it easy to stay on track with fitness goals. It includes comprehensive body measurement and weight tracking tools with support for both metric (kg, cm) and imperial (lbs, inches) units, alongside progress graphs to visualize improvements over time.
+
+Users can communicate directly with their coaches through a built-in chat page, ensuring real-time support and guidance. The app also enables users to log workouts, track volume lifted, monitor hours spent training, and record personal records (PRs). A robust exercises page provides access to over 1,500 exercises from the Exercisedb API, each with detailed descriptions and GIF demonstrations.
+
+Additional features include:
+
+- Light and Dark mode support for user preference
+- Firebase-based user authentication and database integration
+- Role-based access for Admins, Coaches, and Users
+- Coaches can add workouts and exercises for users
+- Users can follow and track assigned workouts
+- Routine and workout plan management
+- Scalable licensing system allowing gyms to manage their own members under unique licenses
+
+This app offers an affordable and accessible alternative to traditional gym personal training, giving users professional-grade tools and support without the high cost of in-person sessions.
+
+" data-gallery='["Projects/image1.jpeg", "Projects/image2.jpeg", "Projects/image3.jpeg", "Projects/image4.jpeg", "Projects/image5.jpeg"]'>
+    <img src="Projects/motionThumbnail.png" alt="Motion App Thumbnail" class="thumbnail" style="cursor:pointer; width:100%; border-radius: 10px; ">
+  </div>
+</div>
+
+    
+  </div>
+</section>
+
+<!-- Zoom Overlay Container -->
+<div class="video-zoom-overlay" id="zoomOverlay" tabindex="0" aria-modal="true" role="dialog" aria-label="Project preview overlay">
+  <div class="zoom-media-container" style="position: relative;">
+    <!-- Video element -->
+    <video id="zoomVideo" autoplay muted loop style="display:none;"></video>
+
+    <!-- Iframe element -->
+    <iframe id="zoomIframe" style="width: 100%; height: 80vh; border: none; border-radius: 14px; display:none;" allowfullscreen></iframe>
+<!-- Gallery container -->
+<div id="zoomGallery" class="zoom-gallery" style="display:none;width:100%; height:80vh; overflow-x:auto; white-space: nowrap; padding-bottom: 3px; border-radius: 10px;">
+</div>
+
+
+    <div class="info-icon" id="infoIcon" title="Show project details" style="display: flex;justify-content: center;align-items: center;padding-left: 5px;"><i class="fa-solid fa-chevron-right"></i></div>
+
+    <div class="description-overlay" id="descriptionOverlay" aria-live="polite" role="region" aria-label="Project description">
+      <div class="description-close-btn" id="descCloseBtn" title="Close description">×</div>
+      <h3 id="descTitle"></h3>
+      <p id="descText"></p>
+    </div>
+  </div>
+  <div class="close-hint">Click outside or press ESC to close</div>
+</div>
+
+
+
+
+<script>
+  const videoElements = document.querySelectorAll('.background-video');
+  const iframeThumbnails = document.querySelectorAll('.video-container[data-type="iframe"] > img.thumbnail');
+
+  const overlay = document.getElementById('zoomOverlay');
+  const zoomVideo = document.getElementById('zoomVideo');
+  const zoomIframe = document.getElementById('zoomIframe');
+  const infoIcon = document.getElementById('infoIcon');
+  const descriptionOverlay = document.getElementById('descriptionOverlay');
+  const descTitle = document.getElementById('descTitle');
+  const descText = document.getElementById('descText');
+  const descCloseBtn = document.getElementById('descCloseBtn');
+
+  let descriptionVisible = false;
+
+  // Open zoom on video click (original videos)
+  videoElements.forEach(video => {
+    video.addEventListener('click', e => {
+      e.preventDefault();
+      const source = video.querySelector('source')?.src || video.currentSrc;
+      if (!source) return;
+
+      zoomIframe.style.display = 'none';
+      zoomIframe.src = '';
+
+      zoomVideo.style.display = "block";
+      zoomVideo.src = source;
+      zoomVideo.load();
+
+      const container = video.closest('.video-container');
+      descTitle.textContent = container.dataset.title || '';
+      descText.textContent = container.dataset.description || '';
+
+      hideDescription(true);
+
+      overlay.classList.add('active');
+      document.body.classList.add('no-scroll'); // ✅ Disable scroll
+      gsap.fromTo(zoomVideo,
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }
+      );
+
+      overlay.focus();
+    });
+  });
+
+  // Open zoom on iframe thumbnail click
+  iframeThumbnails.forEach(img => {
+    img.addEventListener('click', e => {
+      e.preventDefault();
+
+      const container = img.closest('.video-container');
+      const iframeSrc = container.dataset.iframeSrc;
+      if (!iframeSrc) return;
+
+      zoomVideo.style.display = 'none';
+      zoomVideo.pause();
+      zoomVideo.src = '';
+
+      zoomIframe.style.display = 'block';
+      zoomIframe.src = iframeSrc;
+
+      descTitle.textContent = container.dataset.title || '';
+      descText.textContent = container.dataset.description || '';
+
+      hideDescription(true);
+
+      overlay.classList.add('active');
+      document.body.classList.add('no-scroll'); // ✅ Disable scroll
+      gsap.fromTo(zoomIframe,
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }
+      );
+
+      overlay.focus();
+    });
+  });
+
+  // Toggle description on info icon click
+  infoIcon.addEventListener('click', e => {
+    e.stopPropagation();
+    if (descriptionVisible) {
+      hideDescription();
+    } else {
+      showDescription();
+    }
+  });
+
+  // Close description on close btn
+  descCloseBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    hideDescription();
+  });
+
+  // Clicking outside closes overlay or description
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) {
+      if (descriptionVisible) {
+        hideDescription();
+      } else {
+        closeOverlay();
+      }
+    }
+  });
+
+  // ESC closes description or overlay
+  window.addEventListener('keydown', e => {
+    if (e.key === "Escape") {
+      if (descriptionVisible) {
+        hideDescription();
+      } else if (overlay.classList.contains('active')) {
+        closeOverlay();
+      }
+    }
+  });
+
+  function showDescription() {
+  descriptionVisible = true;
+  descriptionOverlay.classList.add('visible');
+  document.querySelector('.zoom-media-container').classList.add('desc-active'); // Add class
+
+  gsap.fromTo(descriptionOverlay,
+    { y: 50, scale: 0.8, opacity: 0 },
+    { y: 0, scale: 1, opacity: 1, duration: 0.4, ease: "power3.out" }
+  );
+}
+
+function hideDescription(immediate = false) {
+  descriptionVisible = false;
+  document.querySelector('.zoom-media-container').classList.remove('desc-active'); // Remove class
+
+  if (immediate) {
+    descriptionOverlay.style.transition = "none";
+    descriptionOverlay.classList.remove('visible');
+    descriptionOverlay.style.opacity = 0;
+    descriptionOverlay.style.transform = "translateY(50px) scale(0.8)";
+    void descriptionOverlay.offsetWidth; // force reflow
+    descriptionOverlay.style.transition = "";
+  } else {
+    gsap.to(descriptionOverlay, {
+      y: 50,
+      scale: 0.8,
+      opacity: 0,
+      duration: 0.3,
+      ease: "power3.in",
+      onComplete: () => {
+        descriptionOverlay.classList.remove('visible');
+      }
+    });
+  }
+}
+
+  function closeOverlay() {
+  gsap.to([zoomVideo, zoomIframe, zoomGallery], {
+    scale: 0.8,
+    opacity: 0,
+    duration: 0.4,
+    ease: "power3.in",
+    onComplete: () => {
+      overlay.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+
+      zoomVideo.pause();
+      zoomVideo.src = '';
+      zoomVideo.style.display = "none";
+
+      zoomIframe.src = '';
+      zoomIframe.style.display = "none";
+
+      zoomGallery.innerHTML = '';
+      zoomGallery.style.display = "none";
+
+      hideDescription(true);
+    }
+  });
+}
+
+// Open zoom on gallery thumbnail click
+const galleryThumbnails = document.querySelectorAll('.video-container[data-type="gallery"] > img.thumbnail');
+const zoomGallery = document.getElementById('zoomGallery');
+
+galleryThumbnails.forEach(img => {
+  img.addEventListener('click', e => {
+    e.preventDefault();
+
+    const container = img.closest('.video-container');
+    const galleryImages = JSON.parse(container.dataset.gallery || "[]");
+
+    if (galleryImages.length === 0) return;
+
+    zoomVideo.style.display = 'none';
+    zoomVideo.pause();
+    zoomVideo.src = '';
+
+    zoomIframe.style.display = 'none';
+    zoomIframe.src = '';
+
+    // Clear previous gallery
+    zoomGallery.innerHTML = '';
+    zoomGallery.style.display = 'flex';
+
+    // Add new images
+    galleryImages.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = "Gallery image";
+      img.style.height = '100%';
+      img.style.width = 'auto';
+
+      img.style.borderRadius = '0px';
+      img.style.marginRight = '0px';
+      img.style.objectFit = 'contain';
+      zoomGallery.appendChild(img);
+    });
+
+    descTitle.textContent = container.dataset.title || '';
+    descText.textContent = container.dataset.description || '';
+
+    hideDescription(true);
+
+    overlay.classList.add('active');
+    document.body.classList.add('no-scroll');
+
+    gsap.fromTo(zoomGallery,
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }
+    );
+
+    overlay.focus();
+  });
+});
+
+
+</script>
+
 
 <section class="biography-section" id="biography-section">
     <div class="biography-container">
@@ -341,7 +623,7 @@
     </div>
 </section>
 <footer>
-    &copy; 2024 Jason Mrad. All rights reserved.
+    &copy; 2025 Jason Mrad. All rights reserved.
 </footer>
 
 
@@ -470,6 +752,7 @@ function setupObserver() {
 
                 if (titleID) {
                     document.getElementById(titleID).classList.add('purple');
+                    console.log(titleID);
                 }
 
                 //animation for progress bars in skill-section
@@ -482,7 +765,7 @@ function setupObserver() {
                 }
             }
         });
-    }, { threshold: 0.5 });//50% visible to trigger
+    }, { threshold: 0.35 });//50% visible to trigger
 
     //apply both observers to sections only if not already observed
     document.querySelectorAll('section').forEach(section => {

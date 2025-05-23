@@ -23,6 +23,10 @@
     .into-view{
         cursor: pointer;
     }
+    body.no-scroll {
+  overflow: hidden;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -97,7 +101,8 @@ body {
     height: 60px;
     display: flex;
     justify-content: space-around;
-    font-size: 25px;
+    font-size: 27px;
+    border: none;
     align-items: center;
 }
 .social-media-icons i{
@@ -272,6 +277,7 @@ cursor:pointer;
 }
 .project-section{
     margin-top: 100px;
+    height: 1350px;/*fix height lal container aa smaller screens ha nkabera*/
 }
 .project-section h2{
     color: #282828;
@@ -294,6 +300,205 @@ cursor:pointer;
     justify-content: center;
     align-items: center;
     
+}
+
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+  border-radius: 15px;
+  z-index: -1;
+  user-select: none;
+}
+/* Hover effect for videos */
+.video-container {
+  position: relative;
+  width: 90%;
+  height: 85%;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.video-container:hover {
+  transform: scale(1.0);
+}
+
+/* Zoom Overlay */
+.video-zoom-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(35, 35, 35, 0.55); /* dark, semi-transparent */
+  display: flex;
+   backdrop-filter: blur(20px);
+     -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05); /* faint frosted border */
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);     /* smooth dark glow */
+
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow: hidden;
+}
+.video-zoom-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.zoom-media-container {
+  position: relative;
+  width: 80vw;
+  max-height: 80vh;
+  max-width: 1280px;
+  border-radius: 14px;
+  box-shadow: 0 0 40px rgba(138, 43, 226, 0.2); /* blueviolet shadow */
+  border: 2px solid black;
+  overflow: hidden;
+   background: black;
+   transition: border-color 1s ease;
+}
+
+.zoom-media-container.desc-active {
+  border-color: rgba(137, 43, 226, 1);
+}
+
+#zoomVideo {/*ntebeh hone lal videos teb2a zabeton*/
+  width: 100%;
+  height: 80vh;
+  border: none;
+  display: block;
+  border-radius: 14px;
+  user-select: none;
+  
+   background: #fff;
+     top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 50%;
+}
+ #zoomVideo, #zoomIframe {
+    user-select: none;
+    background: black;
+  }
+
+#zoomIframe {
+    background: white;
+  }
+.thumbnail:hover , .video-container:hover {
+    filter: brightness(0.9);
+    transition: filter 0.3s ease-in-out;
+  }
+
+.info-icon {
+  position: absolute;
+  top: 22px;
+  right: 0px;
+  width: 80px;
+  height: 30px;
+  background: black;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px;
+  transform: rotate(45deg) translate(30%, -50%);
+  transform-origin: top right;
+  z-index: 30;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid #222;
+  font-family: monospace;
+  user-select: none;
+  transition: background 0.3s ease;
+  pointer-events: auto;
+}
+
+.info-icon:hover {
+  background: blueviolet;
+}
+.info-icon i{
+  transform: rotate(90deg);
+}
+
+
+
+.description-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.9);
+  backdrop-filter: blur(12px);
+  color: #eee;
+  padding: 30px 50px;
+  box-sizing: border-box;
+  font-size: 18px;
+  line-height: 1.6;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 40;
+  user-select: text;
+  display: flex;
+  flex-direction: column;
+  transition: none;
+}
+.description-overlay.visible {
+  pointer-events: auto;
+}
+
+.description-overlay h3 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.03em;
+}
+
+.description-overlay p {
+  flex-grow: 1;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.description-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 32px;
+  color: #bbb;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+  z-index: 50;
+}
+.description-close-btn:hover {
+  color: white;
+}
+
+/* Close hint text */
+.close-hint {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  text-align: center;
+  color: #ccc;
+  font-size: 14px;
+  opacity: 0.7;
+  z-index: 5;
+  user-select: none;
 }
 .background-video{
   
@@ -318,34 +523,13 @@ border-radius: 15px;
           align-items: center;
           
       }
-      .overlay-hover {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.85);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: white;
-          font-size: 1.5em;
-          font-weight: bold;
-          display: flex;
-          flex-direction: column;
-          transition: top 0.6s ease;
+      .parent-video-container img{
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
       }
-      
-      .video-container:hover .overlay-hover {
-          top: 0;
-          
-      }
+    
   
-.div1{
-    width: 100%;
-    height: 30%;
-    display: flex;
-}
 .project-title{
     width: 100%;
     height: 50%;
@@ -353,19 +537,7 @@ border-radius: 15px;
     justify-content: center;
     align-items: center;
 }
-.made-in{
-    width: 100%;
-    height: 20%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    font-size: 12px;
-    padding: 10px;
 
-}
-.made-in span{
-    margin-right: 10px;
-}
 .biography-section{
     width: 100%;
     padding: 50px 0;
@@ -620,6 +792,9 @@ footer{
     .text-content{
         width: 80%;
     }
+    .project-section{
+        height: 2380px;
+    }
     .project-container{
         height: auto;
       flex-direction: column;
@@ -649,7 +824,37 @@ footer{
        
         margin-bottom: 30px;
     }
+  
+  
+
+  
+
+  .zoom-media-container {
+    width: 95vw;
+    max-height: 85vh;
+  }
+
+
+ 
+
+  .description-overlay {
+    padding: 20px;
+    font-size: 16px;
+  }
+
+  .description-overlay h3 {
+    font-size: 26px;
+  }
+
+  .description-close-btn {
+    font-size: 28px;
+  }
+
+  .close-hint {
+    font-size: 12px;
+  }
 }
+
 @media (max-width:650px){
    
 .nav-container{
@@ -735,6 +940,9 @@ footer{
   }
     #main-section{
         height:900px;
+    }
+     .project-section{
+        height: 1650px;
     }
   
 }
