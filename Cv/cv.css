@@ -939,7 +939,7 @@ footer{
     
   }
     #main-section{
-        height:900px;
+        height: 100svh;
     }
      .project-section{
         height: 1650px;
