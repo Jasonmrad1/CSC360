@@ -1,3 +1,5 @@
+
+
 /*fade init */
 .fade-slide-in {
     opacity: 0;
@@ -636,6 +638,13 @@ input::placeholder,textarea::placeholder{
 .social-div a{
     text-decoration: none;
 }
+.socials , #Me{
+    color: blueviolet;
+}
+#github{
+    color: #333;
+}
+
 footer{
     width: 100%;
     height: 50px;

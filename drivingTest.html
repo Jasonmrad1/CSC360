@@ -64,7 +64,8 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  transition: all 0.5s ease;
+  transition: all 0.6s ease;
+  
 }
 *::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
@@ -80,6 +81,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  
 }
 
 .option {
@@ -91,6 +93,9 @@ h2 {
   cursor: pointer;
   transition: all 0.3s ease;
   user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .option:hover:not(.selected):not(.correct):not(.incorrect) {
@@ -177,9 +182,14 @@ button:disabled {
   background: var(--card-bg);
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.7);
   text-align: center;
   color: var(--text);
+
+  /* Updated box-shadow for a more elegant and modern look */
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -278,6 +288,18 @@ button:disabled {
   border-color: var(--secondary);
   background-color: #333356;
 }
+
+.practiceOptions {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.practiceOptions button {
+  flex: 1;
+}
+
 @media (max-width: 600px) {
   .modeDiv{
     flex-direction: column;
@@ -307,6 +329,7 @@ button:disabled {
     box-sizing: border-box;
   }
 }
+
   </style>
 </head>
 <body>
@@ -315,22 +338,25 @@ button:disabled {
   <i class="fa-solid fa-arrows-rotate"></i>
 </button>
 
-<h2>اختبار رخصة القيادة</h2>
+<h2 style="color: transparent;">اختبار رخصة القيادة</h2>
 
 <div id="mode-select">
+  <h2>اختبار رخصة القيادة</h2>
   <p>اختر وضع الاختبار:</p>
   <div class="modeDiv">
   <button id="practice-btn">الوضع التدريبي (تصحيح فوري)</button>
   <button id="test-btn">وضع الاختبار (30 سؤال عشوائي)</button>
   </div>
-  <div id="start-number-container" style="display: none; margin-top: 15px;">
+<div id="start-choice-container" style="display: none; margin-top: 15px;">
   <label for="start-index">أدخل رقم السؤال للبدء من عنده:</label>
-  <input id="start-index" type="text" min="1" max="236"
-         placeholder="رقم السؤال"
-          />
-  <br>
-  <button id="confirm-start-btn" style="margin-top: 10px;">بدء التدريب</button>
+  <input id="start-index" type="text" min="1" placeholder="رقم السؤال" />
+  
+  <div class="practiceOptions" style="margin-top: 20px;">
+    <button id="practice-image-btn">تدريب إشارات مرورية</button>
+    <button id="practice-question-btn">تدريب أسئلة نظرية</button>
+  </div>
 </div>
+
 
 </div>
 
@@ -347,9 +373,9 @@ button:disabled {
 <div id="recap-container" style="display:none;"></div>
 
 <script>
-    const questions = [
+    questions = [
      {
-text: "عند دخولك في نفق اثناء القيادة نهارا عليك:",
+text: "1. عند دخولك في نفق اثناء القيادة نهارا عليك:",
 options: [
 "استعمال الزمور",
 "تشغيل الاضاءة المنخفضة (اضواء التلاقي)و تخفيف السرعة",
@@ -359,7 +385,7 @@ correctIndex: 1
 },
 
 {
-text: "عدد قيادتك لمركبة اثناء الليل خلف مركبة أخرى عليك:",
+text: "2. عدد قيادتك لمركبة اثناء الليل خلف مركبة أخرى عليك:",
 options: [
 "عدم استعمال الضوء",
 "استعمال الأضواء العالية (اضواء الطريق)",
@@ -369,7 +395,7 @@ correctIndex: 2
 },
 
 {
-text: "في حال ظهور مركبة من الجهة المعاكسة اثناء استعمالك للاضاءة العالية ليال عليك:",
+text: "3. في حال ظهور مركبة من الجهة المعاكسة اثناء استعمالك للاضاءة العالية ليال عليك:",
 options: [
 "تقطيع الضوء بتبديله بين ضوء الطريق و ضوء التلاقي",
 "اطفاء الضوء نهائيا",
@@ -379,7 +405,7 @@ correctIndex: 2
 },
 
 {
-text: "عند تعبئة خزان مركزتك بالوقود عليك:",
+text: "4. عند تعبئة خزان مركزتك بالوقود عليك:",
 options: [
 "ان تطفيء محرك المركبة",
 "ال تهتم لان هذا الامر لا ينطوي على اي خط ر",
@@ -389,7 +415,7 @@ correctIndex: 0
 },
 
 {
-text: "عندما تتحول الاشارة من اللون الاخضر الى اللون الاصفر لحظة عبور مركزتك للتفاطع ، عليك:",
+text: "5. عندما تتحول الاشارة من اللون الاخضر الى اللون الاصفر لحظة عبور مركزتك للتفاطع ، عليك:",
 options: [
 "تركيز نظرك على الاشارة",
 "متابعة سيرك بانتظام",
@@ -399,7 +425,7 @@ correctIndex: 1
 },
 
 {
-text: "عند شعورك بالنعاس الشديد اثناء القيادة عليك:",
+text: "6. عند شعورك بالنعاس الشديد اثناء القيادة عليك:",
 options: [
 "ان تتوقف فورا في مكان آمن لتأخذ قسطا من الراحة",
 "ال تهتم للامر لان النعاس سبزول سريعا",
@@ -409,7 +435,7 @@ correctIndex: 0
 },
 
 {
-text: "عند اقترابك من تفاطع يتواجد فيه شرطي يقوم بتنظيم السير و يوجد المارة مرور ضوئية و لافئة سير ثابتة عليك الاقترام:",
+text: "7. عند اقترابك من تفاطع يتواجد فيه شرطي يقوم بتنظيم السير و يوجد المارة مرور ضوئية و لافئة سير ثابتة عليك الاقترام:",
 options: [
 "بالفئة السير الثابتة فقط",
 "بالاشارة الضوئية فقط",
@@ -419,7 +445,7 @@ correctIndex: 2
 },
 
 {
-text: "فور جلوسك خلف المقود عليك ان:",
+text: "8. فور جلوسك خلف المقود عليك ان:",
 options: [
 "تحمل المقعد ، ثم تحمل المرايا، ثم تربط حزام الامان ، بهذا الترتيب",
 "تربط حزام الامان ، ثم تحمل المقعد ، ثم تحمل المرايا ، بهذا الترتيب",
@@ -429,7 +455,7 @@ correctIndex: 0
 },
 
 {
-text: "في كل يوم و قبل الانطلاق بالمركبة او الدراجة لازل مرة على السائق ان:",
+text: "9. في كل يوم و قبل الانطلاق بالمركبة او الدراجة لازل مرة على السائق ان:",
 options: [
 "يستمع الى نشرة الاحوال الجوية",
 "لا يقوم بابي فحص طالما ان المحرك يعمل",
@@ -439,7 +465,7 @@ correctIndex: 2
 },
 
 {
-text: "لا ياس على السائق أثناء القيادة اذا:",
+text: "10. لا باس على السائق أثناء القيادة اذا:",
 options: [
 "استمع الى الراديو بصوت منخفض",
 "استعمل الهاتف",
@@ -449,7 +475,7 @@ correctIndex: 0
 },
 
 {
-text: "على السائق و الركاب ان يربطوا حزام الامان:",
+text: "11. على السائق و الركاب ان يربطوا حزام الامان:",
 options: [
 "ضمن دقيقة من الانطلاق",
 "قبل الانطلاق",
@@ -459,7 +485,7 @@ correctIndex: 2
 },
 
 {
-text: "الهدف من مسند الرأس الموجود أعلى المقعد هو:",
+text: "12. الهدف من مسند الرأس الموجود أعلى المقعد هو:",
 options: [
 "استعماله كوسادة اللوم ليلاً في الرحلات الطويلة",
 "منع الكسار الرقية او الحقق اذا تعرضت المركبة لصدمة من الخلف",
@@ -469,7 +495,7 @@ correctIndex: 1
 },
 
 {
-text: "تقل مقدرة السائق على التركيز أثناء القيادة بسبب:",
+text: "13. تقل مقدرة السائق على التركيز أثناء القيادة بسبب:",
 options: [
 "القيادة داخل المدينة",
 "الأرهاق و التعامل",
@@ -479,7 +505,7 @@ correctIndex: 1
 },
 
 {
-text: "استخدام الهاتف الخلوي أثناء القيادة يؤثر على قيادة السائق بشكل:",
+text: "14. استخدام الهاتف الخلوي أثناء القيادة يؤثر على قيادة السائق بشكل:",
 options: [
 "لا تأثير",
 "سلبي",
@@ -489,7 +515,7 @@ correctIndex: 1
 },
 
 {
-text: "النصيحة الأولى للسائق المحتمي للكحول هي:",
+text: "15. النصيحة الأولى للسائق المحتمي للكحول هي:",
 options: [
 "إلا يبالي للأمر",
 "إلا يقود حتى ينتهي مفعول الكحول",
@@ -499,7 +525,7 @@ correctIndex: 1
 },
 
 {
-text: "ان القيادة تحت تأثير الأدوية المنومة تكون:",
+text: "16. ان القيادة تحت تأثير الأدوية المنومة تكون:",
 options: [
 "خطيرة",
 "غير خطيرة",
@@ -509,7 +535,7 @@ correctIndex: 0
 },
 
 {
-text: "إذا علقت دراسة الرقود اثناء القيادة عليك فورا ان:",
+text: "17. إذا علقت دراسة الرقود اثناء القيادة عليك فورا ان:",
 options: [
 "تضع الترس على الحيادي (N) وتدوس على المكانج لتتوقف على جانب الطريق ونطبق المحرك",
 "تصغر ترس السرعة",
@@ -519,7 +545,7 @@ correctIndex: 0
 },
 
 {
-text: "إذا انفتح غطاء المحرك فجأة اثناء سير المركبة عليك فورا أن:",
+text: "18. إذا انفتح غطاء المحرك فجأة اثناء سير المركبة عليك فورا أن:",
 options: [
 "تضغط على القرامل بشدة",
 "تخفف السرعة تدريجيا لتوقف المركبة الى جانب الطريق",
@@ -529,7 +555,7 @@ correctIndex: 1
 },
 
 {
-text: "في حال المطر الشديد, و حتى ينقادى السائق الماهر التأخير يجب عليه أن يبدأ رحلته:",
+text: "19. في حال المطر الشديد, و حتى ينقادى السائق الماهر التأخير يجب عليه أن يبدأ رحلته:",
 options: [
 "متفائلا بالخير",
 "في وقت متأخر عن المعتاد",
@@ -539,7 +565,7 @@ correctIndex: 2
 },
 
 {
-text: "قبل أن يصعد السائق الى مركبته عليه أو لا ان:",
+text: "20. قبل أن يصعد السائق الى مركبته عليه أو لا ان:",
 options: [
 "يربط حزام الامان",
 "ينظر تحت المركبة و يدور حولها",
@@ -549,7 +575,7 @@ correctIndex: 1
 },
 
 {
-text: "يجب على سائق المركبة, أثناء القيادة على طرقات مزدحمة أن يأخذ لمحة سريعة على المرايا مرة كل:",
+text: "21. يجب على سائق المركبة, أثناء القيادة على طرقات مزدحمة أن يأخذ لمحة سريعة على المرايا مرة كل:",
 options: [
 "قرائي 8 قرائي الى 4",
 "ثانية 30",
@@ -559,7 +585,7 @@ correctIndex: 0
 },
 
 {
-text: "إذا اراد السائق أن ينعطف بمركبته الى جهة اليمين, عليه قبل الانعطاف أن ينظر في:",
+text: "22. إذا اراد السائق أن ينعطف بمركبته الى جهة اليمين, عليه قبل الانعطاف أن ينظر في:",
 options: [
 "كل المرايا و خاصة في المراة اليمنى و البقعة العمياء",
 "المراة اليمنى فقط",
@@ -569,7 +595,7 @@ correctIndex: 0
 },
 
 {
-text: "الخطر الذي تشكله المركبات المتوقفة الى جانب الرصيف الايمن على السائق المار بقربها هو:",
+text: "23. الخطر الذي تشكله المركبات المتوقفة الى جانب الرصيف الايمن على السائق المار بقربها هو:",
 options: [
 "ارتفاع صوت الراديو منها",
 "رمي النفايات منها",
@@ -579,7 +605,7 @@ correctIndex: 2
 },
 
 {
-text: "الخطر الذي تشكله المركبات المتوقفة الى جانب الرصيف الايمن على السائق المار بقربها هو:",
+text: "24. الخطر الذي تشكله المركبات المتوقفة الى جانب الرصيف الايمن على السائق المار بقربها هو:",
 options: [
 "احتمال الطلق أحداها و دخولها السير فجأة",
 "فتح صندوق الامتعة",
@@ -589,7 +615,7 @@ correctIndex: 0
 },
 
 {
-text: "كسائق احترازي عليك أن:",
+text: "25. كسائق احترازي عليك أن:",
 options: [
 "لا تتناول عن أفضليتك بالمرور",
 "تتناول عن أفضليتك بالمرور منما للحادث",
@@ -599,7 +625,7 @@ correctIndex: 1
 },
 
 {
-text: "أثناء القيادة و قبل استعمالك للمكابح عليك أو لا أن تنظر:",
+text: "26. أثناء القيادة و قبل استعمالك للمكابح عليك أو لا أن تنظر:",
 options: [
 "في مرأة البسار فقط",
 "في مرأة اليمين فقط",
@@ -609,7 +635,7 @@ correctIndex: 2
 },
 
 {
-text: "ان نظام منع انغلاق المكابح (ABS) في المركبات الحديثة في حالة الفرملة الشديدة:",
+text: "27. ان نظام منع انغلاق المكابح (ABS) في المركبات الحديثة في حالة الفرملة الشديدة:",
 options: [
 "من الطبيعي أن يسبب ارتجاجا في دواسة الفرامل فقط",
 "من الطبيعي أن يصدر ضوضاء وأن يسبب ارتجاجا في دواسة المكابح",
@@ -619,7 +645,7 @@ correctIndex: 1
 },
 
 {
-text: "من حسنات نظام منع انغلاق المكابح (ABS) في المركبات الحديثة في حالة المكابح الشديدة أنه:",
+text: "28. من حسنات نظام منع انغلاق المكابح (ABS) في المركبات الحديثة في حالة المكابح الشديدة أنه:",
 options: [
 "لا يمنع انغلاق المكابح ولا يمكن السائق من توجيه المركبة",
 "يمنع انغلاق المكابح فقط",
@@ -629,7 +655,7 @@ correctIndex: 2
 },
 
 {
-text: "عند تعرض مركبتك للانزلق عليك و بسرعة بدبية أن:",
+text: "29. عند تعرض مركبتك للانزلق عليك و بسرعة بدبية أن:",
 options: [
 "تزيد السرعة",
 "ترفع قدمك عن دواسة الوقود ولا تضغط على المكابح و من ثم توجه المركبة الى الجهة التي تترلق بها",
@@ -639,7 +665,7 @@ correctIndex: 1
 },
 
 {
-text: "ان تركك لمسافة أمان بين مركبتك و المركبة التي أمامك مباشرة اثناء السير يمكنك من:",
+text: "30. ان تركك لمسافة أمان بين مركبتك و المركبة التي أمامك مباشرة اثناء السير يمكنك من:",
 options: [
 "قراءة لوحة تسجيل تلك المركبة",
 "التمتع بالمناظر الخلابة حولك",
@@ -2505,6 +2531,608 @@ correctIndex: 2
     ];
 
 
+const imageQuestions = [
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Warning signs/image(1).jpg",
+    options: ["اتجاه مستديرة", "نتبه منعطف يسار", "إنتبه مغعطف يمين"],
+    correctIndex: 2
+  },
+  {
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(2).jpg",
+  options: ["إنتبه مطبات", "إنتبه منعطف يمين", "إنتبه انخفاضات"],
+  correctIndex: 0
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(3).jpg",
+  options: ["إنتبه طريق منزلق", "إنتبه مطبات", "إنتبه انخفاضات"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(4).jpg",
+  options: ["إنتبه منطقة سير على خطين", "إنتبه منعطفان أولهما يسار", "إنتبه منعطفان أولهما يمين"],
+  correctIndex: 1
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(5).jpg",
+  options: ["إنتبه منطقة سير على خطين", "إنتبه منعطفان أولهما يسار", "إنتبه منعطفان أولهما يمين"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(6).jpg",
+  options: ["إتجاه إختياري إلى اليسار", "إنتبه منعطف يسار", "إنتبه منعطف يمين"],
+  correctIndex: 1
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(7).jpg",
+  options: ["حيوانات متشردة", "ممنوع للحيوانات", "إنتبه حيوانات"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(8).jpg",
+  options: ["ممر غير مؤمن", "ممنوع المرور", "إنتبه أولاد أو مدرسة"],
+  correctIndex: 2
+},
+
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(9).jpg",
+  options: ["إنتبه طريق ضيق", "إنتبه طريق منزلق", "إنتبه منحدر خطر"],
+  correctIndex: 1
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(10).jpg",
+  options: ["إنتبه تقاطع مع طرقات بدون أفضلية", "إنتبه أفضلية مرور للسيارات المتجهة من الجهة المقابلة", "إنتبه تقاطع"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(11).jpg",
+  options: ["إنتبه أخطر متنوعة", "ممنوع الإلتفاف", "إنتبه مستديرة"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(12).jpg",
+  options: ["منطقة سير على اليمين", "إنتبه تقاطع مع طرقات بدون أفضلية", "إنتبه منطقة سير على خطين"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(13).jpg",
+  options: ["ممنوع المرور", "إنتبه إفساح الطريق - طارق أفضلية أمامك", "إنتبه مخاطر متنوعة"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(14).jpg",
+  options: ["منطقة جبلية", "إنتبه إحتمال سقوط أو وجود صخور", "إنتبه طريق ضيق"],
+  correctIndex: 1
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(15).jpg",
+  options: ["ممنوع الدخول لعموم السيارات", "إنتبه إشارات كهربائية", "إنتبه مستديرة"],
+  correctIndex: 1
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(16).jpg",
+  options: ["ممر غير مخصص للمشاة", "ممنوع مرور المشاة", "إنتبه ممر للمشاة"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(17).jpg",
+  options: ["إنتبه تقاطع على اليمين", "إنتبه تقاطع مع طرقات بدون أفضلية", "إنتبه أفضلية للمرور للسيارات"],
+  correctIndex: 1
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(18).jpg",
+  options: ["إنتبه طريق واسع", "إنتبه طريق ضيق على اليسار", "إنتبه طريق ضيق"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(19).jpg",
+  options: ["نهاية الأفضلية", "إنتبه طريق ضيق على اليمين", "إنتبه أفضلية المرور للسيارات المتجهة من الجهة المقابلة"],
+  correctIndex: 1
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(20).jpg",
+  options: ["افضلية مرور لليمين", "طريق ضيق على اليمين", "إنتبه طريق ضيق على اليسار"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(21).jpg",
+  options: ["ممر لعربات اليد", "ممنوع مرور للدرجات", "إنتبه ممر للدرجات"],
+  correctIndex: 2
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(22).jpg",
+  options: ["خفف السرعة", "انعطاف غير مباشر إلى اليسار", "انعطاف"],
+  correctIndex: 0
+},
+{
+  text: "ماذا تعني هذه الإشارة؟",
+  image: "TrafficSigns/Warning signs/image(23).jpg",
+  options: ["ممنوع المرور", "إنتبه إفساح الطريق - طريق أفضلية أمامك", "إنتبه مخاطر متنوعة"],
+  correctIndex: 2
+},
+{
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(1).jpg",
+    options: ["إلتقاء مع طريق سريع", "إنتبه تقاطع مع طرقات بدون أفضلية", "إنتبه أفضلية مرور للسيارات المتجهة من الجهة المقابلة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(2).jpg",
+    options: ["طريق على خط واحد", "ممنوع الدخول", "قف"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(3).jpg",
+    options: ["طريق على خط واحد", "ممنوع الوقوف", "ممنوع الدخول لعموم السيارات"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(4).jpg",
+    options: ["أخطار متنوعة", "ممنوع الوقوف", "ممنوع المرور"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(5).jpg",
+    options: ["ممنوع التجاوز للشاحنات", "ممنوع التجاوز لجميع المركبات", "ممنوع المرور"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(6).jpg",
+    options: ["السرعة القصوى 30 كلم في الساعة", "السرعة الدنيا 80 كلم في الساعة", "إنتبه إفسح الطريق - طريق أفضلية أمامك"],
+    correctIndex: 0
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(7).jpg",
+    options: ["مسرح", "ممنوع الوقوف", "ممنوع التزمير"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(8).jpg",
+    options: ["طريق مخصص للشاحنات", "مسموح التجاوز للشاحنات", "ممنوع التجاوز للشاحنات"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(9).jpg",
+    options: ["مسموح مرور عربات الحيوانات", "ممنوع مرور المشاة", "ممنوع مرورعربات الحيوانات"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(10).jpg",
+    options: ["ممنوع  مرور السيارات", "إنتبه طريق مخصص للمشاة", "ممنوع مرور المشاة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(11).jpg",
+    options: ["ممر إجباري للسيارات", "طريق مخصص للدراجات", "ممنوع المرور للدراجات"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(12).jpg",
+    options: ["ممر خاص للدرجة النارية", "طريق مخصص للدراجات النارية", "ممنوع المرور للدرجات النارية"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(13).jpg",
+    options: ["ممنوع وقوف عربات اليد", "طريق مخصص لعربات اليد", "ممنوع مرور عربات اليد"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(14).jpg",
+    options: ["ممنوع وقوف السيارات", "طريق مخصص للسيارات", "ممنوع المرور لعموم السيارات"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(15).jpg",
+    options: ["ممنوع مرور الشاحنات التي يزيد طولها عن 2.3 متر", "ممنوع مرور الشاحنات", "ممنوع مرور السيارات التي يزيد عرضها عن 2.3 متر"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(16).jpg",
+    options: ["إتجاه إجباري للشاحنات", "ممنوع مرور الشاحنات التي يزيد وزنها عن 3.5 طن", "ممنوع مرور الشاحنات التي يفوق علوها عن 3.5 متر"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(17).jpg",
+    options: ["ممنوع زيادة الحمولة أكثر من 10 أمتار", "ممنوع مرور الشاحنات التي تزيد حمولتها عن 6.5 طن", "ممنوع مرور الشاحنات التي يفوق طولها عن 10 أمتار"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(18).jpg",
+    options: ["ممنوع مرور الشاحنات ", "ممنوع مرور الشاحنات التي تزيد حمولة كل دولاب منها عن 7 أطنان", "ممنوع مرور الشاحنات التي تزيد حمولتها عن 7 طن"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(19).jpg",
+    options: ["إتجاه إجباري يمين", "وجهة السير", "ممنوع إلتفاف يمينا"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(20).jpg",
+    options: ["إتجاه إلزامي نحو اليسار", "ممنوع وقوف يسارا", "ممنوع إلتفاف يسارا"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(21).jpg",
+    options: ["ممنوع الوقوف والتوقف", "ممنوع الوقوف", "ممنوع المرور"],
+    correctIndex: 0
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(22).jpg",
+    options: ["موقف لحظة للآليات الزراعية", "طريق مخصص للآليات الزراعية", "ممنوع مرور الآليات الزراعية"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(23).jpg",
+    options: ["طريق إلزامي للشاحنات", "ممنوع مرور الشاحنات المحملة بمواد خطرة", "ممنوع مرور الشاحنات التي تجر قاطرة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(24).jpg",
+    options: ["طريق إلزامي للشاحنات", "ممنوع وقوف للشاحنات", "ممنوع مرور الشاحنات التي تزيد حمولتها عن 6.5 طن"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(25).jpg",
+    options: ["نهاية منع تجاوز الأتوبيسات", "طريق مخصص الأتوبيسات", "ممنوع مرور الأتوبيسات"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(26).jpg",
+    options: ["ممنوع مرور الشاحنات التي يزيد وزنها عن 6.5 طن", "طريق مخصص للشاحنات", "ممنوع مرور الشاحنات"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(27).jpg",
+    options: ["ممنوع الوقوف", "ممنوع التجاوز لجميع المركبات", "ممنوع المرور"],
+    correctIndex: 0
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Prohibitory signs/image(28).jpg",
+    options: ["إلتفاف إلزامي", "وجهة السير", "ممنوع الإلتفاف"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(1).jpg",
+    options: ["موقف لحظة", "نهاية تحديد السرعة", "طريق أفضلية"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(2).jpg",
+    options: ["ممنوع المرور", "نهاية الأفضلية", "إنتبه أفضلية المرور للسيارات المتجهة من الجهة المقابلة"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(3).jpg",
+    options: ["إتجاه إجباري على اليسار", "ممنوع الإلتفاف على اليمين", "الإلتفاف على اليمين"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(4).jpg",
+    options: ["ممنوع المرور يمين ويسار", "إتجاه إجباري مستقيم", "إتجاه إختياري يمين ويسار"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(5).jpg",
+    options: ["إتجاه إختياري مستقيم أو يمين", "ممنوع الإلتفاف على اليسار", "الإلتفاف على اليسار"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(6).jpg",
+    options: ["ممنوع التجاوز لجميع المركبات", "نهاية الأفضلية", "إنتبه أفضلية المرور للسيارات المتجهة من الجهة المقابلة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(7).jpg",
+    options: ["ممنوع الإلتفاف يمين أو يسار", "إتجاه إختياري نحو اليمين", "ممر إجباري يمين أو يسار"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(8).jpg",
+    options: ["إتجاه إختياري مستقيم", "ممنوع الإلتفاف إلى اليمين", "ممر إجباري يمين"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(9).jpg",
+    options: ["إتجاه إختياري نحو اليمين", "خط الطريق الرئيسية", "ممر إجباري نحو اليسار"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(10).jpg",
+    options: ["ممنوع الوقوف في هذا المكان", "ممنوع المرور بهذه الإتجاه", "إتجاه إجباري مستقيم"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(11).jpg",
+    options: ["طريق للمشاة والدراجات الهوائية", "طريق مخصص للدراجات الهوائية", "نهاية حلبة الدراجات الهوائية"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(12).jpg",
+    options: ["ممنوع المشاة والدراجات الهوائية", "طريق للمشاة والدراجات الهوائية فقط", "نهاية حلبة الدراجات الهوائية"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(13).jpg",
+    options: ["موقع توقف ", "وجهة سير مستديرة", "ممنوع الإلتفاف"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(14).jpg",
+    options: ["ممنوع الوقوف ناحية اليمين", "ممنوع الإتجاه نحو اليمين", "وجهة السير إلى اليمين"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(15).jpg",
+    options: ["ممنوع الوقوف يسرا", "ممنوع الإتجاه نحو اليسار", "وجهة السير إلى اليسار"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(16).jpg",
+    options: ["إنتبه طريق منزلق", "يجب نزع السلاسل المعدنية", "السيارات المجهزة بسلاسل معدنية فقط"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(17).jpg",
+    options: ["السرعة القصوى 30", "ممنوع الوقوف أكتر من 30 ثانية", "نهاية أدنى سرعة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(18).jpg",
+    options: ["ممنوع الوقوف أكثر من تلاتين دقيقة", "أقصى سرعة إجبارية", "أدنى سعة إجبارية"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(19).jpg",
+    options: ["ممنوع وقوف الدراجات الهوائية", "ممنوع مرور الدراجات الهوائية", "حلبة مخصصة للدراجات الهوائية"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(20).jpg",
+    options: ["طريق مخصص للمشاة", "ممر للمشاة فوق الطريق", "نهاية طريق للمشاة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(21).jpg",
+    options: ["منتزه", "ممنوع المرور للمشاة", "طريق للمشاة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(22).jpg",
+    options: ["يمنع ركوب الدرجات الهوائية", "ممر مخصص للدراجات", "حلبة مخصصة  للدراجات الهوائية"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(23).jpg",
+    options: ["إنتبه ممنوع مرور المشاة", "نهاية طريق المشاة", "إنتبه ممر للمشاة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(24).jpg",
+    options: ["إنتبه جسر متحرك", "طارق على خطين موصول بجسر", "مستشفى"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(25).jpg",
+    options: ["جسر فوق الطريق", "نهاية الأوتوسترد", "إنتبه طريق ضيق"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(26).jpg",
+    options: ["إنتبه مدرج طيران", "إنتبه جسر", "أتوستراد"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(27).jpg",
+    options: ["نقطة إلتقاء خطين", "طريق يصل بخط رئيسي", "طريق غير نافذ"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(28).jpg",
+    options: ["ممنوع ووقوف المعاقين", "موقف لحظة", "موقف مخصص للمعوقين"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(29).jpg",
+    options: ["للأطباء فقط", "موقف مخصص للمعاقين", "مركز نجدة - مساعدة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(30).jpg",
+    options: ["جسر", "نفق", "إنتبه طريق وعرة"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(31).jpg",
+    options: ["إزالة فورية", "إستعلامات", "شرطة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(32).jpg",
+    options: ["موقف للعموم - ممنوع للتاكسي أكثر من سيارتين", "ممنوع وقوف سيارات التاكسي", "موقف تاكسي"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(33).jpg",
+    options: ["موقف", "موقف لحظة", "ممنوع الوقوف"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(34).jpg",
+    options: ["تقاطع خطر ", "انعطاف غير مباشر إلى اليسار", "خط الطريق الرئيسية"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(35).jpg",
+    options: ["موقف مخصص للشرطة", "إطفاء", "شرطة البلدية"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(36).jpg",
+    options: ["مركز انترنت", "محطة وقود", "إستعلامات"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(37).jpg",
+    options: ["مرطبات", "مطعم", "إستعلامات"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(38).jpg",
+    options: ["مركز للتصليح", "مطعم", "فندق"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(39).jpg",
+    options: ["موقف", "موقف لحظة", "ممنوع الوقوف"],
+    correctIndex: 0
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(40).jpg",
+    options: ["خط سير مخصص للباصات", "ممنوع وقوف الباصات", "موقف باص"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(41).jpg",
+    options: ["محطة وقود", "مركز للتصليح", "مطعم"],
+    correctIndex: 0
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(42).jpg",
+    options: ["محطة وقود", "هاتف", "مطعم"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(43).jpg",
+    options: ["نهاية منع تجاوز الشاحنات", "نهاية منع التجاوز", "إنتبه منطقة سير على خطين"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(44).jpg",
+    options: ["خفف السرعة", "انعطاف غير مباشر إلى اليسار", "انعطاف"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(45).jpg",
+    options: ["موقع توقف ونداء ومساعدة", "موقع للمقطورات والخيم", "ممنوع الوقوف"],
+    correctIndex: 1
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(46).jpg",
+    options: ["تحديد السرعة", "بداية تحديد السرعة", "نهاية تحديد السرعة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(47).jpg",
+    options: ["بداية الإشارات الممنوعة", "ممنوع السرعة", "نهاية الإشارات الممنوعة"],
+    correctIndex: 2
+  },
+  {
+    text: "ماذا تعني هذه الإشارة؟",
+    image: "TrafficSigns/Mandatory and Directional signs/image(48).jpg",
+    options: ["طريق مخصص للشاحنات فقط", "نهاية منع تجاوز الشاحنات", "إنتبه منطقة سير على خطين"],
+    correctIndex: 1
+  }
+
+
+
+
+];
+
 
 
   let currentIndex = 0;
@@ -2546,134 +3174,180 @@ correctIndex: 2
 
   function loadQuestion(index) {
     const q = (mode === 'test' ? testQuestions : questions)[index];
-    questionEl.textContent = `${index + 1}. ${q.text}`;
+    questionEl.innerHTML = `${index + 1}. ${q.text}`;
+    if (q.image) {
+        questionEl.innerHTML += `
+        <div style="display: flex; justify-content: center; margin-top: 12px;">
+            <img src="${q.image}" alt="صورة السؤال"
+                style="width: 100%; max-width: 180px; height: auto; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); object-fit: contain;">
+        </div>`;
+    }
     optionsEl.innerHTML = '';
-    quizContainer.style.border = 'none';
+    quizContainer.style.borderColor = 'transparent';
+
+    // Track if question has been answered (for practice mode)
+    const isAnswered = userAnswers[index] !== undefined;
 
     q.options.forEach((opt, i) => {
-      const div = document.createElement('div');
-      div.textContent = opt;
-      div.className = 'option';
+        const div = document.createElement('div');
+        div.textContent = opt;
+        div.className = 'option';
 
-      if (mode === 'test') {
-        if (userAnswers[index] === i) div.classList.add('selected');
-        div.onclick = () => {
-          userAnswers[index] = i;
-          loadQuestion(index);
-        };
-      } else {
-        if (userAnswers[index] !== undefined) {
-          if (i === q.correctIndex) div.classList.add('correct');
-          if (i === userAnswers[index] && userAnswers[index] !== q.correctIndex) div.classList.add('incorrect');
-          div.style.cursor = 'default';
+        if (mode === 'test') {
+            if (userAnswers[index] === i) div.classList.add('selected');
+            div.onclick = () => {
+                // Clear previous selection
+                optionsEl.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                // Set new selection
+                userAnswers[index] = i;
+                div.classList.add('selected');
+            };
         } else {
-          div.onclick = () => selectAnswer(i);
+            if (isAnswered) {
+                if (i === q.correctIndex) div.classList.add('correct');
+                if (i === userAnswers[index] && userAnswers[index] !== q.correctIndex) div.classList.add('incorrect');
+                div.style.pointerEvents = 'none'; // Disable all clicks
+            } else {
+                div.onclick = () => selectAnswer(i);
+            }
         }
-      }
 
-      optionsEl.appendChild(div);
+        optionsEl.appendChild(div);
     });
-prevBtn.style.display = mode === 'test' ? 'none' : 'inline-block';
 
-prevBtn.disabled = index === 0;
-if (prevBtn.disabled) {
-  prevBtn.style.cursor = 'not-allowed';
-} else {
-  prevBtn.style.opacity = '1';
-  prevBtn.style.cursor = 'pointer';
-}
+    prevBtn.style.display = mode === 'test' ? 'none' : 'inline-block';
+    prevBtn.disabled = index === 0;
+    if (prevBtn.disabled) {
+        prevBtn.style.cursor = 'not-allowed';
+    } else {
+        prevBtn.style.opacity = '1';
+        prevBtn.style.cursor = 'pointer';
+    }
 
     nextBtn.disabled = mode === 'practice' && userAnswers[index] === undefined;
     nextBtn.textContent = (mode === 'test' && index === testQuestions.length - 1) ? "إنهاء الاختبار" : "التالي";
-  }
-
-  function selectAnswer(selectedIndex) {
+}
+ function selectAnswer(selectedIndex) {
     const q = questions[currentIndex];
     userAnswers[currentIndex] = selectedIndex;
 
     const allOptions = optionsEl.querySelectorAll('.option');
     allOptions.forEach((opt, idx) => {
-      opt.classList.remove('correct', 'incorrect');
-      if (idx === q.correctIndex) opt.classList.add('correct');
-      if (idx === selectedIndex && selectedIndex !== q.correctIndex) opt.classList.add('incorrect');
-      opt.onclick = null;
-      opt.style.cursor = 'default';
+        opt.classList.remove('correct', 'incorrect', 'selected');
+        if (idx === q.correctIndex) opt.classList.add('correct');
+        if (idx === selectedIndex) {
+            opt.classList.add(selectedIndex === q.correctIndex ? 'correct' : 'incorrect');
+        }
+        opt.onclick = null;
+        opt.style.pointerEvents = 'none'; // Disable further clicks
     });
 
     quizContainer.style.border = selectedIndex === q.correctIndex ? '2px solid #28a745' : '2px solid #dc3545';
     nextBtn.disabled = false;
-  }
+}
+ function showRecap() {
+  clearInterval(timerInterval);
+  quizContainer.style.display = 'none';
+  recapContainer.style.display = 'block';
+  recapContainer.innerHTML = '<h3>ملخص الأسئلة</h3>';
+  let correctCount = 0;
 
-  function showRecap() {
-    clearInterval(timerInterval);
-    quizContainer.style.display = 'none';
-    recapContainer.style.display = 'block';
-    recapContainer.innerHTML = '<h3>ملخص الأسئلة</h3>';
-    let correctCount = 0;
+  testQuestions.forEach((q, idx) => {
+    const div = document.createElement('div');
+    div.className = 'recap-question';
+    const qTitle = document.createElement('h4');
+    qTitle.textContent = `${idx + 1}. ${q.text}`;
+    div.appendChild(qTitle);
 
-    testQuestions.forEach((q, idx) => {
-      const div = document.createElement('div');
-      div.className = 'recap-question';
-      const qTitle = document.createElement('h4');
-      qTitle.textContent = `${idx + 1}. ${q.text}`;
-      div.appendChild(qTitle);
+    // If the question has an image, show it
+    if (q.image) {
+      const img = document.createElement('img');
+      img.src = q.image;
+      img.alt = `Image for question ${idx + 1}`;
+      img.style.maxWidth = '150px';
+      img.style.margin = '10px 0';
+      div.appendChild(img);
+    }
 
-      q.options.forEach((opt, i) => {
-        const optDiv = document.createElement('div');
-        optDiv.className = 'recap-option';
-        optDiv.textContent = opt;
-        if (i === q.correctIndex) optDiv.classList.add('recap-correct');
-        if (userAnswers[idx] === i && i !== q.correctIndex) optDiv.classList.add('recap-incorrect');
-        div.appendChild(optDiv);
-      });
-
-      if (userAnswers[idx] === q.correctIndex) correctCount++;
-      recapContainer.appendChild(div);
+    q.options.forEach((opt, i) => {
+      const optDiv = document.createElement('div');
+      optDiv.className = 'recap-option';
+      optDiv.textContent = opt;
+      if (i === q.correctIndex) optDiv.classList.add('recap-correct');
+      if (userAnswers[idx] === i && i !== q.correctIndex) optDiv.classList.add('recap-incorrect');
+      div.appendChild(optDiv);
     });
 
-    const score = document.createElement('h3');
-    const passed = correctCount >= 24;
-    score.textContent = `نتيجتك: ${correctCount} من ${testQuestions.length} - ${passed ? "نجحت" : "لم تنجح"}`;
-    score.style.textAlign = 'center';
-    score.style.fontWeight = '500';
-    score.style.color = passed ? '#28a745' : 'red';
-    score.style.marginTop = '20px';
-    recapContainer.classList.remove('recap-success', 'recap-fail');
-    recapContainer.prepend(score);
+    if (userAnswers[idx] === q.correctIndex) correctCount++;
+    recapContainer.appendChild(div);
+  });
 
-    setTimeout(() => {
-      recapContainer.classList.add(passed ? 'recap-success' : 'recap-fail');
-    }, 50);
-  }
+  const score = document.createElement('h3');
+  const passed = correctCount >= 24;
+  score.textContent = `نتيجتك: ${correctCount} من ${testQuestions.length} - ${passed ? "نجحت" : "لم تنجح"}`;
+  score.style.textAlign = 'center';
+  score.style.fontWeight = '500';
+  score.style.color = passed ? '#28a745' : 'red';
+  score.style.marginTop = '20px';
+  recapContainer.classList.remove('recap-success', 'recap-fail');
+  recapContainer.prepend(score);
 
-  function startPractice() {
-    mode = 'practice';
-    const startIndex = parseInt(document.getElementById("start-index").value) || 1;
-    currentIndex = Math.max(0, Math.min(startIndex - 1, questions.length - 1));
-    userAnswers = [];
-    modeSelectDiv.style.display = 'none';
-    recapContainer.style.display = 'none';
-    quizContainer.style.display = 'flex';
-    timerDisplay.textContent = '';
-    document.getElementById("reset-icon").style.display = 'block';
-    loadQuestion(currentIndex);
+  setTimeout(() => {
+    recapContainer.classList.add(passed ? 'recap-success' : 'recap-fail');
+  }, 50);
+}
+
+function startPractice(sourceArray) {
+  mode = 'practice';
+  const startIndex = parseInt(document.getElementById("start-index").value) || 1;
+  currentIndex = Math.max(0, Math.min(startIndex - 1, sourceArray.length - 1));
+  userAnswers = [];
+  modeSelectDiv.style.display = 'none';
+  recapContainer.style.display = 'none';
+  quizContainer.style.display = 'flex';
+  timerDisplay.textContent = '';
+  document.getElementById("reset-icon").style.display = 'block';
+  questions = sourceArray; // override for use in loadQuestion
+  for (let i=0;i<sourceArray.length;i++){
+  sourceArray[i].text = sourceArray[i].text.replace(/^\d+\.\s*/, '');
   }
+  loadQuestion(currentIndex);
+}
+
 
   function startTest() {
-    mode = 'test';
-    currentIndex = 0;
-    userAnswers = [];
-    testQuestions = [...questions];
-    shuffleArray(testQuestions);
-    if (testQuestions.length > 30) testQuestions = testQuestions.slice(0, 30);
-    modeSelectDiv.style.display = 'none';
-    recapContainer.style.display = 'none';
-    quizContainer.style.display = 'flex';
-    timeLeft = 15 * 60;
-    document.getElementById("reset-icon").style.display = 'block';
-    startTimer();
-    loadQuestion(currentIndex);
-  }
+  mode = 'test';
+  currentIndex = 0;
+  userAnswers = [];
+
+  // Shuffle and select questions
+  const textMCQs = [...questions];
+  const imageMCQs = [...imageQuestions];
+
+  shuffleArray(textMCQs);
+
+  const selectedTextMCQs = textMCQs.slice(0, 20);
+  const selectedImageMCQs = imageMCQs.slice(0, 10);
+
+  // Combine and shuffle
+  testQuestions = [...selectedTextMCQs, ...selectedImageMCQs];
+  shuffleArray(testQuestions);
+  console.log("Test Questions:", testQuestions);
+  console.log("Test Questions Length:", selectedImageMCQs.length);
+
+  // Show test UI
+  modeSelectDiv.style.display = 'none';
+  recapContainer.style.display = 'none';
+  quizContainer.style.display = 'flex';
+  timeLeft = 15 * 60;
+
+  document.getElementById("reset-icon").style.display = 'block';
+  startTimer();
+  loadQuestion(currentIndex);
+}
+
 
   nextBtn.onclick = () => {
     if (mode === 'practice') {
@@ -2704,20 +3378,26 @@ if (prevBtn.disabled) {
     quizContainer.style.display = 'none';
     recapContainer.style.display = 'none';
     document.getElementById("reset-icon").style.display = 'none';
-    document.getElementById("start-number-container").style.display = 'none';
+    document.getElementById("start-choice-container").style.display = 'none';
     document.getElementById("practice-btn").style.display = 'inline-block';
     document.getElementById("test-btn").style.display = 'inline-block';
   };
 
   // Show input box when user clicks practice
-  document.getElementById("practice-btn").onclick = () => {
-    document.getElementById("start-number-container").style.display = 'block';
-    document.getElementById("practice-btn").style.display = 'none';
-    document.getElementById("test-btn").style.display = 'none';
-  };
+document.getElementById("practice-btn").onclick = () => {
+  document.getElementById("start-choice-container").style.display = 'block';
+  document.getElementById("practice-btn").style.display = 'none';
+  document.getElementById("test-btn").style.display = 'none';
+};
+document.getElementById("practice-question-btn").onclick = () => {
+  startPractice(questions);
+};
 
-  // Start practice when user confirms
-  document.getElementById("confirm-start-btn").onclick = startPractice;
+document.getElementById("practice-image-btn").onclick = () => {
+  startPractice(imageQuestions);
+};
+
+
 
   // Start test immediately
   document.getElementById("test-btn").onclick = startTest;
