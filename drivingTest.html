@@ -362,6 +362,10 @@ button:disabled {
 
 <div id="quiz-container" style="display:none;">
   <div id="timer"></div>
+  <div id="practice-score"
+         style="display: none; font-weight: 500; font-size: 14px; color: #666;
+                padding: 4px 10px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    </div>
   <div class="question" id="question"></div>
   <div class="options" id="options"></div>
   <div class="navigation-buttons">
@@ -3246,6 +3250,9 @@ const imageQuestions = [
 
     quizContainer.style.border = selectedIndex === q.correctIndex ? '2px solid #28a745' : '2px solid #dc3545';
     nextBtn.disabled = false;
+    if (mode === 'practice') {
+  updatePracticeScore();
+}
 }
  function showRecap() {
   clearInterval(timerInterval);
@@ -3307,6 +3314,8 @@ function startPractice(sourceArray) {
   modeSelectDiv.style.display = 'none';
   recapContainer.style.display = 'none';
   quizContainer.style.display = 'flex';
+  document.getElementById("practice-score").style.display = 'block';
+  updatePracticeScore(); // show initial score (0/0)
   timerDisplay.textContent = '';
   document.getElementById("reset-icon").style.display = 'block';
   questions = sourceArray; // override for use in loadQuestion
@@ -3316,6 +3325,21 @@ function startPractice(sourceArray) {
   // }
   loadQuestion(currentIndex);
 }
+function updatePracticeScore() {
+  const answered = userAnswers.filter(a => a !== undefined).length;
+  let correct = 0;
+
+  userAnswers.forEach((ans, idx) => {
+    const q = questions[idx];
+    if (ans !== undefined && ans === q.correctIndex) {
+      correct++;
+    }
+  });
+
+  const scoreDisplay = document.getElementById("practice-score");
+  scoreDisplay.textContent = `صحيح: ${correct} / ${answered}`;
+}
+
 
 
   function startTest() {
@@ -3342,6 +3366,7 @@ function startPractice(sourceArray) {
   modeSelectDiv.style.display = 'none';
   recapContainer.style.display = 'none';
   quizContainer.style.display = 'flex';
+  document.getElementById("practice-score").style.display = 'none';
   timeLeft = 15 * 60;
 
   document.getElementById("reset-icon").style.display = 'block';
