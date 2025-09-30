@@ -71,6 +71,12 @@ main { max-width:1200px; margin:80px auto; padding:0 40px; }
 footer { width:100%; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); color:#666; text-align:center; padding:40px 0; margin-top:100px; border-top:1px solid rgba(0,0,0,0.08); }
 footer a { color:royalblue; text-decoration:none; font-weight:500; position:relative; }
 
+@media(min-width:1700px) {
+    .overlay-content {
+        max-width: 1200px; /* Make the popup wider on large screens */
+    }
+}
+
 @media(max-width:768px) {
     .overlay-top { padding:0 24px; height:60px; }
     .overlay-nav { gap:20px; }
