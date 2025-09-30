@@ -68,18 +68,56 @@ main { max-width:1200px; margin:80px auto; padding:0 40px; }
 .zoom-text { font-size:1.05em; line-height:1.8; color:#333; text-align:left; }
 
 /* Footer */
-footer { width:100%; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); color:#666; text-align:center; padding:40px 0; margin-top:100px; border-top:1px solid rgba(0,0,0,0.08); }
-footer a { color:royalblue; text-decoration:none; font-weight:500; position:relative; }
+/* Footer */
+footer {
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    color: #666;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 100px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+footer a {
+    color: royalblue;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    word-break: break-word; /* prevent long URLs from overflowing */
+}
+
+
+/* Make chart images responsive on small screens */
+@media(max-width:600px) {
+    .chart-image {
+        height: auto;        /* Let height adjust automatically */
+        max-height: 70vh;    /* Optional: limit max height to viewport */
+        width: 100%;         /* Fill container width */
+        object-fit: cover; /* Ensure entire SVG fits without cropping */
+    }
+    .chart-section {
+        padding: 0px;       /* reduce padding to fit smaller screens */
+    }
+}
 
 @media(min-width:1700px) {
     .overlay-content {
         max-width: 1200px; /* Make the popup wider on large screens */
     }
 }
+@media(max-width:1350px) {
+  .hero-overlay-top {
+    height: 87px;
+  }
+}
 
 @media(max-width:768px) {
-    .overlay-top { padding:0 24px; height:60px; }
-    .overlay-nav { gap:20px; }
+    .overlay-top { padding:0 24px; }
+    .overlay-nav { gap:10px; }
     .overlay-top h1 { font-size:1.2em; }
     main { padding:0 24px; margin:60px auto; }
     .chart-section { padding:24px; }
@@ -87,6 +125,30 @@ footer a { color:royalblue; text-decoration:none; font-weight:500; position:rela
     .stats-grid { grid-template-columns:1fr; }
     .chart-image { height:300px; }
     .zoom-chart { height:40vh; }
+    .hero-overlay-bottom{
+        height: 110px;
+    }
+    footer {
+    padding: 30px 20px;
+    font-size: 0.95em;
+    }
+    footer p {
+        margin: 0 auto;
+        max-width: 90%; /* keep text centered and narrow */
+    }
+}
+@media(max-width:550px) {
+  .hero-overlay-top {
+    height: 102px;
+  }
+    footer {
+        padding: 20px 15px;
+        font-size: 0.9em;
+    }
+    footer a {
+        display: inline-block;
+        margin-top: 5px;
+    }
 }
 </style>
 </head>
