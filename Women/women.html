@@ -6,9 +6,14 @@
 <title>Women in Parliament – Interactive Globe</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+* { margin:0; padding:0; box-sizing:border-box;}
 body { font-family:'Outfit',sans-serif; background:#fff; color:#333; line-height:1.6; overflow-x:hidden; }
 *::-webkit-scrollbar { display:none; }
+
+/* Smooth scrolling for the whole page */
+html {
+    scroll-behavior: smooth;
+}
 
 /* Hero section */
 .hero { position:relative; width:100%; height:100vh; overflow:hidden; background:#fff; }
@@ -21,7 +26,7 @@ body { font-family:'Outfit',sans-serif; background:#fff; color:#333; line-height
 .hero-overlay-top { top:0; }
 .hero-overlay-bottom { bottom:0; }
 
-/* Top overlay navigation */
+/* Top overlay navigation - KEEP ORIGINAL LAYOUT */
 .overlay-top {
     position:absolute; top:0; width:100%; height:70px; background:rgba(255,255,255,0.95);
     backdrop-filter:blur(10px); z-index:10; display:flex; justify-content:space-between; align-items:center;
@@ -29,11 +34,16 @@ body { font-family:'Outfit',sans-serif; background:#fff; color:#333; line-height
 }
 .overlay-top h1 { color:#2D2D2D; font-size:1.4em; font-weight:700; }
 .overlay-nav { display:flex; gap:32px; }
-.overlay-nav a { color:#555; text-decoration:none; font-weight:500; font-size:0.95em; position:relative; padding:8px 0; }
+.overlay-nav a { color:#555; text-decoration:none; font-weight:500; font-size:0.95em; position:relative; padding:8px 0; transition: color 0.3s ease; }
 .overlay-nav a:hover { color:royalblue; }
 
+/* Smooth scroll padding for sections to account for fixed header */
+#hero, #charts {
+    scroll-margin-top: 80px;
+}
+
 /* Main content */
-main { max-width:1200px; margin:80px auto; padding:0 40px; }
+ main { max-width:1200px; margin:80px auto; padding:0 40px; }
 .content-header { text-align:center; margin-bottom:60px; }
 .content-header h2 { font-size:2.2em; font-weight:700; color:#2D2D2D; margin-bottom:16px; }
 .content-header p { color:#666; font-size:1.1em; max-width:600px; margin:0 auto; }
@@ -44,15 +54,33 @@ main { max-width:1200px; margin:80px auto; padding:0 40px; }
 .stat-number { font-size:2.5em; font-weight:700; color:royalblue; margin-bottom:8px; }
 .stat-label { color:#666; font-weight:500; font-size:0.95em; }
 
-/* Chart sections */
-.chart-section { margin-bottom:80px; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); border-radius:16px; border:1px solid rgba(0,0,0,0.08); padding:40px; transition:transform 0.3s ease,border-color 0.3s ease; cursor:pointer; }
+/* Chart sections - IMPROVED FOR MOBILE */
+.chart-section { 
+    margin-bottom:80px; 
+    background:rgba(255,255,255,0.95); 
+    backdrop-filter:blur(10px); 
+    border-radius:16px; 
+    border:1px solid rgba(0,0,0,0.08); 
+    padding:40px; 
+    transition:transform 0.3s ease,border-color 0.3s ease; 
+    cursor:pointer; 
+    display: flex;
+    flex-direction: column;
+}
 .chart-section:hover { transform:translateY(-2px); border-color:rgba(0,0,0,0.15); }
 .chart-section h3 { margin-bottom:16px; color:#2D2D2D; font-weight:700; font-size:1.5em; display:flex; align-items:center;}
 .chart-section h3::before { content:''; width:4px; height:24px; background:royalblue; border-radius:2px; display:inline-block; margin-right:12px; }
 .chart-description { color:#666; font-weight:400; line-height:1.6; margin-bottom:24px; text-align:left; }
-.chart-image { width:100%; height:500px; object-fit:cover; border-radius:12px; }
 
-/* Zoom overlay */
+/* Chart container for desktop */
+.chart-image { 
+    width:100%; 
+    height:500px; 
+    object-fit:cover; 
+    border-radius:12px; 
+}
+
+/* DESKTOP Zoom overlay - KEEP ORIGINAL */
 .chart-overlay {
     position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);
     display:none; justify-content:center; align-items:center; z-index:1000; padding:20px;
@@ -63,12 +91,11 @@ main { max-width:1200px; margin:80px auto; padding:0 40px; }
 }
 .overlay-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
 .overlay-header h3 { font-size:1.5em; color:#2D2D2D; font-weight:700; }
-.close-btn { font-size:1.7em; cursor:pointer; color:#333; }
-.zoom-chart { width:100%; height:55vh; object-fit:contain; border-radius:12px; margin-bottom:20px; }
+.close-btn { font-size:1.7em; cursor:pointer; color:#333; transition: color 0.2s ease; }
+.zoom-chart { width:100%; height:auto; max-height: 60vh; object-fit:contain; border-radius:12px; margin-bottom:20px; }
 .zoom-text { font-size:1.05em; line-height:1.8; color:#333; text-align:left; }
 
-/* Footer */
-/* Footer */
+/* Footer - KEEP ORIGINAL */
 footer {
     width: 100%;
     background: rgba(255,255,255,0.95);
@@ -87,60 +114,142 @@ footer a {
     text-decoration: none;
     font-weight: 500;
     position: relative;
-    word-break: break-word; /* prevent long URLs from overflowing */
+    word-break: break-word;
 }
 
-
-/* Make chart images responsive on small screens */
-@media(max-width:600px) {
-    .chart-image {
-        height: auto;        /* Let height adjust automatically */
-        max-height: 70vh;    /* Optional: limit max height to viewport */
-        width: 100%;         /* Fill container width */
-        object-fit: cover; /* Ensure entire SVG fits without cropping */
-    }
-    .chart-section {
-        padding: 0px;       /* reduce padding to fit smaller screens */
-    }
-}
-
+/* Responsive adjustments */
 @media(min-width:1700px) {
     .overlay-content {
-        max-width: 1200px; /* Make the popup wider on large screens */
+        max-width: 1050px;
     }
 }
+
 @media(max-width:1350px) {
   .hero-overlay-top {
     height: 87px;
   }
 }
 
+/* MOBILE-ONLY OVERLAY IMPROVEMENTS */
 @media(max-width:768px) {
-    .overlay-top { padding:0 24px; }
-    .overlay-nav { gap:10px; }
+    a, button, input, textarea {
+        outline: none;
+        -webkit-focus-ring-color: transparent;
+    }
+    *{
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent; 
+    }
+    *::selection {
+        background: transparent;
+        color: inherit;
+    }
+    *::-moz-selection {
+        background: transparent;
+        color: inherit;
+    }
+
+    .overlay-top { 
+        padding:0 24px; 
+    }
+    .overlay-nav { 
+        gap:10px; 
+    }
     .overlay-top h1 { font-size:1.2em; }
     main { padding:0 24px; margin:60px auto; }
-    .chart-section { padding:24px; }
+    .chart-section { 
+        padding: 24px;
+        margin-bottom: 50px;
+    }
     .content-header h2 { font-size:1.8em; }
     .stats-grid { grid-template-columns:1fr; }
-    .chart-image { height:300px; }
-    .zoom-chart { height:40vh; }
+    
+    /* MOBILE CHART IMPROVEMENTS */
+    .chart-image { 
+        height: auto; 
+        max-height: 70vh;
+        width: 100%;
+        object-fit: contain;
+    }
+    
+    /* MOBILE OVERLAY IMPROVEMENTS ONLY */
+    .chart-overlay {
+        padding: 5px;
+        background: rgba(0,0,0,0.85);
+    }
+    .overlay-content {
+        width: 99%;
+        max-width: none;
+        padding: 10px 15px 15px;
+        max-height: 98vh;
+    }
+    .zoom-chart { 
+        max-height: 75vh;
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    
+    /* Smaller text for mobile overlay */
+    .overlay-header h3 {
+        font-size: 1.2em;
+    }
+    .zoom-text {
+        font-size: 0.95em;
+        line-height: 1.6;
+    }
+    
     .hero-overlay-bottom{
         height: 110px;
     }
     footer {
-    padding: 30px 20px;
-    font-size: 0.95em;
+        padding: 30px 20px;
+        font-size: 0.95em;
     }
     footer p {
         margin: 0 auto;
-        max-width: 90%; /* keep text centered and narrow */
+        max-width: 90%;
     }
 }
-@media(max-width:550px) {
-  .hero-overlay-top {
-    height: 102px;
+/* Desktop hover */
+@media (hover: hover) {
+  .overlay-nav a:hover {
+    color: royalblue;
   }
+}
+
+/* Mobile tap */
+@media (hover: none) {
+  .overlay-nav a:active {
+    color: royalblue;
+  }
+}
+
+@media(max-width:600px) {
+    .chart-section h3 {
+        font-size: 1.3em;
+    }
+    .chart-description {
+        font-size: 0.95em;
+    }
+    .chart-section {
+        padding: 20px;
+    }
+    
+    /* Even smaller text for very small screens */
+    .overlay-header h3 {
+        font-size: 1.1em;
+    }
+    .zoom-text {
+        font-size: 0.9em;
+    }
+}
+
+@media(max-width:550px) {
+    .hero-overlay-top {
+        height: 102px;
+    }
     footer {
         padding: 20px 15px;
         font-size: 0.9em;
@@ -149,7 +258,39 @@ footer a {
         display: inline-block;
         margin-top: 5px;
     }
+    .chart-section {
+        padding: 15px;
+    }
+    .overlay-content {
+        height: 50vh;
+        padding: 8px 12px 12px;
+    }
 }
+
+@media(max-width:400px) {
+    .overlay-top h1 {
+        font-size: 1.1em;
+    }
+    .overlay-nav a {
+        font-size: 0.9em;
+    }
+    .content-header h2 {
+        font-size: 1.6em;
+    }
+    .chart-section h3 {
+        font-size: 1.2em;
+    }
+    
+    /* Smallest text sizes for overlay */
+    .overlay-header h3 {
+        font-size: 1.0em;
+    }
+    .zoom-text {
+        font-size: 0.8em;
+        line-height: 1.5;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -183,18 +324,43 @@ footer a {
         <div class="stat-card"><div class="stat-number">+8.1%</div><div class="stat-label">Increase Since 2010</div></div>
     </div>
 
-    <section class="chart-section" data-src="visuals/projection_women_rep_parliament.svg" data-title="Global Representation Trends" data-desc="This chart shows the evolution of women's parliamentary representation across regions from 1990 to 2025.">
-        <h3>Global Representation Trends</h3>
-        <p class="chart-description">Tracking the evolution of women's parliamentary representation across regions over time.</p>
+    <section class="chart-section" data-src="visuals/projection_women_rep_parliament.svg" data-title="Arab Average Projection" data-desc-long="This chart shows a 10-year forecast of women’s parliamentary representation in the Arab region. Historical data from 2000 to 2024 demonstrates steady progress, while multiple projection models—including polynomial, logistic, and scenario-based approaches—indicate continued growth. By 2035, women may hold up to 25% of parliamentary seats. The shaded area represents the uncertainty range, reflecting potential variations depending on political reforms, institutional support, and societal engagement. The visualization highlights both past gains and future potential for women’s political participation."
+    data-desc-short="Women’s parliamentary representation in the Arab region is projected to rise steadily over the next 10 years, reaching roughly 25% by 2035. Growth is supported by historical trends and various projection models.">
+        <h3>Arab Average Projection</h3>
+        <p class="chart-description">Tracking the realistic forecast of women’s parliamentary representation in the Arab region over the next decade</p>
         <img src="visuals/projection_women_rep_parliament.svg" alt="Global representation trends chart" class="chart-image">
     </section>
 
-    <section class="chart-section" data-src="visuals/women-arab-vs-lebanon-avg.svg" data-title="Arab vs Lebanon Average">
+    <section class="chart-section" data-src="visuals/women-arab-vs-lebanon-avg.svg" data-title="Arab vs Lebanon Average" data-desc-long="Over the past three decades, women’s parliamentary representation across the Arab region has followed a steady upward trend, rising from just 3% in the late 1990s to nearly 18% by 2024. This growth reflects gradual reforms, the introduction of gender quotas, and stronger institutional support for women’s political participation.<br><br>Lebanon, in contrast, shows a flatter and more irregular pattern. Representation stayed at 2–3% for many years, with only small, stepwise increases linked to specific election outcomes. By 2024, women held just 6.2% of seats—about one-third of the Arab average—revealing a widening gap. The chart highlights that while regional progress has been driven by structural reforms, Lebanon has yet to adopt systemic measures to ensure consistent improvement."
+        data-desc-short="Women’s parliamentary representation in the Arab region rose to nearly 18% by 2024, but Lebanon lags behind at just 6.2%. Unlike regional reforms and quotas, Lebanon’s progress comes only from scattered election results.">
         <h3>Arab vs Lebanon Average</h3>
-        <p class="chart-description">Comparing Lebanon’s women's parliamentary representation with regional averages.</p>
+        <p class="chart-description">Comparing Lebanon's women's parliamentary representation with regional averages.</p>
         <img src="visuals/women-arab-vs-lebanon-avg.svg" alt="Arab vs Lebanon Average" class="chart-image">
     </section>
+      <section class="chart-section" data-src="visuals/arab_vs_world_women_rep.svg" data-title="World vs Arab Average" data-desc-long="This graph titled World vs Arab Average offers a visual comparison of women's parliamentary representation in Lebanon against global and Arab regional averages over a 26-year span (1995–2021). The turquoise line represents the steady global rise in female political participation, while the purple line tracks the Arab region's slower but upward trend. Lebanon's data, though not explicitly charted, is implied to fall below both averages, underscoring a significant disparity in gender inclusion within its political system. The shaded area between the two lines emphasizes an 8.2% gap between global and Arab averages, reinforcing the urgency for policy reform and advocacy to elevate women roles in governance across the region."
+        data-desc-short="This graph compares Lebanon’s percentage of women in parliament to global and Arab regional averages from 1995 to 2021. It highlights the persistent gap in gender representation, with Lebanon trailing behind both benchmarks.">
+        <h3>World vs Arab Average</h3>
+        <p class="chart-description">Closing the Gap: Women's Political Representation in Lebanon vs Global and Arab Averages</p>
+        <img src="visuals/arab_vs_world_women_rep.svg" alt="World vs Arab Average" class="chart-image">
+    </section>
+      <section class="chart-section" data-src="visuals/women-parliament-key-arab-countries.svg" data-title="Arab Women in Politics" data-desc-long="This line graph titled 'Women in Parliament (%) – Key Arab Countries vs Arab Average' presents a comparative view of female parliamentary representation across Lebanon, Saudi Arabia, Egypt, and Morocco from 2000 to 2020. Each country is represented by a distinct line, alongside a dashed line for the Arab regional average. The data highlights Morocco's notable rise in women's political participation, while Lebanon's figures remain relatively stagnant. Saudi Arabia and Egypt show moderate growth, reflecting broader regional efforts toward gender inclusion. The graph serves as a visual narrative of uneven progress, emphasizing the importance of sustained policy reforms and advocacy to empower women in Arab political systems."
+        data-desc-short="This graph illustrates the percentage of women in parliament from 2000 to 2020 across Lebanon, Saudi Arabia, Egypt, Morocco, and the Arab regional average. It reveals varied progress, with Morocco leading the way and Lebanon showing minimal change.">
+        <h3>Arab Women in Politics</h3>
+        <p class="chart-description">Tracking two decades of change in women's parliamentary representation across key Arab nations.</p>
+        <img src="visuals/women-parliament-key-arab-countries.svg" alt="Arab Women in Politics" class="chart-image">
+    </section>
+      <section class="chart-section" data-src="visuals/growth_women_rep_parliament.svg" data-title="Parliamentary Gender Shift" data-desc-long="This bar chart titled “Growth in Women Representation in Parliament – Last 10 Years” shows the change in the proportion of women in parliamentary seats across Arab countries. While the United Arab Emirates, Comoros, and Djibouti demonstrate significant gains, with the UAE leading at a 32.5% increase, some nations such as Algeria and Tunisia have seen notable declines. The visualization highlights the uneven progress toward gender inclusion in politics, underlining the importance of policy reforms and sustained advocacy for women’s political empowerment across the Arab region."
+        data-desc-short="This chart highlights the growth or decline in women’s parliamentary representation over the past decade, with the UAE leading in gains and countries like Algeria experiencing setbacks.">
+        <h3>Parliamentary Gender Shift</h3>
+        <p class="chart-description">Tracking two decades of change in women's parliamentary representation across key Arab nations.</p>
+        <img src="visuals/growth_women_rep_parliament.svg" alt="Parliamentary Gender Shift" class="chart-image">
+    </section>
 </main>
+
+<!-- Footer - KEEP ORIGINAL -->
+<footer id="about">
+    <p>&copy; 2025 Women in Parliament Dashboard. Data source: <a href="https://ourworldindata.org/">Our World in Data</a>.</p>
+</footer>
 
 <!-- Zoom Overlay -->
 <div class="chart-overlay" id="chartOverlay">
@@ -208,10 +374,6 @@ footer a {
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2025 Women in Parliament Dashboard. Data source: <a href="https://ourworldindata.org/">Our World in Data</a>.</p>
-</footer>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
 const chartSections = document.querySelectorAll('.chart-section');
@@ -222,15 +384,30 @@ const descTitle = document.getElementById('descTitle');
 const descText = document.getElementById('descText');
 const closeOverlayBtn = document.getElementById('closeOverlay');
 
-function openOverlay(src, title, description) {
+function openOverlay(src, title, descriptionShort, descriptionLong) {
     zoomChart.src = src;
     descTitle.textContent = title;
-    descText.textContent = description;
+
+    // Detect mobile via window.innerWidth or user agent fallback
+    const isMobile = window.innerWidth <= 767 || /Mobi|Android/i.test(navigator.userAgent);
+
+    // Use short description for mobile if available
+    descText.innerHTML = isMobile ? (descriptionShort || descriptionLong) : (descriptionLong || descriptionShort);
+
     chartOverlay.classList.add('active');
-    document.body.style.overflow='hidden';
-    gsap.fromTo(zoomChart, {y:50, scale:0.8, opacity:0}, {y:0, scale:1, opacity:1, duration:0.6, ease:"power3.out"});
-    gsap.fromTo(descText, {y:50, opacity:0}, {y:0, opacity:1, duration:0.6, delay:0.1, ease:"power3.out"});
+    document.body.style.overflow = 'hidden';
+
+    gsap.fromTo(zoomChart, 
+        {y:50, scale:0.8, opacity:0}, 
+        {y:0, scale:1, opacity:1, duration:0.6, ease:"power3.out"}
+    );
+    gsap.fromTo(descText, 
+        {y:50, opacity:0}, 
+        {y:0, opacity:1, duration:0.6, delay:0.1, ease:"power3.out"}
+    );
 }
+
+
 
 function closeOverlay() {
     gsap.to(chartOverlay, {opacity:0, duration:0.4, onComplete: () => {
@@ -246,10 +423,12 @@ chartSections.forEach(section => {
     section.addEventListener('click', () => {
         const src = section.dataset.src;
         const title = section.dataset.title;
-        const description = section.dataset.desc; // <-- get description from HTML
-        openOverlay(src, title, description);
+        const descriptionShort = section.dataset.descShort;
+        const descriptionLong = section.dataset.descLong;
+        openOverlay(src, title, descriptionShort, descriptionLong);
     });
 });
+
 
 // Close overlay on close button
 closeOverlayBtn.addEventListener('click', closeOverlay);
@@ -259,6 +438,22 @@ chartOverlay.addEventListener('click', (e) => {
     if (!overlayContent.contains(e.target)) {
         closeOverlay();
     }
+});
+
+// Smooth scrolling for navigation links (fallback for browsers that don't support CSS smooth scroll)
+document.querySelectorAll('.overlay-nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
 });
 </script>
 </body>
