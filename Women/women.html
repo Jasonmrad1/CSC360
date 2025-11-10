@@ -10,23 +10,19 @@
 body { font-family:'Outfit',sans-serif; background:#fff; color:#333; line-height:1.6; overflow-x:hidden; }
 *::-webkit-scrollbar { display:none; }
 
-/* Smooth scrolling for the whole page */
 html {
     scroll-behavior: smooth;
 }
 
-/* Hero section */
 .hero { position:relative; width:100%; height:100vh; overflow:hidden; background:#fff; }
 .hero iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
 
-/* White overlay divs for top and bottom of globe */
 .hero-overlay-top, .hero-overlay-bottom {
     position:absolute; left:0; width:100%; height:80px; background:#fff; z-index:9;
 }
 .hero-overlay-top { top:0; }
 .hero-overlay-bottom { bottom:0; }
 
-/* Top overlay navigation - KEEP ORIGINAL LAYOUT */
 .overlay-top {
     position:absolute; top:0; width:100%; height:70px; background:rgba(255,255,255,0.95);
     backdrop-filter:blur(10px); z-index:10; display:flex; justify-content:space-between; align-items:center;
@@ -37,12 +33,10 @@ html {
 .overlay-nav a { color:#555; text-decoration:none; font-weight:500; font-size:0.95em; position:relative; padding:8px 0; transition: color 0.3s ease; }
 .overlay-nav a:hover { color:royalblue; }
 
-/* Smooth scroll padding for sections to account for fixed header */
 #hero, #charts {
     scroll-margin-top: 80px;
 }
 
-/* Main content */
  main { max-width:1200px; margin:80px auto; padding:0 40px; }
 .content-header { text-align:center; margin-bottom:60px; }
 .content-header h2 { font-size:2.2em; font-weight:700; color:#2D2D2D; margin-bottom:16px; }
@@ -54,7 +48,7 @@ html {
 .stat-number { font-size:2.5em; font-weight:700; color:royalblue; margin-bottom:8px; }
 .stat-label { color:#666; font-weight:500; font-size:0.95em; }
 
-/* Chart sections - IMPROVED FOR MOBILE */
+
 .chart-section { 
     margin-bottom:80px; 
     background:rgba(255,255,255,0.95); 
@@ -72,7 +66,7 @@ html {
 .chart-section h3::before { content:''; width:4px; height:24px; background:royalblue; border-radius:2px; display:inline-block; margin-right:12px; }
 .chart-description { color:#666; font-weight:400; line-height:1.6; margin-bottom:24px; text-align:left; }
 
-/* Chart container for desktop */
+
 .chart-image { 
     width:100%; 
     height:500px; 
@@ -80,7 +74,7 @@ html {
     border-radius:12px; 
 }
 
-/* DESKTOP Zoom overlay - KEEP ORIGINAL */
+
 .chart-overlay {
     position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);
     display:none; justify-content:center; align-items:center; z-index:1000; padding:20px;
@@ -95,7 +89,7 @@ html {
 .zoom-chart { width:100%; height:auto; max-height: 60vh; object-fit:contain; border-radius:12px; margin-bottom:20px; }
 .zoom-text { font-size:1.05em; line-height:1.8; color:#333; text-align:left; }
 
-/* Footer - KEEP ORIGINAL */
+
 footer {
     width: 100%;
     background: rgba(255,255,255,0.95);
@@ -117,7 +111,7 @@ footer a {
     word-break: break-word;
 }
 
-/* Responsive adjustments */
+
 @media(min-width:1700px) {
     .overlay-content {
         max-width: 1050px;
@@ -130,7 +124,6 @@ footer a {
   }
 }
 
-/* MOBILE-ONLY OVERLAY IMPROVEMENTS */
 @media(max-width:768px) {
     a, button, input, textarea {
         outline: none;
@@ -165,7 +158,6 @@ footer a {
     .content-header h2 { font-size:1.8em; }
     .stats-grid { grid-template-columns:1fr; }
     
-    /* MOBILE CHART IMPROVEMENTS */
     .chart-image { 
         height: auto; 
         max-height: 70vh;
@@ -173,7 +165,6 @@ footer a {
         object-fit: contain;
     }
     
-    /* MOBILE OVERLAY IMPROVEMENTS ONLY */
     .chart-overlay {
         padding: 5px;
         background: rgba(0,0,0,0.85);
@@ -191,7 +182,6 @@ footer a {
         border-radius: 8px;
     }
     
-    /* Smaller text for mobile overlay */
     .overlay-header h3 {
         font-size: 1.2em;
     }
@@ -212,7 +202,7 @@ footer a {
         max-width: 90%;
     }
 }
-/* Desktop hover */
+
 @media (hover: hover) {
   .overlay-nav a:hover {
     color: royalblue;
@@ -237,7 +227,6 @@ footer a {
         padding: 20px;
     }
     
-    /* Even smaller text for very small screens */
     .overlay-header h3 {
         font-size: 1.1em;
     }
@@ -281,7 +270,6 @@ footer a {
         font-size: 1.2em;
     }
     
-    /* Smallest text sizes for overlay */
     .overlay-header h3 {
         font-size: 1.0em;
     }
@@ -298,7 +286,6 @@ footer a {
 <section id="hero" class="hero">
     <iframe src="https://ourworldindata.org/grapher/women-political-participation-index?country=LBN~OWID_ASI~ARM&mapSelect=LBN~OWID_ASI~ARM&globe=1&globeRotation=37.17%2C40.82&globeZoom=1&tab=map" loading="lazy" allow="web-share; clipboard-write"></iframe>
 
-    <!-- White overlays to hide text on top and bottom -->
     <div class="hero-overlay-top"></div>
     <div class="hero-overlay-bottom"></div>
 
@@ -355,14 +342,53 @@ footer a {
         <p class="chart-description">Tracking two decades of change in women's parliamentary representation across key Arab nations.</p>
         <img src="visuals/growth_women_rep_parliament.svg" alt="Parliamentary Gender Shift" class="chart-image">
     </section>
+    </section>
+     <section class="chart-section" style="pointer-events: none;">
+    <h3>Women Candidates by District</h3>
+    <p class="chart-description">Visualizing where women candidates ran during the 2022 Lebanese elections.</p>
+
+    <div class="dual-chart">
+        <img src="visuals/lebanese-women-seats.png" 
+             alt="Female Candidates Donut Chart" 
+             class="chart-image">
+
+        <img src="visuals/lebanese-women-candidates.png" 
+             alt="Lebanon Map Female Candidates" 
+             class="chart-image">
+    </div>
+</section>
+
+<style>
+
+.dual-chart {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+
+.dual-chart .chart-image {
+    width: 49%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .dual-chart .chart-image {
+        width: 100%;
+    }
+}
+</style>
+
+
 </main>
 
-<!-- Footer - KEEP ORIGINAL -->
 <footer id="about">
     <p>&copy; 2025 Women in Parliament Dashboard. Data source: <a href="https://ourworldindata.org/">Our World in Data</a>.</p>
 </footer>
 
-<!-- Zoom Overlay -->
 <div class="chart-overlay" id="chartOverlay">
     <div class="overlay-content">
         <div class="overlay-header">
@@ -388,10 +414,8 @@ function openOverlay(src, title, descriptionShort, descriptionLong) {
     zoomChart.src = src;
     descTitle.textContent = title;
 
-    // Detect mobile via window.innerWidth or user agent fallback
     const isMobile = window.innerWidth <= 767 || /Mobi|Android/i.test(navigator.userAgent);
 
-    // Use short description for mobile if available
     descText.innerHTML = isMobile ? (descriptionShort || descriptionLong) : (descriptionLong || descriptionShort);
 
     chartOverlay.classList.add('active');
@@ -418,7 +442,6 @@ function closeOverlay() {
     }});
 }
 
-// Open overlay on chart click
 chartSections.forEach(section => {
     section.addEventListener('click', () => {
         const src = section.dataset.src;
@@ -430,17 +453,14 @@ chartSections.forEach(section => {
 });
 
 
-// Close overlay on close button
 closeOverlayBtn.addEventListener('click', closeOverlay);
 
-// Close overlay if clicked outside the content
 chartOverlay.addEventListener('click', (e) => {
     if (!overlayContent.contains(e.target)) {
         closeOverlay();
     }
 });
 
-// Smooth scrolling for navigation links (fallback for browsers that don't support CSS smooth scroll)
 document.querySelectorAll('.overlay-nav a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
