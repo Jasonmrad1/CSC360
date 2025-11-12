@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Women in Parliament – Interactive Globe</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 * { margin:0; padding:0; box-sizing:border-box;}
 body { font-family:'Outfit',sans-serif; background:#fff; color:#333; line-height:1.6; overflow-x:hidden; }
@@ -343,7 +344,7 @@ footer a {
         <img src="visuals/growth_women_rep_parliament.svg" alt="Parliamentary Gender Shift" class="chart-image">
     </section>
     </section>
-     <section class="chart-section" style="pointer-events: none;">
+     <section class="chart-section">
     <h3>Women Candidates by District</h3>
     <p class="chart-description">Visualizing where women candidates ran during the 2022 Lebanese elections.</p>
 
@@ -357,9 +358,164 @@ footer a {
              class="chart-image">
     </div>
 </section>
+<section class="chart-section" style=" text-align: center;padding: 40px 20px;background: transparent;" id="charts">
+  <h3>Women in Lebanon</h3>
+  <p class="chart-description" style="  color: #555;font-size: 0.95em;max-width: 700px;margin: 0 auto 30px;">
+    Based on Lebanese parliamentary election data (2022) and contextual estimates.
+  </p>
+
+  <div class="pie-grid">
+    <!-- Chart 1 -->
+    <div class="pie">
+      <canvas id="chart1"></canvas>
+      <p class="pie-title">Women MPs by Political Affiliation – Lebanon</p>
+    </div>
+
+    <!-- Chart 2 -->
+    <div class="pie">
+      <canvas id="chart2"></canvas>
+      <p class="pie-title">Educational Background of Female Politicians</p>
+    </div>
+
+    <!-- Chart 3 -->
+    <div class="pie">
+      <canvas id="chart3"></canvas>
+      <p class="pie-title">Voter Turnout by Gender – Lebanon</p>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+
+<script>
+  Chart.defaults.font.family = 'Outfit, sans-serif';
+  Chart.defaults.font.size = 13;
+
+  const createPieChart = (id, labels, data, colors) => {
+    new Chart(document.getElementById(id), {
+      type: 'pie',
+      data: {
+        labels,
+        datasets: [{
+          data,
+          backgroundColor: colors,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, // allows fixed radius
+        layout: { padding: 0 },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+              color: '#333',
+              boxWidth: 12,
+              boxHeight: 12,
+              usePointStyle: true,
+              pointStyle: 'circle',
+              padding: 10,
+              font: { family: 'Outfit', size: 13 }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const value = context.parsed;
+                return `${value}%`;
+              }
+            },
+            bodyFont: { family: 'Outfit' }
+          }
+        },
+        elements: {
+          arc: { borderWidth: 0 }
+        },
+        // Force consistent radius
+        cutout: 0, // full pie, not donut
+        radius: '80%' // make all same size
+      }
+    });
+  };
+
+// Chart 1 – Women MPs by Political Affiliation
+createPieChart(
+  "chart1",
+  ["Independents / Change", "Traditional Parties", "Hezbollah / Amal", "Other Small Parties"],
+  [50, 25, 12.5, 12.5],
+  ["#4169E1", "#6BA7FF", "#89C2FF", "#4A63B4"] // highlight smallest slice
+);
+
+// Chart 2 – Educational Background of Female Politicians
+createPieChart(
+  "chart2",
+  ["Law / Political Science", "Medicine / Health", "Academia / Education", "Business / NGOs", "No Tertiary / Other"],
+  [35, 20, 15, 20, 10],
+  ["#4169E1", "#6BA7FF", "#89C2FF", "#B3DBFF", "#3C5AA8"] // small slice highlight
+);
+
+// Chart 3 – Voter Turnout by Gender
+createPieChart(
+  "chart3",
+  ["Women Voters", "Men Voters"],
+  [47, 53],
+  [ "#4169E1", "#6BA7FF"]
+);
+
+
+</script>
+
 
 <style>
 
+.pie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 50px;
+  justify-items: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.pie {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pie canvas {
+  width: 100% !important;
+  height: 100% !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.pie-title {
+  margin-top: 12px;
+  text-align: center;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95em;
+}
+
+@media (max-width: 768px) {
+  .pie-title {
+    font-size: 0.9em;
+  }
+}
+</style>
+
+
+<style>
 .dual-chart {
     display: flex;
     flex-wrap: wrap;
@@ -380,6 +536,21 @@ footer a {
         width: 100%;
     }
 }
+
+ .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    canvas {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 10px;
+    }
 </style>
 
 
@@ -399,6 +570,7 @@ footer a {
         <div id="descText" class="zoom-text"></div>
     </div>
 </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
@@ -448,7 +620,10 @@ chartSections.forEach(section => {
         const title = section.dataset.title;
         const descriptionShort = section.dataset.descShort;
         const descriptionLong = section.dataset.descLong;
+        if (src && title)
+        {
         openOverlay(src, title, descriptionShort, descriptionLong);
+    }
     });
 });
 
