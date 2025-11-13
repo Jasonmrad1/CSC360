@@ -551,7 +551,99 @@ createPieChart(
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       padding: 10px;
     }
+    /* SDG Section – minimalist & elegant */
+.sdg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 50px;
+  margin-top: 40px;
+  justify-items: center;
+}
+
+.sdg-card.no-bg {
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  max-width: 320px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.sdg-card.no-bg:hover {
+  transform: translateY(-6px);
+  opacity: 0.9;
+}
+
+.sdg-card.no-bg img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  transition: transform 0.3s ease;
+}
+
+.sdg-card.no-bg:hover img {
+  transform: scale(1.05);
+}
+
+.sdg-card.no-bg h4 {
+  color: royalblue;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.sdg-card.no-bg p {
+  color: #555;
+  font-size: 0.93em;
+  line-height: 1.5;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .sdg-card.no-bg img {
+    width: 180px;
+    height: 180px;
+  }
+  .sdg-card.no-bg h4 {
+    font-size: 1em;
+  }
+  .sdg-card.no-bg p {
+    font-size: 0.9em;
+  }
+}
+
 </style>
+<section class="chart-section" id="sdgs">
+  <h3>Sustainable Development Goal</h3>
+  <p class="chart-description">
+    Women's political participation reinforces several UN Sustainable Development Goals (SDGs) that promote equality, inclusion, and strong institutions.
+  </p>
+
+  <div class="sdg-grid">
+    <!-- SDG 5 -->
+    <a href="https://sdgs.un.org/goals/goal5" target="_blank" class="sdg-card no-bg">
+      <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-05.jpg" alt="SDG 5 Gender Equality">
+      <h4>SDG 5 – Gender Equality</h4>
+      <p>Empowering women in politics ensures equal representation and leadership opportunities, advancing gender equality worldwide.</p>
+    </a>
+
+    <!-- SDG 10 -->
+    <a href="https://sdgs.un.org/goals/goal10" target="_blank" class="sdg-card no-bg">
+      <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-10.jpg" alt="SDG 10 Reduced Inequalities">
+      <h4>SDG 10 – Reduced Inequalities</h4>
+      <p>Inclusive political systems help reduce social and economic disparities, giving all groups a voice in governance.</p>
+    </a>
+
+    <!-- SDG 16 -->
+    <a href="https://sdgs.un.org/goals/goal16" target="_blank" class="sdg-card no-bg">
+      <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-16.jpg" alt="SDG 16 Peace, Justice and Strong Institutions">
+      <h4>SDG 16 – Peace, Justice & Strong Institutions</h4>
+      <p>Balanced representation strengthens democracy, accountability, and the integrity of political institutions.</p>
+    </a>
+  </div>
+</section>
 
 
 </main>
