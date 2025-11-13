@@ -285,7 +285,12 @@ footer a {
 <body>
 
 <section id="hero" class="hero">
-    <iframe src="https://ourworldindata.org/grapher/women-political-participation-index?country=LBN~OWID_ASI~ARM&mapSelect=LBN~OWID_ASI~ARM&globe=1&globeRotation=37.17%2C40.82&globeZoom=1&tab=map" loading="lazy" allow="web-share; clipboard-write"></iframe>
+<iframe 
+  src="https://ourworldindata.org/grapher/women-political-participation-index?country=OWID_WRL&mapSelect=LBN&globe=1&globeRotation=35%2C33.8&globeZoom=1&tab=map&mapBackground=white" 
+  loading="lazy" 
+  allow="web-share; clipboard-write" 
+  style="width:100%; height:100%; border:none;"
+></iframe>
 
     <div class="hero-overlay-top"></div>
     <div class="hero-overlay-bottom"></div>
@@ -445,7 +450,7 @@ footer a {
 createPieChart(
   "chart1",
   ["Independents / Change", "Traditional Parties", "Hezbollah / Amal", "Other Small Parties"],
-  [50, 25, 12.5, 12.5],
+  [75, 25, 0, 0],
   ["#4169E1", "#6BA7FF", "#89C2FF", "#4A63B4"] // highlight smallest slice
 );
 
