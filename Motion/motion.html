@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motion App</title>
+
+  <!-- Outfit font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background:
+        radial-gradient(circle at center, rgba(124,76,255,0.15), rgba(0,0,0,0.85) 60%),
+        url('motionThumbnail.png') no-repeat center center / cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f5f5f5;
+    }
+
+    .container {
+      text-align: center;
+      padding: 34px 42px; /* reduced padding */
+      border-radius: 20px;
+      background: linear-gradient(
+        180deg,
+        rgba(18, 18, 22, 0.85),
+        rgba(10, 10, 12, 0.9)
+      );
+      box-shadow: 0 25px 80px rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      max-width: 520px;
+      width: 90%;
+    }
+
+    h1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px; /* tighter spacing */
+      font-size: 3.1rem;
+      letter-spacing: 2px; /* reduced tracking */
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: #f5f5f5; /* normal color */
+    }
+
+    .logo-icon {
+      height: 44px; /* slightly smaller */
+      width: auto;
+      filter: none; /* remove purple glow */
+    }
+
+    .logo-icon {
+      height: 56px;
+      width: auto;
+      filter: drop-shadow(0 0 12px rgba(124,76,255,0.6));
+    }
+
+    .accent-line {
+      width: 60px;
+      height: 2px;
+      margin: 0 auto 22px;
+      background: linear-gradient(90deg, transparent, #888, transparent); /* neutral */
+      border-radius: 10px;
+    }
+
+    p {
+      opacity: 0.85;
+      margin-bottom: 36px;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      font-weight: 300;
+      color: #e6e6e6; /* normal text color */
+    }
+
+    .download-btn {
+      text-decoration: none;
+      padding: 18px 48px;
+      font-size: 1.05rem;
+      letter-spacing: 3px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #7C4DFF, #9A7CFF);
+      border-radius: 60px;
+      box-shadow:
+        0 10px 30px rgba(124,76,255,0.45),
+        inset 0 0 0 1px rgba(255,255,255,0.15);
+      transition: all 0.35s ease;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .download-btn:hover {
+      box-shadow:
+        0 5px 10px rgba(124,76,255,0.65),
+        inset 0 0 0 1px rgba(255,255,255,0.25);
+    }
+
+    .note {
+      margin-top: 28px;
+      font-size: 0.8rem;
+      opacity: 0.55;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">
+      <span class="mo">MO</span>
+      <img src="deer_icon2.PNG" alt="Motion logo" class="logo-icon" />
+      <span class="ion">ION</span>
+    </h1>
+    <div class="accent-line"></div>
+
+    <p>
+      Early access build for friends.<br />
+      Move with Purpose, Train with Motion.
+    </p>
+
+    <!-- Replace href with your APK download link -->
+    <a class="download-btn" href="Motion.apk" download>
+      DOWNLOAD APK
+    </a>
+
+    <div class="note">Android only · Enable “Install unknown apps”</div>
+  </div>
+</body>
+</html>
