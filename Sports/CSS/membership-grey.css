@@ -1,0 +1,54 @@
+#membership-text{
+    margin-top: 42px;
+    margin-left: 42px;
+ }
+.membership{
+    margin-top: -18px;
+    height: 150px;
+    background-color: whitesmoke;
+    border:rgba(245, 245, 245, 0.886) solid 1px;
+    Color:black;
+    display: flex;
+    justify-content: space-around;
+    font-size: 32px;
+   font-family: 'Times New Roman';
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Shadow only at the bottom */
+}
+.membership-logos{
+    margin-left:-20px;
+    margin-top: 40px;
+}
+.Create-now-button {
+   margin-left: 40px;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    padding: 10px 20px;
+    border: 2px solid black;
+    text-transform: uppercase;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+box-shadow:3px 3px #333;
+transition: background-color 0.2s, color 0.3s; /* Smooth transitions */
+
+}
+
+.Create-now-button:hover {
+background-color: black;
+color:white;
+box-shadow: none;
+
+}
+#Kobe-logo{
+    width: 130px;
+    height:70px;
+  
+}
+#Jordan-logo{
+    margin-left:-10px;
+
+}

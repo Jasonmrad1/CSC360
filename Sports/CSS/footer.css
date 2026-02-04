@@ -1,0 +1,102 @@
+.footer-div{
+ overflow-y: hidden;
+    margin-top:0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-flow:row nowrap; 
+    background-color:whitesmoke;
+    
+    }
+    .first-column,.second-column,.third-column,.fourth-column,.fifth-column{
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 2px;
+    color:black;
+    
+    
+    
+    }
+    
+    .first-column p,.second-column p,.third-column p,.fourth-column p,.fifth-column p{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+    color: #1a1a1a;
+    font-size: 14px;
+    margin-bottom: -8px;
+    cursor: pointer;
+    transition:all 0.3s ease;
+    }
+    .first-column p:hover,.second-column p:hover,.third-column p:hover,.fourth-column p:hover,.fourth-column p:hover,.fifth-column p:hover{
+    
+    color: #333;
+    padding-left: 4px;
+    }
+    .first-column b,.second-column b,.third-column b,.fourth-column b,.fifth-column b{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+    font-size: 22px;
+    
+    margin-bottom: 8px;
+    
+    
+    
+    
+    }
+    
+    
+    .social-icons a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+    }
+    
+    
+    .social-icons a:hover{
+    color:#222222c6;
+    }
+    footer{
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 520;
+        width: 100%;
+        overflow-y: hidden;
+        display: flex;justify-content: space-between;background-color: black;align-items: center;
+        }
+        .legal-group{
+        background-color: black;
+        color: whitesmoke;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 40px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 520;
+        
+        }
+        #cookie{
+        padding-right: 10px;
+        
+        
+        }
+        #terms{
+        padding-right: 10px;
+        
+        
+        }
+        #privacy{
+        
+        
+        
+        
+        }
+        
+        .mobile-footer{
+            display: none;
+        }
+        .footer-div a{
+            color: #1a1a1a;
+        }
+        

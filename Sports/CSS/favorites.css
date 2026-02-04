@@ -1,0 +1,466 @@
+
+.page-wrapper {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition: 450ms;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the left when sidebar slides in */
+    }
+    
+    .page-content {
+    text-align: center;
+    transition: 450ms;
+    background-color: white;
+         z-index: 100;
+    }
+    
+    .sidebar {
+    width: 400px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+     z-index: 100;
+    background-color: white;
+    color: black;
+    transition: 450ms;
+    }
+    
+    .sidebar.menu-1 {
+    right: -400px; /* Initially hidden on the right */
+    left: auto; /* Ensure it's not affected by left positioning */
+    }
+    
+    .menu-toggle.menu-1-toggle {
+    right: 25px; /* Position the toggle on the right */
+    left: auto; /* Ensure it's not affected by left positioning */
+    border-color: black;
+    color: black;
+    }
+    
+    .menu-toggle .menu-label {
+    display: block;
+    
+    }
+    
+    .menu-toggle .close-label {
+    display: none;
+    color: black;
+    padding-right: 20px;
+    }
+    
+    #menu1Toggle {
+    display: none;
+    
+    }
+    
+    #menu1Toggle:checked ~ .page-wrapper .sidebar.menu-1 {
+    right: 0; /* Slide the sidebar in from the right */
+    box-shadow: 0 0 3px #000;
+    }
+    
+    #menu1Toggle:checked ~ .page-wrapper .menu-toggle.menu-1-toggle {
+    right: 215px; /* Move the toggle to the right when the sidebar is open */
+    left: auto; /* Ensure it's not affected by left positioning */
+    }
+    
+    #menu1Toggle:checked ~ .page-wrapper .menu-toggle.menu-1-toggle .menu-label {
+    display: none;
+    
+    }
+    
+    #menu1Toggle:checked ~ .page-wrapper .menu-toggle.menu-1-toggle .close-label {
+    display: block;
+    
+    }
+    .favorites-container{
+    height: 100%;
+    }
+    #no-favorites-message {
+    position: absolute; /* Absolute positioning to center the message */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust the position to be truly centered */
+    font-size: 14px; /* Adjust as needed */
+    color: #555; /* Adjust as needed */
+    text-align: center; /* Center text inside the message */
+    display: flex;justify-content: center;text-align: center;vertical-align: middle;
+    }
+    .product-favorite-card{
+    min-width: 400px;
+    min-height: 200px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    
+    }
+    .product-img img{
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: scale-down;
+    
+    }
+    .product-desc{
+    
+    min-height: 200px;
+    min-width: 200px;
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    
+    }
+    .remove-btn-div{
+    min-width: 150px;
+    max-height: 30px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content:flex-end;
+    }
+    
+    
+    .product-info h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
+    }
+    
+    .product-info p {
+    margin: 5px 0;
+    color: #555;
+    }
+    #darkOverlay {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Adjust opacity (0.5 is 50%) */
+    z-index: 3; /* Ensures it’s on top of other elements */
+    pointer-events: none; /* Allows clicks to pass through */
+    }
+    
+    .trash{
+    background-color: white;
+    border-radius: 400px;
+    padding:5px 7px;
+    border: none;
+    opacity: 0;
+    visibility: hidden;
+    border: 1px solid transparent; /* Set initial border to transparent */
+    padding-right: 15px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    
+    }
+    .trash:hover{
+    
+    transform: scale(1.2);
+    }
+    .product-favorite-card:hover .trash {
+    opacity: 1;
+    visibility: visible;
+    
+    }
+    .add-to-cart-div{
+      width: 100%;
+      min-height: 25px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+     position: absolute;
+     bottom: 0; /* Align the child div to the bottom of the parent */
+     left: 0; /* Optional, align to the left of the parent */
+      
+    }
+    .Cart{
+      background-color: transparent;
+      border-radius: 400px;
+      padding:5px 7px;
+      border: none;
+      opacity: 0;
+      visibility: hidden;
+      border: 1px solid transparent; /* Set initial border to transparent */
+    padding-right: 8px;
+      transition: all 0.3s ease-in-out;
+    }
+    .Cart:hover{
+    
+      transform: scale(1.25);
+    }
+    .product-card:hover .Cart{
+      opacity: 1;
+      visibility: visible;
+     
+    }
+    .product-desc-div{
+     display: block;
+     justify-content: space-between;
+      
+    }
+    
+  
+  
+  
+nav span {
+    color: #fff;
+    font-size: 20px;
+  }
+  
+  .sidebar,.menu-1{
+  overflow-y: scroll;overflow-x: hidden; -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .mycart-header{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding-top: 8px;
+    min-width: 250px;
+  }
+  .mycart-label{
+    font-weight: 550;
+    padding-left: 10px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+  }
+  
+  
+  
+  
+  @media (max-width: 950px) {
+    .mycart-label{
+      padding-left: 20px;
+      padding-top: 10px;
+      align-items: center;
+    }
+    .page-wrapper,.page-content{
+      display: block;
+    }
+   
+   .favorites-container{
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+   }
+   .sidebar {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    
+    background-color: white;
+    color: black;
+    transition: 450ms;
+    }
+    
+    .sidebar.menu-1 {
+    left: -100vw; /* Initially hidden on the right */
+    right: auto; /* Ensure it's not affected by left positioning */
+    }
+    #menu1Toggle:checked ~ .page-wrapper .sidebar.menu-1 {
+      left: 0; /* Slide the sidebar in from the right */
+      box-shadow: 0 0 15px #000;
+      }
+      
+
+
+#menu1Toggle{
+  padding-top:15px;padding-right: 20px; 
+  display: none;
+}
+
+
+
+
+      .sidebar.menu-2 {
+        left: -100vw; /* Initially hidden on the right */
+        right:  auto; /* Ensure it's not affected by left positioning */
+        }
+        
+        .menu-toggle.menu-2-toggle {
+        right: 25px; /* Position the toggle on the right */
+        left: auto; /* Ensure it's not affected by left positioning */
+        border-color: black;
+        color: black;
+        }
+        
+        .menu-toggle .menu-label {
+        display: block;
+        
+        }
+        
+        .menu-toggle .close-label {
+        display: none;
+        color: black;
+        padding-right: 20px;
+        }
+        
+        #menu2Toggle {
+        display: none;
+        
+        }
+        
+        #menu2Toggle:checked ~ .page-wrapper .sidebar.menu-2 {
+        left: 0; /* Slide the sidebar in from the right */
+        box-shadow: 0 0 15px #000;
+        }
+        
+        #menu2Toggle:checked ~ .page-wrapper .menu-toggle.menu-2-toggle {
+        right: 215px; /* Move the toggle to the right when the sidebar is open */
+        left: auto; /* Ensure it's not affected by left positioning */
+        }
+        
+        #menu2Toggle:checked ~ .page-wrapper .menu-toggle.menu-2-toggle .menu-label {
+        display: none;
+        
+        }
+        
+        #menu2Toggle:checked ~ .page-wrapper .menu-toggle.menu-2-toggle .close-label {
+        display: block;
+        
+        }
+
+        .img-logo {
+          width: 47px;
+          height: 50px;
+          object-fit: scale-down;
+          margin: 0 0px;
+          padding-top: 5px;
+        }
+        
+        #nikelogo {
+          margin-top: 12px;
+          margin-left: 5px;
+          
+        }
+        
+        #adidaslogo {
+          height: 35px;
+          width: 35px;
+          margin-top: 5px;
+        }
+.sidebar-dropdown{
+  box-sizing: border-box;
+  width: 100vw;
+  max-height: 60px;
+  padding: 15px;
+padding-top: 5px;
+  display: flex;justify-content: space-between;
+  border-bottom:1px solid rgb(230, 230, 230) ;
+
+}
+.slidebar-arrow{
+  color:black;transform: scaleX(0.9);transform: scaleY(0.9);
+}
+.sidebar-categories{
+  width: 100vw;
+  box-sizing: border-box;
+  min-height: 45px;
+  padding-left:30px ;
+  padding-right: 18px;
+  color: #444444;
+  font-size: 18px;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar-categories:hover{
+  -webkit-tap-highlight-color: transparent; /* For WebKit browsers (like Chrome, Safari) */
+  background-color: rgb(230, 230, 230);
+}
+.sidebar-categories-container{
+  padding: 20px 0px 10px 0px;
+  border-bottom:1px solid rgb(230, 230, 230)  ;
+}
+      
+.categories-arrow{
+  color: #000;
+}
+.help-policy{
+  padding-top: 10px;
+}
+
+
+
+.sidebar.menu-3 {
+  left: -100vw; /* Initially hidden on the right */
+  right:  auto; /* Ensure it's not affected by left positioning */
+  }
+  
+  .menu-toggle.menu-3-toggle {
+  right: 25px; /* Position the toggle on the right */
+  left: auto; /* Ensure it's not affected by left positioning */
+  border-color: black;
+  color: black;
+  }
+  
+  .menu-toggle .menu-label {
+  display: block;
+  
+  }
+  
+  .menu-toggle .close-label {
+  display: none;
+  color: black;
+  padding-right: 20px;
+  }
+  
+  #menu3Toggle {
+  display: none;
+  
+  }
+  
+  #menu3Toggle:checked ~ .page-wrapper .sidebar.menu-3 {
+  left: 0; /* Slide the sidebar in from the right */
+  box-shadow: 0 0 15px #000;
+  }
+  
+  #menu3Toggle:checked ~ .page-wrapper .menu-toggle.menu-3-toggle {
+  right: 215px; /* Move the toggle to the right when the sidebar is open */
+  left: auto; /* Ensure it's not affected by left positioning */
+  }
+  
+  #menu3Toggle:checked ~ .page-wrapper .menu-toggle.menu-3-toggle .menu-label {
+  display: none;
+  
+  }
+  
+  #menu3Toggle:checked ~ .page-wrapper .menu-toggle.menu-3-toggle .close-label {
+  display: block;
+  
+  }
+
+  .search-mobile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    width: 100vw;
+    box-sizing: border-box;
+    background-color: #E9ECEF;
+    padding: 10px;
+    padding-left: 20px;
+  }
+  .search-input-mobile{
+    background-color: #E9ECEF;
+   height: 100%;
+   width: 50%;
+   border: none;
+   padding-left: 5px;
+
+  }
+  .search-input-mobile::placeholder{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+font-size: 15px;
+letter-spacing: 1px;
+   
+  }
+  .search-container{
+    align-items: center;display: flex;
+  }
+  .add-to-cart-div{
+    display: none;
+  }
+  }
+  
+  

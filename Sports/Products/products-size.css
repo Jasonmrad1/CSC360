@@ -1,0 +1,194 @@
+#top {
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  header {
+    color: white;
+  }
+  
+  body, header {
+    margin: 0px;
+    background-color:white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
+  }
+  body,html{
+    min-height: 100%;
+    
+  
+  }
+  .top-text {
+    color: white;
+    font-size: 11px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 520;
+    letter-spacing: 2px;
+  }
+  
+  a:link {
+    text-decoration: none;
+    color: white;
+  }
+  
+  
+  
+  a:hover {
+    text-decoration: none;
+  
+  }
+  a:visited{
+  text-decoration: none;
+  color: white;
+  }
+  
+  
+  .body-header{
+    background-color: whitesmoke;
+    font-weight: 400;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 28px;
+  display: flex;
+  justify-content: space-between;
+  height: 170px;
+  padding-top: 50px;
+  padding-left:60px;
+  padding-right:60px;
+  }
+  #MenHeader{
+    text-decoration: underline;
+    text-underline-offset: 25px;
+    text-decoration-thickness: 4px;
+    
+    color: black;
+  
+  }
+  .Categories{
+    padding-top: 20px;
+    font-size: 18px;
+  }
+  
+  
+  .product-grid {
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px; /* Space between items */
+  padding: 20px; /* Padding around the grid */
+  
+  }
+  
+  .product-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 23.5%; /* Adjust width to fit more items in a row */
+  margin-bottom: 20px; /* Space between rows */
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative; /* Ensure the favorite button is positioned correctly */
+  
+  }
+  
+  
+  
+  /* Styling for the favorite button */
+  .favorite-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 24px;
+  transition: color 0.3s;
+  }
+  
+  .favorite-btn.active {
+  color: black;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .product-card img {
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .product-info {
+    padding: 10px 0px 0px 10px;
+    min-height: 140px;
+   position: relative;
+  }
+  
+  .product-info h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
+  }
+  
+  .product-info p {
+    margin: 5px 0;
+    color: #555;
+  }
+  #membership-text{
+    margin-top: 42px;
+    margin-left: 42px;
+  }
+  .membership{
+    height: 150px;
+    background-color: white;
+    Color:black;
+    display: flex;
+    justify-content: space-around;
+    font-size: 32px;
+  }
+  .membership-logos{
+    margin-left:-20px;
+    margin-top: 40px;
+  }
+  .Create-now-button {
+   margin-left: 40px;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    padding: 10px 20px;
+    border: 2px solid black;
+    text-transform: uppercase;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+  
+    text-decoration: none;
+  box-shadow:3px 3px #333;
+  transition: background-color 0.2s, color 0.3s; /* Smooth transitions */
+  
+  }
+  
+  .Create-now-button:hover {
+  background-color: black;
+  color:white;
+  box-shadow: none;
+  
+  }
+  #Kobe-logo{
+    width: 130px;
+    height:70px;
+  
+  }
+  #Jordan-logo{
+    margin-left:-10px;
+  
+  }
+  .mobile-products-header{
+    display: none;
+  }
+  
+  

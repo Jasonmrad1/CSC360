@@ -1,0 +1,173 @@
+
+
+
+::-webkit-scrollbar {
+  display: none; /* Hides scrollbar for Webkit-based browsers (e.g., Chrome, Edge, Safari) */
+}
+
+html {
+  -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer */
+  scrollbar-width: none; /* Hides scrollbar for Firefox */
+}
+.nav-links,b{
+  color: black;
+}
+  .options a {
+    margin: 0 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 520;
+    letter-spacing: 2px;
+    color: black;
+  }
+  .top-text {
+    color: white;
+    font-size: 11px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 520;
+    letter-spacing: 2px;
+  }
+  nav {
+    background-color: whitesmoke;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow-y:hidden ;
+   
+  }
+  
+  .nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .logos {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+  }
+  
+  .img-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: scale-down;
+    margin: 0 10px;
+  }
+  
+  #nikelogo {
+    margin-left: 0;
+    margin-top: 7px;
+    height: 55px;
+  }
+  
+  #adidaslogo {
+    height: 40px;
+    width: 40px;
+    margin-top: 0px;
+  }
+  
+  .options {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+  }
+  
+
+  
+  .search-buttons {
+    display: flex;
+    align-items: center;
+    
+  }
+  .search-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative; /* Ensure it's the reference point for absolute positioning */
+  }
+
+  .search-field {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 25px;
+    width: 50px; /* Initially collapsed */
+    padding: 5px 2px 5px 5px;
+    border-radius: 20px;
+    background-color: transparent;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    position: relative; /* Ensure the search field stays within the parent container */
+    transition: all 0.4s ease; /* Smooth transition for resizing */
+  }
+
+  img#search-btn {
+    position: relative;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  #search::placeholder {
+    font-size: 13px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  }
+
+  input#search {
+    width: 0;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-color: white;
+    outline: none;
+    color: black;
+    font-size: 13px;
+    transition: all 0.4s ease;
+  }
+  .slick-container{
+    display: none;
+  }
+  .mobile-nav{
+    display: none;
+  }
+  @media (max-width: 950px) {
+    .search{
+      --padding:14px;
+      
+    
+    
+      display: flex;
+      align-items: center;
+   border: none;
+      background-color: whitesmoke;
+       
+       transition: box-shadow 0.25s;
+      
+      }
+      .nav-button {
+   
+        background-color: whitesmoke;
+          color:black;
+        border: none;
+        
+        
+        width: 30px;
+        height: 30px;
+          
+          margin-left: 10px;
+         
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        
+  }
+  
+  

@@ -1,0 +1,475 @@
+
+header {
+  color: white;
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+body, header {
+  
+  margin: 0; /* Ensure no default margin */
+  padding: 0; /* Ensure no default padding */
+  
+  width: 100%;
+  height: 100%;
+
+}
+
+a:link {
+    text-decoration: none;
+  color:white;
+}
+
+
+
+a:hover {
+    text-decoration: none;
+    color:white;
+}
+a:visited{
+color:white;
+  text-decoration: none;
+}
+
+
+
+a { 
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  cursor: pointer;
+}
+
+main{
+    background-image: url('Snapinsta.app_437073929_18401237263068675_3839619669892566645_n_1080.jpg');
+    background-size: cover; /* This makes the image cover the entire background */
+    background-repeat: no-repeat; /* This prevents the image from repeating */
+    background-attachment:local; /* This makes the background image fixed, so it doesn't scroll with the page */
+    background-position: center; /* This centers the background image */
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+
+
+.container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px 4px 0px 0px;
+  border: 1px solid #ccc; /* Add this line for the border */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  margin-left: 100px;
+  margin-top: 70px;
+}
+
+
+
+
+h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    margin-top: 20px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+   
+    border-bottom: 2px solid transparent;
+   
+}
+
+.tab.active {
+      font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+
+.input-group{
+    
+    margin-bottom: 20px;
+    position: relative;
+}
+
+label {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    display: block;
+    margin-bottom: 5px;
+    color:black;
+}
+
+input[type="date"],
+input[type="tel"],
+.nameText,
+input[type="email"],
+input[type="password"] {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    width: 400px;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 0px;
+}
+
+.form{
+    width: 400px;
+    margin: 0 auto;
+ 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background:white;
+  }
+  .form-item{
+    position: relative;
+    margin-bottom: 15px;
+  }
+  .form-item input{
+    display: block;
+ 
+    width: 400px;
+    height: 40px;
+    background: transparent;
+    border: solid 1px black;
+    transition: all .3s ease;
+    padding: 0 15px
+  }
+  .form-item input:focus{
+    border-color: blue
+  }
+  .form-item label{
+    position: absolute;
+    cursor: text;
+    z-index: 2;
+    top: 13px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #fff;
+    padding: 0 10px;
+    color: #999;
+    transition: all .3s ease;
+  }
+  .form-item input:focus + label,
+  .form-item input:valid + label{
+    font-size: 11px;
+    top: -5px;
+ 
+
+  }
+  .form-item input:focus + label{
+    color: blueviolet;
+ 
+  }
+.show-password {
+    padding-bottom: 30px;
+  
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1px;
+    color: black;
+}
+.forgot-password {
+  display: block;
+  text-align: right;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: black;
+  text-decoration: none;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+  
+  .checkBoxInfo {
+    display: flex;
+    justify-content:flex-start;
+    margin-left: 10px; /* Add space between label and checkboxes */
+    margin-top:20px;
+  }
+  #maleLab{
+    margin-right: 100px;
+  }
+  .checkBox {
+    /* Hide the default checkbox */
+    display: none;
+  }
+  
+  /* Style the custom checkbox */
+  .checkBox + label:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px; /* Set the width and height of the checkbox */
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #333; /* Border color */
+    margin-right: 5px; /* Space between checkbox and label */
+  }
+  
+  /* Style the custom checkbox when it's checked */
+  .checkBox:checked + label:before {
+    background-color:black;
+  }
+  
+  /* Hide the default checkbox and use a custom style */
+  .checkBox:checked + label:after {
+    content: ""; /* Checkmark symbol */
+    
+    color: #fff; /* Color of the checkmark */
+    font-size: 12px; /* Size of the checkmark */
+   
+  }
+  
+  /* Style the label text */
+  .label-text {
+    font-size: 16px;
+  }
+  
+
+/* CSS */
+.login-button {
+    width: 400px;
+   
+  appearance: button;
+  background-color: #000;
+  background-image: none;
+  border: 1px solid #000;
+ 
+  box-shadow: #fff 3px 3px 0 0,#000 3px 3px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: left;
+  padding-left: 20px;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.login-button:focus {
+  text-decoration: none;
+}
+
+.login-button:hover {
+  text-decoration: none;
+}
+
+.login-button:active {
+  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.login-button:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+
+/* WebKit Browsers */
+.container::-webkit-scrollbar {
+  width: 6px;
+ 
+}
+
+.container::-webkit-scrollbar-track {
+  background:white;
+  border-radius: 3px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background:black;
+
+  border-radius: 3px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+.checkbox-wrapper-30 {
+  height: 37px;
+  
+}
+
+.checkbox-wrapper-30 .checkbox {
+  
+  --bg: transparent;
+  border: 4px;
+  --brdr: rgba(0, 0, 0, 1);
+  --brdr-actv: #8f44fd;
+  --brdr-hovr: #333;
+  --dur: calc((var(--size, 2) / 2) * 0.6s);
+  display: inline-block;
+  width: 23px; /* Set the width and height of the checkbox */
+    height: 23px;
+    border: 1px solid #333; /* Border color */
+  position: relative;
+}
+.checkbox-wrapper-30 .checkbox:after {
+  content: "";
+  width: 100%;
+  padding-top: 100%;
+  display: block;
+  
+}
+.checkbox-wrapper-30 .checkbox > * {
+  position: absolute;
+}
+.checkbox-wrapper-30 .checkbox input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  background-color: var(--bg);
+  border-radius: 0px;
+  border: calc(var(--newBrdr, var(--size, 1.4)) * 1px) solid;
+  color: var(--newBrdrClr, var(--brdr));
+  outline: none;
+  margin: 0;
+  padding: 0;
+  transition: all calc(var(--dur) / 3) linear;
+  
+}
+.checkbox-wrapper-30 .checkbox input:hover,
+.checkbox-wrapper-30 .checkbox input:checked {
+  --newBrdr: calc(var(--size, 1) * 2);
+  
+}
+.checkbox-wrapper-30 .checkbox input:hover {
+  --newBrdrClr: var(--brdr-hovr);
+}
+.checkbox-wrapper-30 .checkbox input:checked {
+  --newBrdrClr: black;/*--border li bi dawe!*/
+  
+  transition-delay: calc(var(--dur) / 1.3);
+}
+.checkbox-wrapper-30 .checkbox input:checked + svg {
+  --dashArray: 16 93;
+  --dashOffset: 109;
+  
+}
+.checkbox-wrapper-30 .checkbox svg {
+  --stroke: black; /* Set the stroke color to black */
+  fill: none;
+  left: 0;
+  pointer-events: none;
+  stroke: var(--stroke);
+  stroke-dasharray: var(--dashArray, 93);
+  stroke-dashoffset: var(--dashOffset, 94);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  top: 0;
+  transition: stroke-dasharray var(--dur), stroke-dashoffset var(--dur);
+}
+
+
+
+.checkbox-wrapper-30 .checkbox svg,
+.checkbox-wrapper-30 .checkbox input {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.separator{
+  display: none;
+  justify-self: flex-start;align-items: center;height: 70px;width: 100%;box-sizing: border-box;background-color: whitesmoke;
+}
+.separator-content{
+  width: 50%;min-width: 50%;color: black;font-weight: bold;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        min-height: 100%;display: flex;justify-content: center;align-items: center;letter-spacing: 1px;
+}
+#spacing{
+  display: none;
+}
+@media (max-width: 950px) {
+  .container{
+    margin:0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+.login-button{
+  width: 100%;
+}
+input[type="date"],
+input[type="tel"],
+.nameText,
+input[type="email"],
+input[type="password"] {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 0px;
+}
+.iti{
+  width: 100%;
+}
+.form{
+  width: 100%;
+}
+.container{
+background-color: white;
+border: none;
+ height: 100%;
+  box-shadow: none;
+  overflow-y: visible;
+}
+main{
+  background-image: none;
+}
+.separator{
+  display: flex;
+}
+#spacing{
+  display: flex;
+}
+}
+

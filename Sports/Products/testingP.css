@@ -1,0 +1,759 @@
+#top {
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+}
+
+header {
+    color: white;
+}
+
+body, header {
+    margin: 0px;
+    background-color:whitesmoke;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.top-text {
+    color: white;
+    font-size: 11px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 520;
+    letter-spacing: 2px;
+}
+
+a:link {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+a:hover {
+    text-decoration: none;
+
+}
+a:visited{
+  text-decoration: none;
+  color: white;
+}
+
+nav {
+    background-color: whitesmoke;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Adjust the max width as needed */
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.logos {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.img-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: scale-down;
+    margin: 0 10px;
+}
+
+#nikelogo {
+    margin-top: 7px;
+}
+
+#adidaslogo {
+    height: 40px;
+    width: 40px;
+    margin-top: 8px;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.options a {
+    margin: 0 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 520;
+    letter-spacing: 2px;
+    color: black;
+}
+
+:root {
+    --color-primary:black;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  
+  nav > :is(h1, span.material-symbols-outlined) {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+  }
+  
+  nav h1 {
+    background: #343950;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  nav span {
+    color: #fff;
+    font-size: 20px;
+  }
+  
+  a { 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
+    cursor: pointer;
+  }
+  
+  .menu {
+   
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    height: 70px;
+  }
+  
+  
+  
+  .menu li:hover .submenu {
+    height: 85px;
+  }
+  
+  .menu > li:hover > a {
+    color: black;/*For hover on women*/
+  }
+  
+  .menu > li:hover > a::before {
+    visibility: visible;
+    scale: 1 1;
+  }
+  
+  .submenu {
+    z-index: 2;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    width: 100%;
+    background-color: var(--color-primary);
+    height: 0;
+    line-height: 40px;
+    box-sizing: border-box;
+    transition: height 0.3s ease-in-out;
+   
+  }
+  
+  .menu li .submenu a {
+    color: white;
+    opacity: 0;
+    font-size: 16px;
+    transition: opacity 0.25s;
+  }
+  
+  .menu > li:hover .submenu a {
+    opacity: 1;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition: color 0.4s;
+  
+  }
+  
+  .menu > li .submenu a:hover {
+    
+   
+  }
+  
+  .menu > li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 16px;
+    text-decoration: none;
+    position: relative;
+    height: 100%;
+    transition: 0.3s;
+  }
+  
+  .menu > li > a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: 3px;
+    left: 0px;
+    background-color: var(--color-primary);
+    transition: all 0.2s ease-in-out;
+    scale: 0 0;
+    visibility: hidden;
+  }
+  .submenu li{
+  width: 100px;
+  margin-top: 20px;
+  
+  
+  
+  
+  background-color: black;
+  
+  }
+  
+  .submenu li:hover{
+    
+   
+    
+  }
+  .test{
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+  }
+  
+  .submenu li a {
+    position: relative;
+  }
+  
+  .submenu li a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    border-left: 2px solid white;
+    bottom: 2px; /* Adjust as needed to position the underline properly */
+    left: 0;
+    background-color: white;
+    transition: all 0.2s ease-in-out;
+    transform: scale(0);
+    visibility: hidden;
+  }
+  
+  .submenu li:hover a::before {
+    visibility: visible;
+    transform: scale(1);
+    
+  }
+.search-buttons {
+    display: flex;
+    align-items: center;
+    
+}
+
+.search-buttons {
+    display: flex;
+    align-items: center;
+    
+}
+
+.search{
+  --padding:14px;
+  width:max-content;
+  width: fixed;
+  display: flex;
+  align-items: center;
+  padding:var(--padding);
+  border-radius: 18px;
+  background-color: black;
+   height: 5px;
+   transition: box-shadow 0.25s;
+ 
+}
+.search:focus-within{
+  box-shadow: 0 0 10px rgba(0,0, 0, 0.75) ;
+ 
+}
+.search-input{
+  font-size: 12px;
+  font-family: 'Lexend',sans-serif;
+  color: #333;
+  margin-left: 2px;
+  background: transparent;
+  border:none;
+  outline: none;
+  width: 150px;
+ 
+}
+.search-input:focus-within{
+  color :white;
+}
+.search-input::placeholder,
+.search-icon{
+  border:none;
+  color:white;
+  
+}
+.nav-button {
+   
+ background-color: black;
+    color:white;
+border: none;
+
+
+  width: 30px;
+  height: 30px;
+    
+    margin-left: 10px;
+    border-radius: 400px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-button:hover { 
+  box-shadow: 0 0 10px rgba(0,0,0,0.75);
+   
+   
+   
+
+}
+main {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Disable horizontal scrolling */
+    -ms-overflow-style: none;
+          scrollbar-width: none;
+}
+
+
+
+.body-header{
+    background-color: whitesmoke;
+    font-weight: 400;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+font-size: 28px;
+display: flex;
+justify-content: space-between;
+margin-top: 50px;
+padding-left:60px;
+padding-right:60px;
+}
+#MenHeader{
+    text-decoration: underline;
+    text-underline-offset: 25px;
+    text-decoration-thickness: 4px;
+    
+    color: black;
+
+}
+.Categories{
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+
+.product-grid {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px; /* Space between items */
+  padding: 20px; /* Padding around the grid */
+  
+}
+
+.product-card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 23.5%; /* Adjust width to fit more items in a row */
+  margin-bottom: 20px; /* Space between rows */
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative; /* Ensure the favorite button is positioned correctly */
+  
+}
+
+
+
+/* Styling for the favorite button */
+.favorite-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.favorite-btn.active {
+  color: black;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.product-info {
+    padding: 10px 0px 0px 10px;
+    min-height: 140px;
+   position: relative;
+}
+
+.product-info h2 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.product-info p {
+    margin: 5px 0;
+    color: #555;
+}
+#membership-text{
+    margin-top: 42px;
+    margin-left: 42px;
+ }
+.membership{
+    height: 150px;
+    background-color: white;
+    Color:black;
+    display: flex;
+    justify-content: space-around;
+    font-size: 32px;
+}
+.membership-logos{
+    margin-left:-20px;
+    margin-top: 40px;
+}
+.Create-now-button {
+   margin-left: 40px;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    padding: 10px 20px;
+    border: 2px solid black;
+    text-transform: uppercase;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+
+    text-decoration: none;
+box-shadow:3px 3px #333;
+transition: background-color 0.2s, color 0.3s; /* Smooth transitions */
+
+}
+
+.Create-now-button:hover {
+background-color: black;
+color:white;
+box-shadow: none;
+
+}
+#Kobe-logo{
+    width: 130px;
+    height:70px;
+  
+}
+#Jordan-logo{
+    margin-left:-10px;
+
+}
+
+.footer-div{
+   
+  margin-top:0px;
+padding-top: 20px;
+padding-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-flow:row nowrap; 
+  background-color:white;
+  
+}
+.first-column,.second-column,.third-column,.fourth-column,.fifth-column{
+  display: flex;
+  flex-flow: column nowrap;
+ margin: 2px;
+ color:black;
+
+
+
+}
+
+.first-column p,.second-column p,.third-column p,.fourth-column p,.fifth-column p{
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
+ font-size: 14px;
+ margin-bottom: -8px;
+
+transition:all 0.3s ease;
+}
+.first-column p:hover,.second-column p:hover,.third-column p:hover,.fourth-column p:hover{
+
+color: #333;
+padding-left: 8px;
+}
+.first-column b,.second-column b,.third-column b,.fourth-column b,.fifth-column b{
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  font-size: 22px;
+
+margin-bottom: 8px;
+
+ 
+
+
+}
+
+
+.social-icons a {
+text-decoration: none;
+color: black;
+transition: color 0.3s ease;
+}
+
+
+.social-icons a:hover{
+color:#222222c6;
+}
+footer{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 520;
+}
+.legal-group{
+  background-color: black;
+  color: whitesmoke;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 40px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+font-size: 13px;
+font-weight: 520;
+
+}
+.page-wrapper {
+  transition: 450ms;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-start; /* Aligns content to the left when sidebar slides in */
+}
+
+.page-content {
+  text-align: center;
+  transition: 450ms;
+  background-color: honeydew;
+}
+
+.sidebar {
+  width: 400px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  
+  background-color: white;
+  color: black;
+  transition: 450ms;
+}
+
+.sidebar.menu-1 {
+  right: -400px; /* Initially hidden on the right */
+  left: auto; /* Ensure it's not affected by left positioning */
+}
+
+.menu-toggle.menu-1-toggle {
+  right: 25px; /* Position the toggle on the right */
+  left: auto; /* Ensure it's not affected by left positioning */
+  border-color: black;
+  color: black;
+}
+
+.menu-toggle .menu-label {
+  display: block;
+  
+}
+
+.menu-toggle .close-label {
+  display: none;
+  color: black;
+  padding-right: 20px;
+}
+
+#menu1Toggle {
+  display: none;
+  
+}
+
+#menu1Toggle:checked ~ .page-wrapper .sidebar.menu-1 {
+  right: 0; /* Slide the sidebar in from the right */
+  box-shadow: 0 0 15px #000;
+}
+
+#menu1Toggle:checked ~ .page-wrapper .menu-toggle.menu-1-toggle {
+  right: 215px; /* Move the toggle to the right when the sidebar is open */
+  left: auto; /* Ensure it's not affected by left positioning */
+}
+
+#menu1Toggle:checked ~ .page-wrapper .menu-toggle.menu-1-toggle .menu-label {
+  display: none;
+ 
+}
+
+#menu1Toggle:checked ~ .page-wrapper .menu-toggle.menu-1-toggle .close-label {
+  display: block;
+  
+}
+.favorites-container{
+  height: 100%;
+}
+#no-favorites-message {
+  position: absolute; /* Absolute positioning to center the message */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust the position to be truly centered */
+  font-size: 14px; /* Adjust as needed */
+  color: #555; /* Adjust as needed */
+  text-align: center; /* Center text inside the message */
+  
+}
+.product-favorite-card{
+  min-width: 400px;
+  min-height: 200px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+ 
+}
+.product-img img{
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: scale-down;
+
+}
+.product-desc{
+
+  min-height: 200px;
+  min-width: 200px;
+  display: flex;
+  justify-content:space-between;
+  flex-direction: column;
+ 
+ }
+ .remove-btn-div{
+  min-width: 150px;
+  max-height: 30px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content:flex-end;
+}
+
+
+.product-info h2 {
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.product-info p {
+  margin: 5px 0;
+  color: #555;
+}
+#darkOverlay {
+ visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Adjust opacity (0.5 is 50%) */
+  z-index: 1; /* Ensures it’s on top of other elements */
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+.trash{
+  background-color: white;
+  border-radius: 400px;
+  padding:5px 7px;
+  border: none;
+  opacity: 0;
+  visibility: hidden;
+  border: 1px solid transparent; /* Set initial border to transparent */
+padding-right: 15px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  
+}
+.trash:hover{
+  
+  transform: scale(1.2);
+}
+.product-favorite-card:hover .trash {
+  opacity: 1;
+  visibility: visible;
+ 
+}
+.add-to-cart-div{
+    width: 100%;
+    min-height: 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+   position: absolute;
+   bottom: 0; /* Align the child div to the bottom of the parent */
+   left: 0; /* Optional, align to the left of the parent */
+    
+}
+.Cart{
+    background-color: transparent;
+    border-radius: 400px;
+    padding:5px 7px;
+    border: none;
+    opacity: 0;
+    visibility: hidden;
+    border: 1px solid transparent; /* Set initial border to transparent */
+  padding-right: 8px;
+    transition: all 0.3s ease-in-out;
+}
+.Cart:hover{
+  
+    transform: scale(1.25);
+  }
+  .product-card:hover .Cart{
+    opacity: 1;
+    visibility: visible;
+   
+  }
+.product-desc-div{
+   display: block;
+   justify-content: space-between;
+    
+}
