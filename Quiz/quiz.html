@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Webpage</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JT2V2V274Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JT2V2V274Q');
+</script>
+</head>
+
+<body>
+    
+    <a href="../index.html" class="main-page-link"><i class="fas fa-home"></i></a>
+   
+    <div class="quiz-container" id="quiz-container">
+
+      <i class="fa-solid fa-gear" id="settings-icon" onclick="openSettings()"></i>
+
+      <div id="loading-overlay">
+        <div class="spinner"></div>
+        <p>Loading questions...</p>
+    </div>
+    <div id="Name" >
+      <h2 style="margin-top: 18px;">Enter Your Name</h2>
+
+  <label for="Fname">First Name</label>
+ 
+  <input type="text" class="Names" id="Fname" maxlength="15" placeholder="First Name" onblur="Name()" onfocus="Name()" onkeydown="disableSpace(event)" autocomplete="off">
+
+  
+    
+  
+
+  
+  <label for="Lname" style="margin-top: 20px;">Last Name</label>
+ 
+    <input type="text" class="Names" id="Lname" maxlength="15" placeholder="Last Name" onblur="Name()" onfocus="Name()" onkeydown="disableSpace(event)" autocomplete="off">
+
+   
+   
+   
+
+  <button class="confirm-quiz-btn" id="confirmButton" onclick="confirmName()" style="margin-top: 25px;">Confirm</button>
+</div>
+      <div id="settings">
+        <h2 style="margin-top: 18px;">Select Quiz Settings</h2>
+
+    <label for="difficulty-dropdown">Choose Difficulty</label>
+    <div class="dropdown-wrapper">
+    <div class="option-dropdown" id="difficulty-dropdown" onclick="openDropdown(this,'diff-dp')">
+       <span style="padding-left: 5px;" id="difficultyPlaceholder">Select Difficulty</span>
+       <i class="fa-solid fa-chevron-down" style="font-size: 11px;"></i>
+      
+    </div>
+    <div class="dropdown" id="diff-dp">
+      <div class="dropdown-options" onclick="modifyAPIdiff('easy')"><span>Easy</span></div>
+      <div class="dropdown-options" onclick="modifyAPIdiff('medium')"><span>Medium</span></div>
+      <div class="dropdown-options" onclick="modifyAPIdiff('hard')"><span>Hard</span></div>
+
+   </div>
+    </div>
+    <label for="topic-dropdown" style="margin-top: 20px;">Choose Topic</label>
+    <div class="dropdown-wrapper">
+      <div class="option-dropdown" id="Topic" onclick="openDropdown(this,'top-dp')">
+         <span style="padding-left: 5px;" id="topicPlaceholder">Select Topic</span>
+         <i class="fa-solid fa-chevron-down" style="font-size: 11px;"></i>
+        
+      </div>
+      <div class="dropdown" id="top-dp" style="justify-content: flex-start;">
+   
+      <div class="dropdown-options" onclick="modifyAPI(this,'9')"><span>General Knowledge</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'17')"><span>Science</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'18')"><span>Computer Science</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'19')"><span>Mathematics</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'11')"><span>Video Games</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'23')"><span>History</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'21')"><span>Sports</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'22')"><span>Geography</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'27')"><span>Animals</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'25')"><span>Art</span></div>
+      <div class="dropdown-options" onclick="modifyAPI(this,'11')"><span>Films</span></div>
+  
+     </div>
+      </div>
+
+    <button class="confirm-quiz-btn" id="confirmButton" onclick="createAPI()"  style="margin-top: 25px;">Confirm</button>
+  </div>
+        <div class="end" id="end">
+            <h1>Quiz Completed!</h1>
+            <p><span id="username"></span>'s Score: <span id="score"></span>/10</p>
+            <button id="restart-btn" class="start-btn" onclick="restartQuiz()">Try Again</button>
+        </div>
+
+       <div class="intro" id="intro">
+            <h1>Quiz Yourself</h1>
+            <p>Are You Ready?</p>
+            <button id="start-btn" class="start-btn" onclick="startQuiz()">Start Quiz</button>
+        </div>
+       
+     <div id="quiz">
+        <div class="question" id="question">
+         
+        </div>
+
+        <div class="options">
+            <button onclick="selectAnswer('A')" id="A"></button>
+            <button onclick="selectAnswer('B')" id="B"></button>
+            <button onclick="selectAnswer('C')" id="C"></button>
+            <button onclick="selectAnswer('D')" id="D"></button>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+</div>
+
+    <script>
+  let quizQuestions = [];
+  let currentQuestion = 0;
+  let nbOfCorrectAnswers = 0;
+  let streak = 0;
+  const totalQuestions = 10;  // Total nu//mber of questions
+  let api="";
+  let difficulty='easy';
+  let category='9';//defaults
+  let Fname=document.getElementById("Fname");
+  let Lname=document.getElementById("Lname")
+  let FullName="";
+
+  function openDropdown(dropdown1,id) {
+  const dropdowns = document.querySelectorAll('.dropdown');
+  const currentDropdown = document.getElementById(id);
+  let otherDP="";
+  if(dropdown1.id=="Topic"){
+otherDP=document.getElementById("difficulty-dropdown");
+  }
+  else{
+    otherDP=document.getElementById("Topic");
+  }
+
+
+  // Close all dropdowns except the one being opened
+  dropdowns.forEach(dropdown => {
+    if (dropdown !== currentDropdown) {
+      dropdown.classList.remove('open');
+  
+    }
+   
+
+    
+  });
+
+  if (currentDropdown.classList.contains('open')) {
+    currentDropdown.classList.remove('open');
+    dropdown1.style.backgroundColor="#333";
+    dropdown1.style.borderColor="#666";
+
+  } else {
+    currentDropdown.classList.add('open');
+    dropdown1.style.backgroundColor="rgb(100, 109, 237)";
+    dropdown1.style.borderColor="white";
+  }
+ 
+
+}
+  function modifyAPI(catName,catNum){
+    category=catNum;
+   if(category==19 && difficulty=="easy"){
+    difficulty="medium";
+
+   }
+    let dropdownPlaceholder=document.getElementById("topicPlaceholder");
+    dropdownPlaceholder.innerHTML=catName.innerText;
+    openDropdown('top-dp');
+    console.log(category);
+  }
+  function modifyAPIdiff(diff){
+   
+    difficulty=diff;
+    if(category==19 && difficulty=="easy"){
+    difficulty="medium";
+
+   }
+     
+    let dropdownPlaceholder=document.getElementById("difficultyPlaceholder");
+    dropdownPlaceholder.innerHTML=diff.substring(0,1).toUpperCase()+diff.substring(1);
+    openDropdown('diff-dp');
+    console.log(diff);
+  }
+  
+  function createAPI(){
+    api="https://opentdb.com/api.php?amount=10&category="+category+"&difficulty="+difficulty+"&type=multiple";
+    console.log(api);
+  
+   
+    document.getElementById("quiz").style.display="block";
+    document.getElementById("settings").style.display="none";  
+    fetchQuestions(api); 
+    loadNextQuestion();
+  }
+//window.onload=fetchQuestions();
+  function fetchQuestions(API){
+    document.getElementById('loading-overlay').classList.add('show');
+  //Fetch the quiz questions from the API
+  fetch(API)
+    .then(res => res.json())
+    .then(data => {
+      quizQuestions = data.results.map((loadedQuestion) => {
+        const formattedQuestion = {
+          question: decodeHtml(loadedQuestion.question),
+          options: [
+            ...loadedQuestion.incorrect_answers.map(answer => decodeHtml(answer)),
+            decodeHtml(loadedQuestion.correct_answer)
+          ],
+          answer: decodeHtml(loadedQuestion.correct_answer)
+        };
+
+        //shuffle the options randomly
+        formattedQuestion.options = shuffleArray(formattedQuestion.options);
+
+        return formattedQuestion;
+      });
+
+      document.getElementById('loading-overlay').classList.remove('show');
+      loadNextQuestion(); //start displaying the first question
+
+    })
+    .catch(err => {
+      console.error('Error loading questions:', err);
+    });
+}
+
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+  }
+
+  //decode HTML entities because from api it is incomprehensible special characters 
+  function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
+  window.onload = () => document.getElementById("intro").style.display = "flex";
+
+  const progressBar = document.getElementById('progress-bar');
+  
+
+  function startQuiz() {
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("Name").style.display="flex";
+    document.getElementsByClassName("intro")[0].style.display = "none";
+    containerChecker();//just for design between states
+    
+  }
+  function openSettings(){
+    currentQuestion = 0;
+    nbOfCorrectAnswers = 0;
+    var end=document.getElementById("end");
+    var settingsButton=document.getElementById("settings-icon");
+    var settings=document.getElementById("settings");
+    end.style.display="none";
+    settingsButton.style.display="none";
+    settings.style.display="flex";
+    updateProgressBar();
+    loadNextQuestion();
+
+  }
+  function containerChecker(){
+    var container=document.getElementById("quiz-container");
+    var settings= document.getElementById("settings");
+    if(settings.display=="block"){
+      container.style.justifyContent="flex-start";
+    }
+    else{
+      container.style.justifyContent="center";
+    }
+  }
+
+  function selectAnswer(answer) {
+    if (document.getElementById(answer).textContent==quizQuestions[currentQuestion].answer) {
+      nbOfCorrectAnswers++;
+      streak++;
+    } else {
+      streak = 0;
+    }
+    currentQuestion++;
+
+    if (currentQuestion < totalQuestions) {
+      updateProgressBar();
+      loadNextQuestion();
+    } else {
+   
+      document.getElementById("end").style.display = "flex";
+      document.getElementById("settings-icon").style.display = "flex";
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("score").innerHTML = nbOfCorrectAnswers;
+      document.getElementById("username").innerHTML=FullName;
+
+      //change the score color based on performance
+      if (nbOfCorrectAnswers < 5) {
+        document.getElementById("score").style.color = "red";
+      } else if (nbOfCorrectAnswers <= 9) {
+        document.getElementById("score").style.color = "rgb(100, 109, 237)";
+      } else {
+        document.getElementById("score").style.color = "lightgreen";
+      }
+    }
+  }
+
+  function updateProgressBar() {
+    const progressPercentage = (currentQuestion / totalQuestions) * 100;
+    progressBar.style.width = progressPercentage + '%';
+
+    if (nbOfCorrectAnswers <4 && currentQuestion >=6) {
+      progressBar.style.backgroundColor = "red"; //impossible to get above 4 correct answers
+    } else if (streak >=3) {
+      progressBar.style.backgroundColor ="lightgreen"; //streak
+    } else if (nbOfCorrectAnswers >=4 && nbOfCorrectAnswers <=6) {
+      progressBar.style.backgroundColor ="rgb(100, 109, 237)";//mid score
+    } else {
+      progressBar.style.backgroundColor ="white";
+    }
+  }
+
+  function loadNextQuestion() {
+    //populate the next question and options
+    document.getElementById('question').textContent = quizQuestions[currentQuestion].question;
+    document.getElementById("A").textContent = quizQuestions[currentQuestion].options[0];
+    document.getElementById("B").textContent = quizQuestions[currentQuestion].options[1];
+    document.getElementById("C").textContent = quizQuestions[currentQuestion].options[2];
+    document.getElementById("D").textContent = quizQuestions[currentQuestion].options[3];
+  }
+  function restartQuiz() {
+   
+    currentQuestion = 0;
+    nbOfCorrectAnswers = 0;
+    document.getElementById("settings-icon").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("end").style.display = "none";
+    updateProgressBar();
+    fetchQuestions(api);
+    loadNextQuestion();
+
+    
+  }
+ 
+
+  //for UX user wihtout it user click a button it stays scaled
+  if (window.innerWidth < 900) {
+    document.querySelectorAll('.options button').forEach(button => {
+      button.addEventListener('touchstart', () => {
+        button.style.background = "#6f2e95";
+        button.style.transform = "scale(0.98)";
+      });
+
+      button.addEventListener('touchend', () => {
+        setTimeout(() => {
+          button.style.background = "rgb(100, 109, 237)";
+          button.style.transform = "scale(1)";
+          button.blur();
+        }, 100);
+      });
+    });
+  }
+  
+   const container = document.getElementById('quiz-container');
+
+
+function handleClickOutside(event) {
+  let d1=document.getElementById('difficulty-dropdown');
+  let d2=document.getElementById('Topic');
+  if (!container.contains(event.target)&& document.getElementById("settings").style.display!="none") {
+    difficulty="easy";
+    category=9;
+    d1.style.backgroundColor="#333";
+    d1.style.borderColor="#666";
+    d1.innerHTML="<span style=\"padding-left: 5px;\" id=\"difficultyPlaceholder\">Select Difficulty</span><i class=\"fa-solid fa-chevron-down\" style=\"font-size: 11px;\"></i>"
+    d2.style.backgroundColor="#333";
+    d2.style.borderColor="#666";
+    d2.innerHTML="<span style=\"padding-left: 5px;\" id=\"topicPlaceholder\">Select Topic</span><i class=\"fa-solid fa-chevron-down\" style=\"font-size: 11px;\"></i>"
+for(let i=0;i<2;i++){
+  document.getElementsByClassName("dropdown")[i].classList.remove('open');
+}
+  
+  }
+}
+
+
+document.addEventListener('click', handleClickOutside);
+
+
+function Name() {
+    
+    if (Fname.value !== "" || document.activeElement === Fname) {
+      Fname.style.backgroundColor = "rgb(100, 109, 237)";
+      Fname.style.borderColor = "white";
+    } else {
+      Fname.style.backgroundColor = "#333";
+      Fname.style.borderColor = "#666";
+    }
+
+    
+    if (Lname.value !== "" || document.activeElement === Lname) {
+      Lname.style.backgroundColor = "rgb(100, 109, 237)";
+      Lname.style.borderColor = "white";
+    } else {
+      Lname.style.backgroundColor = "#333";
+      Lname.style.borderColor = "#666";
+    }
+  }
+
+  function confirmName(){
+    if(Fname.value==""||Lname.value==""){
+      alert("Please enter a valid name both fields required");
+      return;
+    }
+    FullName=Fname.value+" "+Lname.value;
+    document.getElementById("Name").style.display="none";
+    document.getElementById("settings").style.display="flex";
+    console.log(FullName);
+
+  }
+  function disableSpace(event) {
+    if (event.key === " ") {
+        event.preventDefault(); // Prevent the default action of the space key
+    }
+}
+
+</script>
+
+   
+</body>
+<style>
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit',sans-serif;
+user-select: none;
+-webkit-tap-highlight-color: transparent;
+}
+
+      .start-btn {
+            background-color: rgb(100, 109, 237);
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.1s ease;
+            margin-bottom: 30px;
+        }
+
+        .start-btn:hover {
+            background: rgb(72, 82, 229);
+            transform: scale(1.05);
+        }
+
+        .start-btn:active {
+            background: #6f2e95;
+            transform: scale(0.98);
+        }
+body {
+    font-family: 'Outfit',sans-serif;
+    background-color:#121212;
+  
+    color: #E0E0E0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.quiz-container {
+    max-width: 600px;
+    width: 90%;
+    background-color:  #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    text-align: center;
+   
+}
+#quiz{
+display: none;
+width: 100%;
+height: 100%;
+}
+
+.question {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.options button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    font-size: 16px;
+    color:white;
+    background-color: rgb(100, 109, 237);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.options button:hover {
+    background:rgb(72, 82, 229);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+    transform: scale(1.02);
+}
+
+.options button:active {
+    background: #6f2e95; 
+    transform: scale(0.98); 
+}
+
+
+.quiz-container {
+    max-width: 600px;
+    width: 90%;
+    min-height: 390px;
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #333333;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 20px;
+    height: 10px; 
+    box-sizing: border-box;
+}
+
+.progress-bar {
+    height: 100%;
+    background: rgb(255, 255, 255);
+    width: 0%;
+    transition: width 0.4s ease-in-out, background 0.3s ease;
+    border-radius: 12px 0 0 12px;
+}
+
+
+.start-btn {
+            background-color: rgb(100, 109, 237);
+            color: white;
+            font-size: 20px;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.1s ease;
+        }
+
+        .start-btn:hover {
+            background-color: rgb(100, 109, 237);
+            transform: scale(1.05);
+        }
+
+        .start-btn:active {
+            background-color: #5C1A67;
+            transform: scale(0.98);
+        }
+        .intro {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .intro h1 {
+            font-size: 2.5em;
+            color: #E0E0E0;
+            margin-bottom: 15px;
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            color: #C0C0C0;
+            margin-bottom: 30px;
+        }
+        .end {
+            height: 100%;
+            width: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            }
+            .end h1 {
+    font-size: 2.5em;
+    color: #E0E0E0;
+    margin-bottom: 15px;
+}
+
+.end p {
+    font-size: 1.2em;
+    color: #C0C0C0;
+    margin-bottom: 30px;
+}
+
+#score {
+    font-weight: bold;
+    color: rgb(100, 109, 237);
+}
+
+.main-page-link {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+}
+
+.main-page-link:hover {
+    opacity: 1;
+    color: #ffffff;
+}
+
+
+.quiz-container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #B0B0B0;
+}
+
+.option-dropdown {
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    border: 1.2px solid #666;
+    margin-bottom: 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.option-dropdown:hover {
+    background-color: rgb(100, 109, 237);
+    border-color: white;
+}
+
+.confirm-quiz-btn {
+    background-color: rgb(100, 109, 237);
+    color: white;
+    font-size: 16px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-quiz-btn:hover {
+    background-color: rgb(72, 82, 229);
+}
+
+.dropdown-wrapper{
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  min-height: 33px;
+}
+
+.dropdown{
+  height: 0px;
+  opacity: 0;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  display: flex; 
+  position: absolute;
+  flex-direction: column;
+    top: 100%;
+    left: 0;
+    width: 100%;
+  margin-top: 4px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    color: #ddd;
+    border-radius:8px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+
+    transition: all 0.35s ease;
+    z-index: 100;
+   
+}
+.open{
+  height: 100px;
+  opacity: 1;
+}
+.dropdown::-webkit-scrollbar {
+        display: none;
+        }
+.dropdown-options{
+  min-height: 33px;
+  height: auto;
+  width: 100%;
+  text-align: left;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-bottom:1px solid #282828;
+  transition: all 0.3s ease;
+}
+.dropdown-options:hover{
+  background-color: rgb(100, 109, 237);
+}
+
+#settings{
+  display: none;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+#settings-icon{
+  display: none;
+  position: absolute; 
+      top: 13px;          
+      right: 10px;        
+      font-size: 17px;    
+      color: #666;       
+      cursor: pointer; 
+      transition: all 0.2s ease;   
+}
+#settings-icon:hover{
+color: white;
+}
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    font-size: 18px;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#loading-overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgb(100, 109, 237);
+    border-top-color: #1a1a1a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+#Name{
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+
+}
+input[type="text"]{
+  background-color: #333;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    border: 1.2px solid #666;
+    margin-bottom: 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
+}
+input[type="text"]::placeholder {
+  color: #aaa;
+  padding-left: 5px;
+
+}
+input[type="text"]:focus{
+  background-color: rgb(100, 109, 237);
+  border-color: white;
+outline: none;
+}
+input[type="text"]:focus::placeholder{
+  color: #d7d7d7;
+}
+    /*when it auto fills it changing styles*/
+input:focus:-webkit-autofill {
+  background-color: rgb(100, 109, 237) !important;
+  border-color: white !important;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@media (max-width:800px){
+    
+}
+@media(max-width:400px){
+    .quiz{
+        height: auto;
+    }
+    .quiz-container{
+        height: auto;
+        box-sizing: border-box;
+    }
+   
+}
+</style>
+
+</html>

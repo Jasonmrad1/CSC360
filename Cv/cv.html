@@ -40,11 +40,11 @@
             <div class="social-media-icons">
                 <a href="https://www.instagram.com/jasonmrad1" target="_blank"><i class="fa-brands fa-instagram"></i></a> 
                 <a href="https://x.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                <a href="../index.html" target="_self"> <i class="fa-brands fa-github"></i></a>
-                <a href="" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/Jasonmrad1" target="_blank"> <i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/jason-mrad-545080362/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
             <div class="usek-container">
-                <img src="output-onlinepngtools.png" alt="usek logo">
+                <img src="usekLogo.png" alt="usek logo">
 
             </div>
         </div>
@@ -257,7 +257,7 @@
     <div class="parent-video-container">
       <div class="video-container" data-type="video" data-title="Clock App" data-description="Watch our custom-built timekeeping app in action — featuring both analog and digital clocks with full timezone support. Designed in JavaFX as a one-week mini project for an Object-Oriented Programming course, this tool also includes a handmade calendar, stopwatch, and timer, all wrapped in dynamically changing designs. A clean blend of functionality, design, and code — built under tight deadlines with precision and creativity.">
         <video name="myVideo" class="background-video" autoplay muted loop>
-          <source src="Projects/cl1.mp4" type="video/mp4" />
+          <source src="Projects/clock.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -282,7 +282,31 @@
         <img src="Projects/quizThumbnail.png" alt="Quiz App Thumbnail" class="thumbnail" style="cursor:pointer; width:100%; border-radius: 10px; object-fit: cover;width: 100%;height: 100%;">
       </div>
     </div>
- <!-- 6th gallery project -->
+      <!-- 6th iframe project with thumbnail -->
+      <div class="parent-video-container">
+      <div class="video-container" data-type="iframe" data-title="Women's Empowerment Website" style="border: 1.5px solid #f1f1f1;" data-description="This website is a comprehensive resource for women's empowerment, featuring a responsive design and interactive elements. It includes sections on career development, health and wellness, and community engagement. The site uses modern web technologies to deliver an engaging user experience across all devices." data-iframe-src="https://jasonmrad1.github.io/CSC360/Women/women.html">
+        <img src="Projects/womenThumbnail.png" alt="Women's Empowerment Website Thumbnail" class="thumbnail" style="cursor:pointer; width:100%; border-radius: 10px; object-fit: cover;width: 100%;height: 100%;">
+      </div>
+    </div>
+      <!-- 7th iframe project with thumbnail -->
+      <div class="parent-video-container">
+      <div class="video-container" data-type="iframe" data-title="Insurance Cost Predictor" data-description="This interactive web application predicts insurance costs based on user inputs such as age, gender, and health history. Built with Python and Streamlit, it provides a user-friendly interface for estimating insurance premiums and offers insights into factors affecting insurance pricing." data-iframe-src="https://jmrad-insurance-ml.streamlit.app">
+        <img src="Projects/insuranceThumbnail.png" alt="Insurance Cost Predictor Thumbnail" class="thumbnail" style="cursor:pointer; width:100%; border-radius: 10px; object-fit: cover;width: 100%;height: 100%;">
+      </div>
+    </div>
+    <!-- 8th iframe project with thumbnail -->
+    <div class="parent-video-container">
+      <div class="video-container" data-type="iframe" data-title="Lebanese Driving Test" data-description="This website is a comprehensive resource for Lebanese driving test preparation, featuring a responsive design and interactive elements. It includes sections on traffic rules, road signs, and practice tests. The site uses modern web technologies to deliver an engaging user experience across all devices." data-iframe-src="https://jasonmrad1.github.io/CSC360/LebDrivingTest/driving.html">
+        <img src="Projects/drivingThumbnail.png" alt="Lebanese Driving Test Thumbnail" class="thumbnail" style="cursor:pointer; width:100%; border-radius: 10px; object-fit: cover;width: 100%;height: 100%;">
+      </div>
+    </div>
+      <!-- 9th iframe project with thumbnail -->
+      <div class="parent-video-container">
+      <div class="video-container" data-type="image" data-title="Hotel Booking App" data-description="This web application allows users to search, filter, and book hotels based on their preferences. It features a responsive design and integrates with a hotel booking API to provide real-time availability and pricing information." data-image-src="Projects/hotelThumbnail.png">
+        <img src="Projects/hotelThumbnail.png" alt="Hotel Booking App Thumbnail" class="thumbnail" style="cursor:pointer; width:100%; border-radius: 10px; object-fit: cover;width: 100%;height: 100%;">
+      </div>
+    </div>
+ <!-- 10th gallery project -->
 <div class="parent-video-container">
   <div class="video-container" data-type="gallery" data-title="Motion App" data-description="This Flutter and Dart-powered mobile app is an all-in-one fitness solution designed to bring the power of personal training directly to your phone. The app features a personalized homepage where users can view coach-assigned workouts, making it easy to stay on track with fitness goals. It includes comprehensive body measurement and weight tracking tools with support for both metric (kg, cm) and imperial (lbs, inches) units, alongside progress graphs to visualize improvements over time.
 
@@ -513,6 +537,59 @@ function hideDescription(immediate = false) {
   });
 }
 
+// Open zoom on image thumbnail click
+const imageThumbnails = document.querySelectorAll('.video-container[data-type="image"] > img.thumbnail');
+
+imageThumbnails.forEach(img => {
+  img.addEventListener('click', e => {
+    e.preventDefault();
+
+    const container = img.closest('.video-container');
+    const imageSrc = container.dataset.imageSrc;
+    if (!imageSrc) return;
+
+    zoomVideo.style.display = 'none';
+    zoomVideo.pause();
+    zoomVideo.src = '';
+
+    zoomIframe.style.display = 'none';
+    zoomIframe.src = '';
+
+    zoomGallery.style.display = 'none';
+    zoomGallery.innerHTML = '';
+
+    // Display thumbnail image
+    const imgClone = img.cloneNode(true);
+    imgClone.style.width = '100%';
+    imgClone.style.height = '80vh';
+    imgClone.style.borderRadius = '14px';
+    imgClone.style.objectFit = 'cover';
+    imgClone.style.display = 'block';
+
+    const zoomMediaContainer = document.querySelector('.zoom-media-container');
+    const prevImg = zoomMediaContainer.querySelector('.zoom-image-display');
+    if (prevImg) prevImg.remove();
+
+    imgClone.classList.add('zoom-image-display');
+    zoomMediaContainer.appendChild(imgClone);
+
+    descTitle.textContent = container.dataset.title || '';
+    descText.textContent = container.dataset.description || '';
+
+    hideDescription(true);
+
+    overlay.classList.add('active');
+    document.body.classList.add('no-scroll');
+
+    gsap.fromTo(imgClone,
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }
+    );
+
+    overlay.focus();
+  });
+});
+
 // Open zoom on gallery thumbnail click
 const galleryThumbnails = document.querySelectorAll('.video-container[data-type="gallery"] > img.thumbnail');
 const zoomGallery = document.getElementById('zoomGallery');
@@ -571,469 +648,6 @@ galleryThumbnails.forEach(img => {
 
 </script>
 
-<!-- <div class="ag-timeline-block">
-  <div class="ag-timeline_title-box">
-    <div class="ag-timeline_tagline">Professional Journey</div>
-    <div class="ag-timeline_title">Work Experience</div>
-  </div>
-  <section class="ag-section">
-    <div class="ag-format-container">
-      <div class="js-timeline ag-timeline">
-        <div class="js-timeline_line ag-timeline_line">
-          <div class="js-timeline_line-progress ag-timeline_line-progress"></div>
-        </div>
-        <div class="ag-timeline_list">
-          <div class="js-timeline_item ag-timeline_item">
-            <div class="ag-timeline-card_box">
-              <div class="js-timeline-card_point-box ag-timeline-card_point-box">
-                <div class="ag-timeline-card_point">2023</div>
-              </div>
-              <div class="ag-timeline-card_meta-box">
-                <div class="ag-timeline-card_meta">Senior Developer</div>
-              </div>
-            </div>
-            <div class="ag-timeline-card_item">
-              <div class="ag-timeline-card_inner">
-                <div class="ag-timeline-card_img-box">
-                  <img src="https://via.placeholder.com/100x50/6a5acd/ffffff?text=TechCorp" class="ag-timeline-card_img" width="100" height="50" />
-                </div>
-                <div class="ag-timeline-card_info">
-                  <div class="ag-timeline-card_title">TechCorp Inc.</div>
-                  <div class="ag-timeline-card_desc">
-                    Leading a team of developers to build scalable web applications using React and Node.js. Implemented CI/CD pipelines reducing deployment time by 40%.
-                  </div>
-                </div>
-              </div>
-              <div class="ag-timeline-card_arrow"></div>
-            </div>
-          </div>
-
-          <div class="js-timeline_item ag-timeline_item">
-            <div class="ag-timeline-card_box">
-              <div class="ag-timeline-card_meta-box">
-                <div class="ag-timeline-card_meta">Frontend Developer</div>
-              </div>
-              <div class="js-timeline-card_point-box ag-timeline-card_point-box">
-                <div class="ag-timeline-card_point">2021</div>
-              </div>
-            </div>
-            <div class="ag-timeline-card_item">
-              <div class="ag-timeline-card_inner">
-                <div class="ag-timeline-card_img-box">
-                  <img src="Murex.svg" class="ag-timeline-card_img" width="100" height="50" alt="" />
-                </div>
-                <div class="ag-timeline-card_info">
-                  <div class="ag-timeline-card_title">WebSolutions LLC</div>
-                  <div class="ag-timeline-card_desc">
-                    Developed responsive user interfaces with React and Redux. Collaborated with UX designers to improve customer conversion rates by 25%.
-                  </div>
-                </div>
-              </div>
-              <div class="ag-timeline-card_arrow"></div>
-            </div>
-          </div>
-
-          <div class="js-timeline_item ag-timeline_item">
-            <div class="ag-timeline-card_box">
-              <div class="js-timeline-card_point-box ag-timeline-card_point-box">
-                <div class="ag-timeline-card_point">2019</div>
-              </div>
-              <div class="ag-timeline-card_meta-box">
-                <div class="ag-timeline-card_meta">Junior Developer</div>
-              </div>
-            </div>
-            <div class="ag-timeline-card_item">
-              <div class="ag-timeline-card_inner">
-                <div class="ag-timeline-card_img-box">
-                  <img src="Murex.svg" class="ag-timeline-card_img" width="100" height="50" alt="" />
-                </div>
-                <div class="ag-timeline-card_info">
-                  <div class="ag-timeline-card_title">StartUp Ventures</div>
-                  <div class="ag-timeline-card_desc">
-                    Built and maintained company website using JavaScript and PHP. Assisted in developing internal tools that automated repetitive tasks.
-                  </div>
-                </div>
-              </div>
-              <div class="ag-timeline-card_arrow"></div>
-            </div>
-          </div>
-
-          <div class="js-timeline_item ag-timeline_item">
-            <div class="ag-timeline-card_box">
-              <div class="ag-timeline-card_meta-box">
-                <div class="ag-timeline-card_meta">Intern</div>
-              </div>
-              <div class="js-timeline-card_point-box ag-timeline-card_point-box">
-                <div class="ag-timeline-card_point">2018</div>
-              </div>
-            </div>
-            <div class="ag-timeline-card_item">
-              <div class="ag-timeline-card_inner">
-                <div class="ag-timeline-card_img-box">
-                  <img src="Murex.svg" class="ag-timeline-card_img" width="100" height="50" alt="" />
-                </div>
-                <div class="ag-timeline-card_info">
-                  <div class="ag-timeline-card_title">Digital Agency</div>
-                  <div class="ag-timeline-card_desc">
-                    Learned web development fundamentals while assisting senior developers. Created small components and fixed bugs in existing projects.
-                  </div>
-                </div>
-              </div>
-              <div class="ag-timeline-card_arrow"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<style>
-html {
-  overflow-x: hidden;
-}
-
-.ag-format-container {
-  width: 800px; /* Increased width */
-  margin: 0 auto;
-  position: relative;
-}
-
-.ag-timeline-block {
-  padding: 150px 0;
-}
-.ag-timeline_title-box {
-  padding: 0 0 30px;
-  text-align: center;
-}
-.ag-timeline_tagline {
-  font-size: 24px;
-  color: #6a5acd;
-  margin-bottom: 10px;
-}
-.ag-timeline_title {
-  font-size: 48px;
-  color: #483d8b;
-  font-weight: bold;
-}
-
-.ag-timeline_item {
-  margin: 0 0 30px;
-  position: relative;
-}
-.ag-timeline_item:nth-child(2n) {
-  text-align: right;
-}
-
-.ag-timeline {
-  display: inline-block;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  position: relative;
-}
-.ag-timeline_line {
-  width: 2px;
-  background-color: #e6e6fa;
-  position: absolute;
-  top: 2px;
-  left: 50%;
-  bottom: 0;
-  overflow: hidden;
-  transform: translateX(-50%);
-}
-
-.ag-timeline_line-progress {
-  width: 100%;
-  height: 20%;
-  background-color: #9370db;
-}
-
-.ag-timeline-card_box {
-  padding: 0 0 15px 50%;
-}
-.ag-timeline_item:nth-child(2n) .ag-timeline-card_box {
-  padding: 0 50% 15px 0;
-}
-.ag-timeline-card_point-box {
-  display: inline-block;
-  margin: 0 14px 0 -28px;
-  position: relative;
-  z-index: 1;
-}
-.ag-timeline_item:nth-child(2n) .ag-timeline-card_point-box {
-  margin: 0 -28px 0 14px;
-}
-.ag-timeline-card_point {
-  height: 50px; /* Increased size */
-  line-height: 50px; /* Centered text */
-  width: 50px; /* Increased size */
-  border: 3px solid #9370db;
-  background-color: #fff;
-  text-align: center;
-  font-size: 18px; /* Larger font */
-  color: #483d8b;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.js-ag-active .ag-timeline-card_point {
-  color: #fff;
-  background-color: #6a5acd;
-  border-color: #6a5acd;
-}
-.ag-timeline-card_meta-box {
-  display: inline-block;
-}
-.ag-timeline-card_meta {
-  margin: 10px 0 0;
-  font-weight: bold;
-  font-size: 18px;
-  color: #6a5acd;
-}
-.ag-timeline-card_item {
-  display: inline-block;
-  width: 48%; /* Adjusted width */
-  margin: -70px 0 0; /* Adjusted margin */
-  background-color: #fff;
-  border: 1px solid #e6e6fa;
-  opacity: 0;
-  border-radius: 6px;
-  box-shadow: 0 3px 10px rgba(106, 90, 205, 0.1);
-  transition: transform 0.5s, opacity 0.5s;
-  position: relative;
-}
-.ag-timeline_item:nth-child(2n + 1) .ag-timeline-card_item {
-  transform: translateX(-200%);
-}
-.ag-timeline_item:nth-child(2n) .ag-timeline-card_item {
-  transform: translateX(200%);
-}
-.js-ag-active.ag-timeline_item:nth-child(2n + 1) .ag-timeline-card_item,
-.js-ag-active.ag-timeline_item:nth-child(2n) .ag-timeline-card_item {
-  opacity: 1;
-  transform: translateX(0);
-}
-.ag-timeline-card_arrow {
-  height: 16px;
-  width: 16px;
-  margin-top: 20px;
-  background-color: #fff;
-  border-right: 1px solid #e6e6fa;
-  border-bottom: 1px solid #e6e6fa;
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: rotate(45deg);
-}
-.ag-timeline_item:nth-child(2n + 1) .ag-timeline-card_arrow {
-  margin-left: calc(-16px / 2);
-  margin-right: calc(-16px / 2);
-}
-.ag-timeline_item:nth-child(2n) .ag-timeline-card_arrow {
-  margin-left: -10px;
-  right: auto;
-  left: 0;
-}
-.ag-timeline-card_img {
-  width: 100%;
-  padding: 15px;
-  box-sizing: border-box;
-}
-.ag-timeline-card_info {
-  padding: 0 20px 20px; /* Increased padding */
-}
-.ag-timeline-card_title {
-  display: none;
-  margin: 0 0 10px;
-  font-weight: bold;
-  font-size: 20px; /* Larger font */
-  color: #483d8b;
-}
-.ag-timeline-card_desc {
-  line-height: 1.5;
-  font-size: 15px; /* Slightly larger font */
-  color: #666;
-}
-
-@media only screen and (max-width: 979px) {
-  .ag-format-container {
-    width: 90%;
-  }
-
-  .ag-timeline_line {
-    left: 40px; /* Adjusted position */
-  }
-
-  .ag-timeline_item:nth-child(2n) {
-    text-align: left;
-  }
-
-  .ag-timeline-card_box,
-  .ag-timeline_item:nth-child(2n) .ag-timeline-card_box {
-    padding: 0 0 15px;
-  }
-  .ag-timeline-card_meta-box {
-    display: none;
-  }
-  .ag-timeline-card_point-box,
-  .ag-timeline_item:nth-child(2n) .ag-timeline-card_point-box {
-    margin: 0 0 0 15px;
-  }
-  .ag-timeline-card_point {
-    height: 45px;
-    line-height: 45px;
-    width: 45px;
-    font-size: 16px;
-    left: 0;
-  }
-  .ag-timeline-card_item {
-    width: auto;
-    margin: -60px 0 0 80px; /* Adjusted margin */
-  }
-  .ag-timeline_item:nth-child(2n + 1) .ag-timeline-card_item,
-  .ag-timeline_item:nth-child(2n) .ag-timeline-card_item {
-    transform: translateX(200%);
-  }
-  .ag-timeline_item:nth-child(2n + 1) .ag-timeline-card_arrow {
-    right: auto;
-    left: 0;
-  }
-  .ag-timeline-card_title {
-    display: block;
-  }
-  .ag-timeline-card_arrow {
-    margin-top: 15px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .ag-format-container {
-    width: 96%;
-  }
-}
-
-@media only screen and (max-width: 639px) {
-  .ag-timeline_title {
-    font-size: 36px;
-  }
-
-  .ag-timeline-card_info {
-    padding: 0 15px 15px;
-  }
-  .ag-timeline-card_desc {
-    font-size: 14px;
-  }
-}
-
-@media only screen and (max-width: 479px) {
-  .ag-timeline-block {
-    padding: 80px 0;
-  }
-  .ag-timeline_title {
-    font-size: 28px;
-  }
-  .ag-timeline_tagline {
-    font-size: 18px;
-  }
-  
-  .ag-timeline-card_point {
-    height: 40px;
-    line-height: 40px;
-    width: 40px;
-    font-size: 14px;
-  }
-  
-  .ag-timeline-card_item {
-    margin: -50px 0 0 60px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-  .ag-format-container {
-    width: 750px;
-  }
-}
-
-@media (min-width: 980px) and (max-width: 1161px) {
-  .ag-format-container {
-    width: 960px;
-  }
-}
-</style>
-
-<script>
-(function ($) {
-  $(function () {
-    $(window).on("scroll", function () {
-      fnOnScroll();
-    });
-
-    $(window).on("resize", function () {
-      fnOnResize();
-    });
-
-    var agTimeline = $(".js-timeline"),
-      agTimelineLine = $(".js-timeline_line"),
-      agTimelineLineProgress = $(".js-timeline_line-progress"),
-      agTimelinePoint = $(".js-timeline-card_point-box"),
-      agTimelineItem = $(".js-timeline_item"),
-      agOuterHeight = $(window).outerHeight(),
-      agHeight = $(window).height(),
-      f = -1,
-      agFlag = false;
-
-    function fnOnScroll() {
-      agPosY = $(window).scrollTop();
-      fnUpdateFrame();
-    }
-
-    function fnOnResize() {
-      agPosY = $(window).scrollTop();
-      agHeight = $(window).height();
-      fnUpdateFrame();
-    }
-
-    function fnUpdateWindow() {
-      agFlag = false;
-      agTimelineLine.css({
-        top:
-          agTimelineItem.first().find(agTimelinePoint).offset().top -
-          agTimelineItem.first().offset().top,
-        bottom:
-          agTimeline.offset().top +
-          agTimeline.outerHeight() -
-          agTimelineItem.last().find(agTimelinePoint).offset().top
-      });
-      f !== agPosY && ((f = agPosY), agHeight, fnUpdateProgress());
-    }
-
-    function fnUpdateProgress() {
-      var agTop = agTimelineItem.last().find(agTimelinePoint).offset().top;
-      i = agTop + agPosY - $(window).scrollTop();
-      a = agTimelineLineProgress.offset().top + agPosY - $(window).scrollTop();
-      n = agPosY - a + agOuterHeight / 2;
-      i <= agPosY + agOuterHeight / 2 && (n = i - a);
-      agTimelineLineProgress.css({ height: n + "px" });
-
-      agTimelineItem.each(function () {
-        var agTop = $(this).find(agTimelinePoint).offset().top;
-        agTop + agPosY - $(window).scrollTop() < agPosY + 0.5 * agOuterHeight
-          ? $(this).addClass("js-ag-active")
-          : $(this).removeClass("js-ag-active");
-      });
-    }
-
-    function fnUpdateFrame() {
-      agFlag || requestAnimationFrame(fnUpdateWindow);
-      agFlag = true;
-    }
-  });
-})(jQuery);
-</script> -->
 <section class="biography-section" id="biography-section">
     <div class="biography-container">
         <h2>Biography</h2>
@@ -1059,17 +673,6 @@ html {
             I'd love to hear from you! Whether you have a question or just want to say hi, feel free to reach out.
         </p>
         <div class="form-container" >
-                  <!--  DR This is for the Coursee the other form is for internship application. Thank you for your understanding
-            
-            <form action="contactUsAction.php" method="POST" onsubmit="return validateForm();">
-                <input type="text" name="name" placeholder="Name" id="name" >
-                <input type="email" name="email" placeholder="Email" id="email">
-                <textarea name="message" placeholder="Message" style="height: 150px;resize: vertical;" id="message"></textarea>
-                <div class="button-div">
-                <button type="submit" id="submit-button">
-                    Send Message
-                </button></div>
-            </form>-->
             <form onsubmit="sendMail(); reset();return false;">
                 <input type="text" name="name" placeholder="Name" id="name" >
                 <input type="email" name="email" placeholder="Email" id="email">
@@ -1088,7 +691,7 @@ html {
             <h3 style="font-size: 2em;">Connect with <a id="Me" style="display: inline;margin: 0%;padding: 0%;text-decoration: none;" href="mailto:jason.mrad@net.usek.edu.lb">Me</a></h3>
             <p style="font-size: 1.2em;">Feel free to connect with me on:</p>
             <div class="social-div">
-                <a href="https://www.linkedin.com/in/" class="socials">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/jason-mrad-545080362/" class="socials">LinkedIn</a>
                 <a href="https://github.com/jasonmrad1" id="github" >GitHub</a>
                 <a href="https://twitter.com/" class="socials">Twitter</a>
             </div>
@@ -1099,11 +702,7 @@ html {
     &copy; 2025 Jason Mrad. All rights reserved.
 </footer>
 
-
-
-    
 </main>
-
 
 <script src="https://smtpjs.com/v3/smtp.js">
     </script>

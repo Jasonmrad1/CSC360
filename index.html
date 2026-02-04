@@ -1,284 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JT2V2V274Q"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JT2V2V274Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-JT2V2V274Q');
-</script>
+        gtag('config', 'G-JT2V2V274Q');
+    </script>
     <style>
         ::-webkit-scrollbar {
-    display: none; /* Hides the scrollbar */}
+            display: none;
+            /* Hides the scrollbar */
+        }
 
-        body{
+        body {
             background-color: #1a1a1a;
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'outfit',sans-serif;
-             -webkit-tap-highlight-color: transparent;
+            font-family: 'outfit', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
-        body,html{
+
+        body,
+        html {
             height: 100%;
         }
+
         nav {
-    background:#2a2a2a;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-    color: white;
-    height: 90px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-nav h1{
-    font-size: 48px;
-}
-main{
+            background: #2a2a2a;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            color: white;
+            height: 90px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    margin-top: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    padding: 50px;
-   
-   height: auto;
-
-}
-.main-container{
-    width: 95%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    background-color: #1a1a1a;
-
-}
-.image-container{
-    width: 100%;
-    height: 45%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    row-gap: 40px; /* only vertical space between rows */
-
-    
-}
-
-.image{
-    width: 500px;
-    height: 300px;
-    border-radius: 15px;
-    background-size: cover;
-    background-position: center center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-}
-.social-icons{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right:20px;
-    font-size: 19px;
-}
-footer{
-
-    background-color: #2a2a2a;
-    width: 100%;
-    height: 55px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    font-size: 16px;
-    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-@media(min-height:900px){
-    footer{
-        margin-top: 100px;
-    }
-    .main{
-        margin-top: 30px;
-    }
-}
-@media(min-width:1700px){
-    .image{
-        width: 700px;
-        height: 500px;
-    }
-}
-
-@media(max-width:1200px){
-    .main-container{
-        justify-content: space-between;
-    }
-    main{
-            padding: 10px;
         }
-        .image-container{
-   
-      
-        margin-top: 40px;
-    }
-    .image{
-        width: 450px;
 
-    }
-footer{
-    margin-top: 40px;
-}
-}
-    @media(max-width:1000px){
-     
-    .image-container{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 40px;
-        row-gap: 20px; /* only vertical space between rows */
-
-    }
-   
-    .image{
-        width: 570px;
-    }
-    }
-    @media(max-width:700px){
-        main{
-            padding: 10px;
+        nav h1 {
+            font-size: 48px;
         }
-    
-    .image{
-        width: 100%;
-    }
-   
-   
-    @media(max-width: 600px){
-        footer span{
-            display: none;
+
+        main {
+
+            margin-top: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            padding: 50px;
+
+            height: auto;
+
         }
-        footer{
-            justify-content: flex-end;
+
+        .main-container {
+            width: 95%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            background-color: #1a1a1a;
+
         }
-    }
-}
-a{
-    text-decoration: none;
-}
-.transparent-container{
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s ease-in-out;
-    border-radius: 15px;
-  
-}
 
-.transparent-container span{
-    letter-spacing: 1px;
-    font-size: 50px;
-    font-weight: bold;
-    color: whitesmoke;
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-   
-}
+        .image-container {
+            width: 100%;
+            height: 45%;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            row-gap: 40px;
+            /* only vertical space between rows */
 
-.transparent-container:hover{
-    background-color: rgba(0, 0, 0, 0.7); /* Black with 50% opacity */
 
-    span{
-        opacity: 1;
-    }
-}
-.image{
-    border: 2px solid #1a1a1a;
-    transition: all 0.3s ease;
-    
-}
-.image:hover{
-   border-color: blueviolet;
-}
+        }
 
+        .image {
+            width: 500px;
+            height: 300px;
+            border-radius: 15px;
+            background-size: cover;
+            background-position: center center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-right: 20px;
+            font-size: 19px;
+        }
+
+        footer {
+
+            background-color: #2a2a2a;
+            width: 100%;
+            height: 55px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-size: 16px;
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media(min-height:900px) {
+            footer {
+                margin-top: 100px;
+            }
+
+            .main {
+                margin-top: 30px;
+            }
+        }
+
+        @media(min-width:1700px) {
+            .image {
+                width: 700px;
+                height: 500px;
+            }
+        }
+
+        @media(max-width:1200px) {
+            .main-container {
+                justify-content: space-between;
+            }
+
+            main {
+                padding: 10px;
+            }
+
+            .image-container {
+
+
+                margin-top: 40px;
+            }
+
+            .image {
+                width: 450px;
+
+            }
+
+            footer {
+                margin-top: 40px;
+            }
+        }
+
+        @media(max-width:1000px) {
+
+            .image-container {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 40px;
+                row-gap: 20px;
+                /* only vertical space between rows */
+
+            }
+
+            .image {
+                width: 570px;
+            }
+        }
+
+        @media(max-width:700px) {
+            main {
+                padding: 10px;
+            }
+
+            .image {
+                width: 100%;
+            }
+
+
+            @media(max-width: 600px) {
+                footer span {
+                    display: none;
+                }
+
+                footer {
+                    justify-content: flex-end;
+                }
+            }
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .transparent-container {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease-in-out;
+            border-radius: 15px;
+
+        }
+
+        .transparent-container span {
+            letter-spacing: 1px;
+            font-size: 50px;
+            font-weight: bold;
+            color: whitesmoke;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+
+        }
+
+        .transparent-container:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Black with 50% opacity */
+
+            span {
+                opacity: 1;
+            }
+        }
+
+        .image {
+            border: 2px solid #1a1a1a;
+            transition: all 0.3s ease;
+
+        }
+
+        .image:hover {
+            border-color: blueviolet;
+        }
     </style>
-       <link rel="preconnect" href="https://fonts.googleapis.com">
-       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
-       integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
-       crossorigin="anonymous" referrerpolicy="no-referrer" />
-      
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
+
 <body>
     <nav>
-<h1>Dashboard</h1>
+        <h1>Dashboard</h1>
     </nav>
     <main>
         <div class="main-container">
-        <div class="image-container">
-            <a style="background-image: url('schedulephoto.png');" class="image" href="schedule.html">
-                <div class="transparent-container">
-                    <span>My Courses</span>
-                </div>
-            </a>
-            <a style="background-image: url('cvphoto.png');" class="image" id="image2" href="Cv/cv.html">
-                <div class="transparent-container">
-                    <span>CV</span>
-                </div>
-            </a>
-            <a style="background-image: url('quizphoto.png');" class="image" id="image3" href="quiz.html">
-                <div class="transparent-container">
-                    <span>Quiz</span>
-                </div>
-            </a>
-            <a style="background-image: url('calc.png');" class="image" id="image4" href="calc.html">
-                <div class="transparent-container">
-                    <span>Calculator</span>
-                </div>
-            </a>
-             <a style="background-image: url('driving.png');" class="image" id="image5" href="drivingTest.html">
-                <div class="transparent-container">
-                    <span>Driving MCQ</span>
-                </div>
-            </a>
-               <a style="background-image: url('image.png');" class="image" id="image6" href="Women/women.html">
-                <div class="transparent-container">
-                    <span>Women History</span>
-                </div>
-            </a>
-            </a>
-            <a style="background-image: url('Motion/motionThumbnail.png');" class="image" id="image7" href="Motion/motion.html">
-                <div class="transparent-container">
-                    <span>Motion</span>
-                </div>
-            </a>
-        </div>                
+            <div class="image-container">
+                <a style="background-image: url('Cv/cvThumbnail.png');" class="image" href="Cv/cv.html">
+                    <div class="transparent-container">
+                        <span>CV</span>
+                    </div>
+                </a>
+                <a style="background-image: url('Sports/sportsWebThumbnail.png');" class="image" id="image1"
+                    href="Sports/index.html">
+                    <div class="transparent-container">
+                        <span>Sports Ecom</span>
+                    </div>
+                </a>
+                <a style="background-image: url('CV/Projects/drivingThumbnail.png');" class="image" id="image10"
+                    href="https://jmrad-insurance-ml.streamlit.app">
+                    <div class="transparent-container">
+                        <span>Cost Predictor</span>
+                    </div>
+                </a>
+                <a style="background-image: url('Schedule/scheduleThumbnail.png');" class="image" id="image2"
+                    href="Schedule/schedule.html">
+                    <div class="transparent-container">
+                        <span>Schedule</span>
+                    </div>
+                </a>
+                <a style="background-image: url('Quiz/quizThumbnail.png');" class="image" id="image3"
+                    href="Quiz/quiz.html">
+                    <div class="transparent-container">
+                        <span>Quiz</span>
+                    </div>
+                </a>
+                <a style="background-image: url('Calculator/calculatorThumbnail.png');" class="image" id="image4"
+                    href="Calculator/calc.html">
+                    <div class="transparent-container">
+                        <span>Calculator</span>
+                    </div>
+                </a>
+                <a style="background-image: url('LebDrivingTest/drivingThumbnail.png');" class="image" id="image5"
+                    href="LebDrivingTest/drivingTest.html">
+                    <div class="transparent-container">
+                        <span>Driving MCQ</span>
+                    </div>
+                </a>
+                <a style="background-image: url('Women/womenThumbnail.png');" class="image" id="image6"
+                    href="Women/women.html">
+                    <div class="transparent-container">
+                        <span>Women History</span>
+                    </div>
+                </a>
+                </a>
+                <a style="background-image: url('Motion/motionThumbnail.png');" class="image" id="image7"
+                    href="Motion/motion.html">
+                    <div class="transparent-container">
+                        <span>Motion</span>
+                    </div>
+                </a>
+            </div>
         </div>
     </main>
     <footer>
 
         <span style="padding-left: 20px;">Jason Mrad</span>
         <span>&copy; 2024 All Rights Reserved.</span>
-<div class="social-icons" style="display: flex;justify-content: center;align-items: center;padding-right:20px ;font-size: 19px;" id="social-icons"><a href="https://www.instagram.com/jasonmrad1" target="_blank" aria-label="Instagram" style="color: white;">
-    <i class="fa-brands fa-instagram" style="padding-right: 10px;" ></i></a><a href="https://www.x.com" target="_blank" aria-label="X" style="color: white;"><i class="fa-brands fa-x-twitter" style="padding-right: 10px;"></i></a><a href="https://www.facebook.com" target="_blank" aria-label="Facebook" style="color: white;"><i class="fa-brands fa-facebook" ></i></a></div>
-        
-        
-            </footer>
+        <div class="social-icons"
+            style="display: flex;justify-content: center;align-items: center;padding-right:20px ;font-size: 19px;"
+            id="social-icons"><a href="https://www.instagram.com/jasonmrad1" target="_blank" aria-label="Instagram"
+                style="color: white;">
+                <i class="fa-brands fa-instagram" style="padding-right: 10px;"></i></a><a href="https://www.x.com"
+                target="_blank" aria-label="X" style="color: white;"><i class="fa-brands fa-x-twitter"
+                    style="padding-right: 10px;"></i></a><a href="https://www.facebook.com" target="_blank"
+                aria-label="Facebook" style="color: white;"><i class="fa-brands fa-facebook"></i></a></div>
+
+
+    </footer>
 </body>
+
 </html>
