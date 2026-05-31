@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aegis Password Vault</title>
+    <link rel="stylesheet" href="aegis.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <main class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Password vault for builders</p>
+        <h1>
+          Aegis keeps your secrets local,
+          <span class="accent">fast</span>, and encrypted.
+        </h1>
+        <p class="lede">
+          A CLI vault with AES-GCM encryption, offline-first storage, and instant
+          clipboard copy. Built for Windows, designed for control.
+        </p>
+        <div class="hero-actions" id="download">
+          <a class="btn primary" href="https://github.com/Jasonmrad1/Aegis/releases/download/v1.0.0/AegisSetup.exe">
+            Download for Windows
+          </a>
+          <a class="btn ghost" href="https://github.com/Jasonmrad1/Aegis">
+            View on GitHub
+          </a>
+        </div>
+        <div class="meta">
+          <span>Version 1.0.0</span>
+          <span>Local vault in AppData</span>
+          <span>No accounts required</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="terminal-body" id="terminalOutput"></div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">PBKDF2 SHA-256</span>
+          <span class="chip">AES-256 GCM</span>
+          <span class="chip">Atomic writes</span>
+        </div>
+      </div>
+    </main>
+    <script src="aegis.js"></script>
+  </body>
+</html>
