@@ -158,7 +158,7 @@ cursor:pointer;
     margin-top: 20px;
     width: 100%;
     height: auto;
-    padding: 50px 0px;
+    padding: 60px 0px;
     background-color: white;
     color: #282828;
 }
@@ -210,7 +210,7 @@ cursor:pointer;
 }
 .skills-section{
     width: 100%;
-    padding: 50px 0;
+    padding: 60px 0;
     background-color:white;
     color: #282828;
 }
@@ -278,71 +278,259 @@ cursor:pointer;
     flex-direction: column;
 }
 .project-section{
-    margin-top: 100px;
-    height: 2050px;/*fix height lal container aa smaller screens ha nkabera*/
+    height: auto;
+    background-color: white;
+    padding: 60px 0;
 }
 .project-section h2{
     color: #282828;
     font-size: 3em;
+    text-align: center;
+    margin-bottom: 50px;
 }
-.project-container{
+
+:root {
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow-subtle: rgba(0, 0, 0, 0.3);
+}
+
+.project-container {
     margin: auto;
     max-width: 1400px;
     width: 100%;
-    height: 800px;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-.parent-video-container{
+
+.parent-image-container {
     min-width: 45%;
     max-width: 45%;
-    height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
+}
+
+
+.image-container {
+    position: relative;
+    width: 90%;
+    height: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.image-container:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s ease;
+    filter: brightness(0.9) contrast(1.1);
+    border-radius: 16px;
+}
+
+.image-container:hover .project-image {
+    transform: scale(1.01);
+    filter: brightness(0.6) contrast(1.2) blur(1px);
+}
+
+.overlay-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+}
+
+.image-container:hover .overlay-hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px);
+}
+
+.project-title {
+    color: var(--text-primary);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    transform: translateY(30px);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.preview-button {
+    position: relative;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-family: 'Outfit';
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+/* Shine layer */
+.preview-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transform: skewX(-20deg);
+}
+
+/* Hover */
+.preview-button:hover::before {
+    animation: shine 0.8s ease forwards;
+}
+
+.preview-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(0) scale(1.05);
+}
+
+/* Keyframes */
+@keyframes shine {
+    from {
+        left: -75%;
+    }
+    to {
+        left: 130%;
+    }
+}
+
+
+.image-container:hover .project-title,
+.image-container:hover .preview-button {
+    transform: translateY(0);
+    opacity: 1;
+}
+.made-in {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    text-align: center;
     
+    /* MODIFIED: Increased opacity slightly and added drop shadow so it works on white backgrounds */
+    background: rgba(15, 15, 15, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); /* Safari support */
+    
+    padding: 8px 16px;
+    border-radius: 20px;
+    
+    /* MODIFIED: Adjusted border and added shadow to create separation on light colors */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+    
+    /* Crucial: Keeps your tech items in a clean row inside the pill badge */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-
-.background-video {
-  width: 100%;
-  height: 100%;
-  object-position: center;
-  object-fit: cover;
-  border-radius: 15px;
-  z-index: -1;
-  user-select: none;
-}
-/* Hover effect for videos */
-.video-container {
-  position: relative;
-  width: 90%;
-  height: 85%;
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.video-container:hover {
-  transform: scale(1.0);
+.made-in span {
+    /* MODIFIED: Using explicit light color instead of a variable that might change on light mode */
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease;
 }
 
+.made-in span:hover {
+    color: blueviolet;
+}
+
+.image-container:hover .made-in {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* --- Tech Items Styling --- */
+.tech-item {
+    /* inline-block allows clean margin/padding handling while staying in a row */
+    display: inline-block; 
+    
+    /* MODIFIED: Explicit light color to remain visible against the dark glass backdrop */
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.85rem;
+    font-weight: 400;
+    transition: color 0.2s ease;
+}
+
+/* Change ONLY the text color on hover, not the pseudo-element */
+.tech-item:hover {
+    color: blueviolet; /* Or whatever your primary hover color is */
+    cursor: pointer;
+}
+
+.tech-item::after {
+    content: ' / ';
+    margin: 0 4px;
+    
+    /* MODIFIED: Locked to a fixed dimmed white value so it matches the new adaptive theme */
+    color: rgba(255, 255, 255, 0.35) !important; 
+}
+
+.tech-item:last-child::after {
+    content: '';
+}
 /* Zoom Overlay */
 .video-zoom-overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: rgba(35, 35, 35, 0.55); /* dark, semi-transparent */
+  background: rgba(35, 35, 35, 0.55);
   display: flex;
-   backdrop-filter: blur(20px);
-     -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05); /* faint frosted border */
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);     /* smooth dark glow */
-
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
   z-index: 9999;
@@ -351,6 +539,7 @@ cursor:pointer;
   transition: opacity 0.3s ease;
   overflow: hidden;
 }
+
 .video-zoom-overlay.active {
   opacity: 1;
   pointer-events: auto;
@@ -362,43 +551,39 @@ cursor:pointer;
   max-height: 80vh;
   max-width: 1280px;
   border-radius: 14px;
-  box-shadow: 0 0 40px rgba(138, 43, 226, 0.2); /* blueviolet shadow */
+  box-shadow: 0 0 40px rgba(138, 43, 226, 0.2);
   border: 2px solid black;
   overflow: hidden;
-   background: black;
-   transition: border-color 1s ease;
+  background: black;
+  transition: border-color 1s ease;
 }
 
 .zoom-media-container.desc-active {
   border-color: rgba(137, 43, 226, 1);
 }
 
-#zoomVideo {/*ntebeh hone lal videos teb2a zabeton*/
+#zoomVideo {
   width: 100%;
   height: 80vh;
   border: none;
   display: block;
   border-radius: 14px;
   user-select: none;
-  
-   background: #fff;
-     top: 0;
+  background: #fff;
+  top: 0;
   left: 0;
   width: 100%;
   max-height: 50%;
 }
- #zoomVideo, #zoomIframe {
-    user-select: none;
-    background: black;
-  }
+
+#zoomVideo, #zoomIframe {
+  user-select: none;
+  background: black;
+}
 
 #zoomIframe {
-    background: white;
-  }
-.thumbnail:hover , .video-container:hover {
-    filter: brightness(0.9);
-    transition: filter 0.3s ease-in-out;
-  }
+  background: white;
+}
 
 .info-icon {
   position: absolute;
@@ -421,16 +606,16 @@ cursor:pointer;
   user-select: none;
   transition: background 0.3s ease;
   pointer-events: auto;
+  cursor: pointer;
 }
 
 .info-icon:hover {
   background: blueviolet;
 }
+
 .info-icon i{
   transform: rotate(90deg);
 }
-
-
 
 .description-overlay {
   position: absolute;
@@ -456,6 +641,7 @@ cursor:pointer;
   flex-direction: column;
   transition: none;
 }
+
 .description-overlay.visible {
   pointer-events: auto;
 }
@@ -486,11 +672,11 @@ cursor:pointer;
   transition: color 0.3s ease;
   z-index: 50;
 }
+
 .description-close-btn:hover {
   color: white;
 }
 
-/* Close hint text */
 .close-hint {
   position: absolute;
   bottom: 30px;
@@ -502,50 +688,16 @@ cursor:pointer;
   z-index: 5;
   user-select: none;
 }
-.background-video{
-  
 
-  width: 100%;
-  height: 100%;
-  object-position: center;
-  object-fit:cover;
-border-radius: 15px;
-  z-index: -1;
-  }
-/* Hover effect for videos */
-.video-container {
-  
-          position: relative;
-          width: 90%;
-          height: 85%;
-          border-radius: 20px;
-          overflow: hidden;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          
-      }
-      .parent-video-container img{
-        width: 100%;
-        height: 100%;
-        object-fit: fill;
-      }
-    
-  
-.project-title{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.zoom-gallery {
+  display: flex !important;
 }
 
 .biography-section{
     width: 100%;
-    padding: 50px 0;
+    padding: 60px 0;
     background-color:white;
     color: #282828;
-    margin-top: 70px;
 }
 .biography-container{
     max-width: 1000px;
@@ -565,7 +717,7 @@ border-radius: 15px;
 }
 .contact-section{
     width: 100%;
-    padding: 50px 0;
+    padding: 60px 0;
     background-color: white;
     color: #282828;
 }
@@ -802,27 +954,31 @@ footer{
         width: 80%;
     }
     .project-section{
-        height: 2380px;
+        height: auto;
     }
     .project-container{
         height: auto;
-      flex-direction: column;
-      margin: auto;
-      align-items: center;
-      gap: 30px;
-       
+        flex-direction: column;
+        margin: auto;
+        align-items: center;
+        gap: 30px;
     }
-    .parent-video-container{
+
+    .parent-image-container {
         min-width: 95%;
-    
-        height: 65%;
-       
-        
+        max-width: 95%;
+        height: auto;
     }
-   .video-container{
-    height: 350px;
-   }
-    .project-section h2{
+
+    .image-container {
+        height: 350px;
+    }
+
+    .project-title {
+        font-size: 1.8rem;
+    }
+
+   .project-section h2{
        margin-bottom: 50px;
     }
     .biography-container h2{
@@ -833,35 +989,6 @@ footer{
        
         margin-bottom: 30px;
     }
-  
-  
-
-  
-
-  .zoom-media-container {
-    width: 95vw;
-    max-height: 85vh;
-  }
-
-
- 
-
-  .description-overlay {
-    padding: 20px;
-    font-size: 16px;
-  }
-
-  .description-overlay h3 {
-    font-size: 26px;
-  }
-
-  .description-close-btn {
-    font-size: 28px;
-  }
-
-  .close-hint {
-    font-size: 12px;
-  }
 }
 
 @media (max-width:650px){
@@ -920,9 +1047,9 @@ footer{
         font-size: 25px;
         align-items: center;
     }
-    .video-container{
+    .image-container{
         height: 235px;
-       }
+    }
     .biography-container p{
         font-size: 1.1em;
         
@@ -951,7 +1078,7 @@ footer{
         height: 100svh;
     }
      .project-section{
-        height: 1650px;
+        height: auto;
     }
   
 }
