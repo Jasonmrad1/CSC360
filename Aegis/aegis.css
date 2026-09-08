@@ -118,6 +118,12 @@ body {
   box-shadow: 0 12px 24px rgba(79, 195, 255, 0.25);
 }
 
+.btn.secondary {
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(168, 85, 247, 0.28);
+}
+
 .btn.ghost {
   color: var(--text);
   border-color: rgba(244, 246, 249, 0.2);
